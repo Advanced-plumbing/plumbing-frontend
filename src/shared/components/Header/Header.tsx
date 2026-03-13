@@ -1,31 +1,76 @@
 "use client";
 import { useState, useEffect } from "react";
+import Image from "next/image";
+import styles from "./Header.module.css";
 
 export const Header = () => {
     const [isScrolled, setIsScrolled] = useState(false);
+    const [activePath, setActivePath] = useState("Home"); // Simplificado para este ejemplo
 
     useEffect(() => {
-        const handleScroll = () => setIsScrolled(window.scrollY > 50);
+        const handleScroll = () => setIsScrolled(window.scrollY > 100);
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
+    const navItems = ["Home", "About", "Method", "Services", "Process"];
+
+    const navLinkClass = `${styles.navLink} ${
+        isScrolled ? styles.navLinkScrolled : styles.navLinkTransparent
+    }`;
+
+    const touchTextClass = `${styles.touchText} ${
+        isScrolled ? styles.touchTextScrolled : styles.touchTextTransparent
+    }`;
+
     return (
-        <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? "bg-white shadow-md py-4" : "bg-transparent py-6"}`}>
-            <div className="container mx-auto flex justify-between items-center px-6">
-                <div className="text-[#247af5] font-bold text-xl uppercase tracking-wider">
-                    Advanced Plumbing
+        <header className={`${styles.header} ${isScrolled ? styles.headerScrolled : styles.headerTransparent}`}>
+            <div className={styles.container}>
+                <div className="relative w-[200px] h-[60px]"> {/* Ajusta el ancho y alto según el logo original */}
+                    <Image
+                        src="/logo/logo.png"
+                        alt="Advanced Plumbing"
+                        fill
+                        priority
+                        className="object-contain object-left" // object-left para pegarlo a la izquierda
+                    />
                 </div>
-                <nav className="hidden md:flex gap-8 text-sm font-medium">
-                    {["Home", "About", "Method", "Services", "Process"].map((item) => (
-                        <a key={item} href="#" className={isScrolled ? "text-gray-800" : "text-gray-600"}>
-                            {item}
-                        </a>
-                    ))}
-                </nav>
-                <button className="bg-[#247af5] text-white px-6 py-2 rounded-full flex items-center gap-2 hover:opacity-90 transition-opacity">
-                    Get in touch <span className="text-lg">→</span>
-                </button>
+
+                <div className={styles.navigationWrapper}>
+                    {/* NAVEGACIÓN con enlaces activos bold */}
+                    <nav className={styles.nav}>
+                        {navItems.map((item) => (
+                            <a
+                                key={item}
+                                href="#"
+                                className={`${navLinkClass} ${activePath === item ? styles.navLinkActive : ""}`}
+                                onClick={() => setActivePath(item)} // Para fines de demo
+                            >
+                                {item}
+                            </a>
+                        ))}
+                    </nav>
+
+                    {/* BOTÓN DINÁMICO "Get in touch" */}
+                    <div className={styles.getInTouch}>
+                        <div className={styles.arrowCircle}>
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2.5"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                className={styles.arrowIcon}
+                            >
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </div>
+                        <span className={styles.touchText}>Get in touch</span>
+                    </div>
+                </div>
+
             </div>
         </header>
     );
