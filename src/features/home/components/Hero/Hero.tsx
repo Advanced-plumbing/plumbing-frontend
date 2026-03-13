@@ -1,16 +1,30 @@
 "use client";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useMousePosition } from "@/shared/hooks/use-mouse-position";
 import styles from "./Hero.module.css";
 
 export const Hero = () => {
     const { x, y } = useMousePosition();
-    const size = 120; // Tamaño del hueco
+    const [maskSize, setMaskSize] = useState(120);
+
+    // Ajustamos el tamaño del hueco según el dispositivo
+    useEffect(() => {
+        const updateSize = () => {
+            if (window.innerWidth < 768) {
+                setMaskSize(80); // Más pequeño en móvil
+            } else {
+                setMaskSize(120);
+            }
+        };
+        updateSize();
+        window.addEventListener("resize", updateSize);
+        return () => window.removeEventListener("resize", updateSize);
+    }, []);
 
     return (
         <section className={styles.hero}>
-
-            {/* CAPA 1: Tuberías (Fondo Real) - z-0 (por defecto) */}
+            {/* CAPA 1: Tuberías */}
             <div className={styles.layerPipes}>
                 <Image
                     src="/images/pipe.jpg"
@@ -21,24 +35,24 @@ export const Hero = () => {
                 />
             </div>
 
-            {/* CAPA 2: Pared (Con la Máscara) - z-10 */}
+            {/* CAPA 2: Pared (Con la Máscara) */}
             <div
                 className={styles.layerWall}
                 style={{
-                    maskImage: `radial-gradient(circle ${size}px at ${x}px ${y}px, transparent 100%, black 100%)`,
-                    WebkitMaskImage: `radial-gradient(circle ${size}px at ${x}px ${y}px, transparent 100%, black 100%)`
+                    maskImage: `radial-gradient(circle ${maskSize}px at ${x}px ${y}px, transparent 100%, black 100%)`,
+                    WebkitMaskImage: `radial-gradient(circle ${maskSize}px at ${x}px ${y}px, transparent 100%, black 100%)`
                 }}
             >
                 <Image
-                    src="/images/wall.jpg"
-                    alt="Clean wall with furniture"
+                    src="/images/wall-alt.jpg"
+                    alt="Clean wall"
                     fill
                     priority
                     className="object-cover"
                 />
             </div>
 
-            {/* CAPA 3: CONTENIDO TEXTUAL (SUPERIOR) - z-20 */}
+            {/* CAPA 3: CONTENIDO TEXTUAL */}
             <div className={styles.contentContainer}>
                 <div className={styles.textWrapper}>
                     <h1 className={styles.title}>
@@ -52,7 +66,6 @@ export const Hero = () => {
                     </button>
                 </div>
             </div>
-
         </section>
     );
 };

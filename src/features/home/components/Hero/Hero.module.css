@@ -5,70 +5,116 @@
     overflow: hidden;
 }
 
-.layerPipes {
+.layerPipes, .layerWall {
     position: absolute;
     inset: 0;
 }
 
 .layerWall {
-    position: absolute;
-    inset: 0;
     z-index: 10;
-    /* La máscara se aplica inline en el TSX */
 }
 
 .contentContainer {
     position: relative;
     z-index: 20;
     max-width: 1500px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     height: 100%;
-    pointer-events: none; /* Crucial para que el mouse atraviese el texto */
+    pointer-events: none;
 }
 
-/* Alineación a la izquierda */
+/* --- RESPONSIVE LOGIC --- */
+
 .textWrapper {
-    max-width: 60%; /* aprox max-w-2xl */
+    max-width: 60%;
+    transition: all 0.3s ease;
 }
 
 .title {
-    font-size: 4.2rem; /* text-6xl */
-    font-weight: 700;
+    font-family: var(--font-jakarta);
+    font-size: 4.2rem;
+    font-weight: 800;
     color: var(--primary-blue);
     line-height: 1.1;
     margin-bottom: 1.5rem;
+    letter-spacing: -0.04em;
 }
 
 .description {
-    font-size: 1.8rem; /* text-lg */
+    font-family: var(--font-jakarta);
+    font-size: 1.8rem;
     width: 70%;
     color: var(--primary-blue);
-    line-height: 1.6;
+    line-height: 1.4;
     margin-bottom: 2.5rem;
+    opacity: 0.9;
 }
 
-/* Botón pequeño y a la izquierda */
 .ctaButton {
-    pointer-events: auto; /* Reactiva el click */
+    pointer-events: auto;
     background-color: var(--primary-blue);
     color: white;
-    margin-top: 1rem;
-    padding: 1rem 2rem;
+    padding: 1.2rem 2.5rem;
     border-radius: 9999px;
-    font-weight: 600;
-    font-size: 1.2rem;
-    align-self: flex-start; /* Alinea a la izq dentro del flex */
-    transition: background-color 0.2s ease;
+    font-weight: 700;
+    font-size: 1.1rem;
+    align-self: flex-start;
+    transition: all 0.3s ease;
     border: none;
     cursor: pointer;
 }
 
-.ctaButton:hover {
-    background-color: #1e63d3; /* Un azul más oscuro */
+/* TABLET (Laptops pequeñas / iPads) */
+@media (max-width: 1024px) {
+    .textWrapper {
+        max-width: 80%;
+    }
+    .title {
+        font-size: 3.2rem;
+    }
+    .description {
+        font-size: 1.5rem;
+        width: 90%;
+    }
+}
+
+/* MOBILE (Teléfonos) */
+@media (max-width: 768px) {
+    .contentContainer {
+        justify-content: center; /* Bajamos el texto un poco para que no tape el centro */
+        padding-bottom: 5rem;
+    }
+
+    .textWrapper {
+        max-width: 100%;
+        text-align: left; /* Mantenemos a la izquierda según tu diseño */
+    }
+
+    .title {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .description {
+        font-size: 1.2rem;
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+
+    .ctaButton {
+        width: 100%; /* Botón ancho total en móvil para mejor UX */
+        text-align: center;
+        padding: 1rem;
+    }
+}
+
+/* Corrección para pantallas muy pequeñas */
+@media (max-width: 480px) {
+    .title {
+        font-size: 2.1rem;
+    }
 }
