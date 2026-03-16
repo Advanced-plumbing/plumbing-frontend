@@ -8,17 +8,25 @@ interface ServiceItem {
 
 interface ComprehensiveServicesSectionProps {
     title: string;
+    content?: string;
     items: ServiceItem[];
 }
 
 export const ComprehensiveServicesSection = ({
                                                  title,
+                                                 content,
                                                  items,
                                              }: ComprehensiveServicesSectionProps) => {
     return (
         <section className={styles.wrapper}>
             <div className={styles.container}>
                 <h2 className={styles.mainTitle}>{title}</h2>
+
+                {content && (
+                    <p className={styles.mainDescription}>
+                        {content}
+                    </p>
+                )}
 
                 <div className={styles.grid}>
                     {items.map((item, index) => (

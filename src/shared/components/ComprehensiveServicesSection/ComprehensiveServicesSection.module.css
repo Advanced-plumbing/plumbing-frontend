@@ -54,6 +54,16 @@
     color: rgba(255, 255, 255, 0.9);
 }
 
+.mainDescription {
+    text-align: center;
+    max-width: 900px; /* Para que no se extienda demasiado y sea difícil de leer */
+    margin: -30px auto 50px auto; /* Margen negativo superior para acercarlo al título */
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 400;
+}
+
 /* Tablet / Mobile */
 @media (max-width: 992px) {
     .grid {

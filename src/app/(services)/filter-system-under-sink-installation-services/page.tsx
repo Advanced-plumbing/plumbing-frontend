@@ -7,7 +7,7 @@ const FilterSystemPage = () => {
     return (
         <main>
             <Header/>
-            <FilterSystemContainer />;
+            <FilterSystemContainer />
             <Footer/>
         </main>
     );

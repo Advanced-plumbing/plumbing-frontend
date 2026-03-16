@@ -92,7 +92,6 @@ const ContactBlue = () => {
                         </form>
                     </div>
                 </div>
-
             </div>
         </section>
     );
