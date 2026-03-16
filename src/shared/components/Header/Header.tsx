@@ -2,11 +2,24 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import styles from "./Header.module.css";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useRouter } from 'next/navigation';
 
-export const Header = () => {
+interface HeaderProps {
+    isHome?: boolean;
+}
+
+export const Header = ({ isHome = false }: HeaderProps) => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [activePath, setActivePath] = useState("Home");
+    const router = useRouter();
+    const pathname = usePathname();
+
+    const handleNavigation = () => {
+        setIsMenuOpen(false); // Cerramos el menú si estuviera abierto
+        router.push('/contact-us/');
+    };
 
     useEffect(() => {
         const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -14,10 +27,24 @@ export const Header = () => {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    const navItems = ["Home", "About", "Method", "Services", "Process"];
+    const headerClass = isHome
+        ? (isScrolled ? styles.headerScrolled : styles.headerTransparent)
+        : styles.headerScrolled;
+
+    const linkClass = isHome
+        ? (isScrolled ? styles.navLinkScrolled : styles.navLinkTransparent)
+        : styles.navLinkScrolled;
+
+    const navItems = [
+        { name: "Home", path: "/" },
+        { name: "About", path: "/about-us" },
+        { name: "Method", path: "/#method" }, // Ancla al home
+        { name: "Services", path: "/#services" },
+        { name: "Process", path: "/#process" },
+    ];
 
     return (
-        <header className={`${styles.header} ${isScrolled ? styles.headerScrolled : styles.headerTransparent}`}>
+        <header className={`${styles.header} ${headerClass}`}>
             <div className={styles.container}>
                 {/* LOGO */}
                 <div className={styles.logoWrapper}>
@@ -34,20 +61,24 @@ export const Header = () => {
                 <div className={styles.navigationWrapper}>
                     <nav className={styles.nav}>
                         {navItems.map((item) => (
-                            <a
-                                key={item}
-                                href={`#${item.toLowerCase()}`}
-                                className={`${styles.navLink} ${
-                                    isScrolled ? styles.navLinkScrolled : styles.navLinkTransparent
-                                } ${activePath === item ? styles.navLinkActive : ""}`}
-                                onClick={() => setActivePath(item)}
+                            <Link
+                                key={item.name}
+                                href={item.path}
+                                className={`${styles.navLink} ${linkClass} ${
+                                    pathname === item.path ? styles.navLinkActive : ""
+                                }`}
                             >
-                                {item}
-                            </a>
+                                {item.name}
+                            </Link>
                         ))}
                     </nav>
 
-                    <div className={styles.getInTouch}>
+                    <div
+                        className={styles.getInTouch}
+                        onClick={handleNavigation}
+                        role="button"
+                        tabIndex={0}
+                    >
                         <div className={styles.arrowCircle}>
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className={styles.arrowIcon}>
                                 <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -58,30 +89,29 @@ export const Header = () => {
                     </div>
                 </div>
 
-                {/* MOBILE HAMBURGER BUTTON */}
+                {/* MOBILE BUTTON - Cambia color según el fondo */}
                 <button
                     className={`${styles.mobileMenuBtn} ${isMenuOpen ? styles.mobileMenuBtnOpen : ""}`}
                     onClick={() => setIsMenuOpen(!isMenuOpen)}
                     aria-label="Toggle menu"
                 >
-                    <span className={isScrolled ? styles.barDark : styles.barBlue}></span>
-                    <span className={isScrolled ? styles.barDark : styles.barBlue}></span>
+                    <span className={!isHome || isScrolled ? styles.barDark : styles.barBlue}></span>
+                    <span className={!isHome || isScrolled ? styles.barDark : styles.barBlue}></span>
                 </button>
 
                 {/* MOBILE OVERLAY MENU */}
                 <div className={`${styles.mobileOverlay} ${isMenuOpen ? styles.mobileOverlayOpen : ""}`}>
                     <nav className={styles.mobileNav}>
                         {navItems.map((item) => (
-                            <a
-                                key={item}
-                                href={`#${item.toLowerCase()}`}
+                            <Link
+                                key={item.name}
+                                href={item.path}
                                 className={styles.mobileNavLink}
                                 onClick={() => setIsMenuOpen(false)}
                             >
-                                {item}
-                            </a>
+                                {item.name}
+                            </Link>
                         ))}
-                        <button className={styles.mobileCTA}>Get in touch</button>
                     </nav>
                 </div>
             </div>

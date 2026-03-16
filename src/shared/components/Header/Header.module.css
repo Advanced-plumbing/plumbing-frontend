@@ -12,6 +12,10 @@
     padding: 0.8rem 0;
 }
 
+.headerScrolled .logoWrapper {
+    filter: none;
+}
+
 .headerTransparent {
     background-color: transparent;
     padding: 1.5rem 0;

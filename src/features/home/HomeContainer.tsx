@@ -1,10 +1,10 @@
 import { Hero } from "./components/Hero/Hero";
-import { ContactUsToday } from "./components/ContactUsToday/ContactUsToday";
-import {Accreditations} from "@/features/home/components/Accreditations/Accreditations";
+import { ContactUsToday } from "@/shared/components/ContactUsToday/ContactUsToday";
+import {Accreditations} from "@/shared/components/Accreditations/Accreditations";
 import {AboutUs} from "@/features/home/components/AboutUs/AboutUs";
 import OurServices from "@/features/home/components/OurServices/OurServices";
 import BlogSection from "@/features/home/components/Blogs/BlogSection";
-import ContactBlue from "@/features/home/components/ContactBlue/ContactBlue";
+import ContactBlue from "@/shared/components/ContactBlue/ContactBlue";
 
 export const HomeContainer = () => {
     return (

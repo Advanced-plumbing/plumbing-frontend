@@ -7,7 +7,7 @@ import {Footer} from "@/shared/components/Footer/Footer";
 export default function Home() {
   return (
       <main>
-          <Header/>
+          <Header isHome={true}/>
           <HomeContainer/>
           <Footer/>
       </main>

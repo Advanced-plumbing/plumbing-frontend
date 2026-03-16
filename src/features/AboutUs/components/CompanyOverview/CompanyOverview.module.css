@@ -1,0 +1,109 @@
+.section {
+    padding: 100px 20px;
+    background-color: #ffffff;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.contentGrid {
+    display: flex;
+    gap: 60px;
+    align-items: center;
+}
+
+.textColumn {
+    flex: 1;
+}
+
+.brandTitle {
+    color: #0046ad;
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+.mainHeading {
+    font-size: 3.2rem;
+    font-weight: 900;
+    line-height: 1.1;
+    color: #003a8c;
+    margin-bottom: 25px;
+}
+
+.mainHeading span {
+    font-weight: 400;
+}
+
+.description {
+    color: #555;
+    line-height: 1.6;
+    font-size: 1.05rem;
+    margin-bottom: 20px;
+}
+
+.contactBtn {
+    background-color: #0046ad;
+    color: white;
+    padding: 12px 35px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* --- Grid de Imágenes --- */
+.imageColumn {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.mainImageWrapper {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.bottomImages {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.subImage {
+    position: relative;
+    height: 200px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.image {
+    object-fit: cover;
+}
+
+/* --- Mobile (Basado en la imagen b9019d) --- */
+@media (max-width: 992px) {
+    .contentGrid {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .mainHeading {
+        font-size: 2.2rem;
+    }
+
+    .imageColumn {
+        width: 100%;
+    }
+
+    .mainImageWrapper {
+        height: 300px;
+    }
+}

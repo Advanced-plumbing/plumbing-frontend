@@ -1,0 +1,11 @@
+.heroSection {
+    position: relative;
+    width: 100%;
+    height: 400px; /* Ajustable según necesidad */
+    overflow: hidden;
+}
+
+.heroImage {
+    object-fit: cover; /* Mantiene la escala siempre */
+    object-position: center;
+}
