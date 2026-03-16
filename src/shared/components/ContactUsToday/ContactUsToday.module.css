@@ -15,6 +15,7 @@
 
 .bgImage {
     object-fit: cover;
+    object-position: top center; /* Centra horizontalmente y ancla a la parte superior */
     filter: brightness(0.7);
 }
 
