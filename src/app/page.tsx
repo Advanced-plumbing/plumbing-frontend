@@ -1,16 +1,15 @@
 import {Hero} from "@/features/home/components/Hero/Hero";
 import {Header} from "@/shared/components/Header/Header";
+import {HomeContainer} from "@/features/home/HomeContainer";
+import {Footer} from "@/shared/components/Footer/Footer";
 
 
 export default function Home() {
   return (
       <main>
           <Header/>
-          <Hero/>
-        {/* Espacio para probar el scroll y el cambio de color del header */}
-        <section className="h-screen bg-slate-50 flex items-center justify-center">
-          <h2 className="text-3xl font-light text-gray-400">Contenido Adicional</h2>
-        </section>
+          <HomeContainer/>
+          <Footer/>
       </main>
   );
 }

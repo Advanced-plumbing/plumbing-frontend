@@ -22,7 +22,7 @@ export const Header = () => {
                 {/* LOGO */}
                 <div className={styles.logoWrapper}>
                     <Image
-                        src="/logo/logo.png"
+                        src="/logos/logo.png"
                         alt="Advanced Plumbing"
                         fill
                         priority

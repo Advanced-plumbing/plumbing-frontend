@@ -4,6 +4,7 @@
 
 :root {
   --primary-blue: #2579f5;
+  --secondary-blue: #004393; /* Azul brillante de los botones */
   --text-gray: #4b5563; /* Un gris oscuro para el texto secundario */
 }
 

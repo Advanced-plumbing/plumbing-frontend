@@ -1,0 +1,50 @@
+.footer {
+    background-color: #004393; /* Color exacto solicitado */
+    color: white;
+    padding: 4rem 2rem;
+}
+
+.container {
+    max-width: 1500px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.plumberId {
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.contactSide {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1rem;
+}
+
+.contactTitle {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.info p {
+    margin: 0.3rem 0;
+    font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 3rem;
+    }
+    .contactSide {
+        align-items: center;
+        text-align: center;
+    }
+}
