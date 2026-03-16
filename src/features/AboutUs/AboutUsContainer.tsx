@@ -8,7 +8,12 @@ import {CoreValues} from "@/features/AboutUs/components/CoreValues/CoreValues";
 
 const AboutUsContainer = () => {
     return (
-        <div>
+        <div style={{
+            paddingTop: '75px',
+            width: '100%',
+            display: 'flex',
+            flexDirection: 'column'
+        }}>
             <ContactUsToday/>
             <Accreditations/>
             <CompanyOverview/>
