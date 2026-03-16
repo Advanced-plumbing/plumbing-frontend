@@ -23,7 +23,6 @@ export const Header = ({ isHome = false }: HeaderProps) => {
     const router = useRouter();
     const pathname = usePathname();
 
-    // Generación dinámica de la lista de servicios con sus paths
     const servicesList: ServiceItem[] = [
         "Drain & Sewer Cleaning",
         "Filter System Under Sink Installation",
@@ -38,13 +37,21 @@ export const Header = ({ isHome = false }: HeaderProps) => {
         "Tankless Water Heater Installation",
         "Toilet Clog Removal",
         "Water Heater Replacement"
-    ].map(service => ({
-        name: service,
-        path: `/${service.toLowerCase()
-            .replace(/ & /g, '-')
-            .replace(/\s+/g, '-')
-            .replace(/[()]/g, '')}-services/`
-    }));
+    ].map(service => {
+        // Generamos el slug base
+        let slug = service.toLowerCase()
+            .replace(/ & /g, '-')     // Maneja el "&"
+            .replace(/\s+/g, '-')     // Espacios a guiones
+            .replace(/[()]/g, '');    // Quita paréntesis
+
+        // Construimos el path asegurando que no se repita "-services"
+        const path = `/${slug}-services/`.replace("-services-services", "-services");
+
+        return {
+            name: service,
+            path: path
+        };
+    });
 
     const handleNavigation = () => {
         setIsMenuOpen(false);

@@ -14,7 +14,7 @@ const AboutUsContainer = () => {
             display: 'flex',
             flexDirection: 'column'
         }}>
-            <ContactUsToday/>
+            <ContactUsToday backgroundImage={"/images/about/about-us-banner.jpeg"}/>
             <Accreditations/>
             <CompanyOverview/>
             <CoreValues/>

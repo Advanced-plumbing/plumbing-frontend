@@ -3,7 +3,13 @@ import { useState } from "react";
 import Image from "next/image";
 import styles from "./ContactUsToday.module.css";
 
-export const ContactUsToday = () => {
+interface ContactUsTodayProps {
+    backgroundImage?: string; // Prop opcional para el fondo
+}
+
+export const ContactUsToday = ({
+                                   backgroundImage = "/images/advance-plumbing-home-restoration.jpeg" // Valor por defecto
+                               }: ContactUsTodayProps) => {
     const [phone, setPhone] = useState("");
 
     // Manejador de máscara (000) 000-0000
@@ -37,7 +43,7 @@ export const ContactUsToday = () => {
             {/* Background con Overlay */}
             <div className={styles.bgWrapper}>
                 <Image
-                    src="/images/advance-plumbing-home-restoration.jpeg"
+                    src={backgroundImage}
                     alt="Home Restoration"
                     fill
                     className={styles.bgImage}
