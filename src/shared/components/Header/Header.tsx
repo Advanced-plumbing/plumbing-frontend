@@ -3,21 +3,51 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import styles from "./Header.module.css";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from "next/navigation";
 
 interface HeaderProps {
     isHome?: boolean;
 }
 
+// Interfaz para el tipado de los servicios
+interface ServiceItem {
+    name: string;
+    path: string;
+}
+
 export const Header = ({ isHome = false }: HeaderProps) => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isServicesOpen, setIsServicesOpen] = useState(false); // Estado para el acordeón móvil
+
     const router = useRouter();
     const pathname = usePathname();
 
+    // Generación dinámica de la lista de servicios con sus paths
+    const servicesList: ServiceItem[] = [
+        "Drain & Sewer Cleaning",
+        "Filter System Under Sink Installation",
+        "Gas Line",
+        "HVAC Services",
+        "Insurance Pipe Burst Repair",
+        "Pipe Replacement",
+        "Plumbing Installation",
+        "Plumbing Repair",
+        "Sewer inspection SeeSnake Camera",
+        "Sump Pumps",
+        "Tankless Water Heater Installation",
+        "Toilet Clog Removal",
+        "Water Heater Replacement"
+    ].map(service => ({
+        name: service,
+        path: `/${service.toLowerCase()
+            .replace(/ & /g, '-')
+            .replace(/\s+/g, '-')
+            .replace(/[()]/g, '')}-services/`
+    }));
+
     const handleNavigation = () => {
-        setIsMenuOpen(false); // Cerramos el menú si estuviera abierto
+        setIsMenuOpen(false);
         router.push('/contact-us/');
     };
 
@@ -35,19 +65,11 @@ export const Header = ({ isHome = false }: HeaderProps) => {
         ? (isScrolled ? styles.navLinkScrolled : styles.navLinkTransparent)
         : styles.navLinkScrolled;
 
-    const navItems = [
-        { name: "Home", path: "/" },
-        { name: "About", path: "/about-us" },
-        { name: "Method", path: "/#method" }, // Ancla al home
-        { name: "Services", path: "/#services" },
-        { name: "Process", path: "/#process" },
-    ];
-
     return (
         <header className={`${styles.header} ${headerClass}`}>
             <div className={styles.container}>
                 {/* LOGO */}
-                <div className={styles.logoWrapper}>
+                <Link href="/" className={styles.logoWrapper}>
                     <Image
                         src="/logos/logo.png"
                         alt="Advanced Plumbing"
@@ -55,30 +77,39 @@ export const Header = ({ isHome = false }: HeaderProps) => {
                         priority
                         className="object-contain object-left"
                     />
-                </div>
+                </Link>
 
                 {/* DESKTOP NAVIGATION */}
                 <div className={styles.navigationWrapper}>
                     <nav className={styles.nav}>
-                        {navItems.map((item) => (
-                            <Link
-                                key={item.name}
-                                href={item.path}
-                                className={`${styles.navLink} ${linkClass} ${
-                                    pathname === item.path ? styles.navLinkActive : ""
-                                }`}
-                            >
-                                {item.name}
-                            </Link>
-                        ))}
+                        <Link href="/" className={`${styles.navLink} ${linkClass} ${pathname === "/" ? styles.navLinkActive : ""}`}>
+                            Home
+                        </Link>
+                        <Link href="/about-us" className={`${styles.navLink} ${linkClass} ${pathname === "/about-us" ? styles.navLinkActive : ""}`}>
+                            About
+                        </Link>
+
+                        {/* DESKTOP DROPDOWN */}
+                        <div className={styles.dropdownContainer}>
+                            <span className={`${styles.navLink} ${linkClass}`}>Services ▾</span>
+                            <div className={styles.dropdownMenu}>
+                                {servicesList.map((service) => (
+                                    <Link
+                                        key={service.name}
+                                        href={service.path}
+                                        className={styles.dropdownItem}
+                                    >
+                                        {service.name}
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
+
+                        <Link href="/#method" className={`${styles.navLink} ${linkClass}`}>Method</Link>
+                        <Link href="/#process" className={`${styles.navLink} ${linkClass}`}>Process</Link>
                     </nav>
 
-                    <div
-                        className={styles.getInTouch}
-                        onClick={handleNavigation}
-                        role="button"
-                        tabIndex={0}
-                    >
+                    <div className={styles.getInTouch} onClick={handleNavigation} role="button" tabIndex={0}>
                         <div className={styles.arrowCircle}>
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className={styles.arrowIcon}>
                                 <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -89,7 +120,7 @@ export const Header = ({ isHome = false }: HeaderProps) => {
                     </div>
                 </div>
 
-                {/* MOBILE BUTTON - Cambia color según el fondo */}
+                {/* MOBILE BUTTON */}
                 <button
                     className={`${styles.mobileMenuBtn} ${isMenuOpen ? styles.mobileMenuBtnOpen : ""}`}
                     onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -102,16 +133,34 @@ export const Header = ({ isHome = false }: HeaderProps) => {
                 {/* MOBILE OVERLAY MENU */}
                 <div className={`${styles.mobileOverlay} ${isMenuOpen ? styles.mobileOverlayOpen : ""}`}>
                     <nav className={styles.mobileNav}>
-                        {navItems.map((item) => (
-                            <Link
-                                key={item.name}
-                                href={item.path}
+                        <Link href="/" className={styles.mobileNavLink} onClick={() => setIsMenuOpen(false)}>Home</Link>
+                        <Link href="/about-us" className={styles.mobileNavLink} onClick={() => setIsMenuOpen(false)}>About</Link>
+
+                        {/* MOBILE ACCORDION */}
+                        <div className={styles.mobileAccordion}>
+                            <button
                                 className={styles.mobileNavLink}
-                                onClick={() => setIsMenuOpen(false)}
+                                onClick={() => setIsServicesOpen(!isServicesOpen)}
+                                type="button"
                             >
-                                {item.name}
-                            </Link>
-                        ))}
+                                Services {isServicesOpen ? "▴" : "▾"}
+                            </button>
+                            <div className={`${styles.mobileSubMenu} ${isServicesOpen ? styles.mobileSubMenuOpen : ""}`}>
+                                {servicesList.map((service) => (
+                                    <Link
+                                        key={service.name}
+                                        href={service.path}
+                                        className={styles.mobileSubNavLink}
+                                        onClick={() => setIsMenuOpen(false)}
+                                    >
+                                        {service.name}
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
+
+                        <Link href="/#method" className={styles.mobileNavLink} onClick={() => setIsMenuOpen(false)}>Method</Link>
+                        <button className={styles.mobileCTA} onClick={handleNavigation}>Get in touch</button>
                     </nav>
                 </div>
             </div>

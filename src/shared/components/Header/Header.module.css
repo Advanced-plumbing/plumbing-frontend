@@ -202,3 +202,112 @@
 
 .getInTouch:hover::before { width: calc(100% - 12px); }
 .getInTouch:hover .touchText { color: white !important; }
+
+/* --- DESKTOP DROPDOWN LOGIC --- */
+
+.dropdownContainer {
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding-bottom: 5px; /* Área de seguridad para el hover */
+}
+
+.dropdownMenu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(15px);
+    background-color: white;
+    min-width: 280px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+    border-radius: 12px;
+    padding: 15px 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid #f0f0f0;
+    z-index: 120;
+}
+
+/* Mostrar dropdown al hacer hover */
+.dropdownContainer:hover .dropdownMenu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.dropdownItem {
+    display: block;
+    padding: 10px 25px;
+    color: #4b5563;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-family: var(--font-jakarta);
+    transition: all 0.2s ease;
+    text-align: left;
+}
+
+.dropdownItem:hover {
+    background-color: #f8faff;
+    color: var(--primary-blue);
+    padding-left: 30px; /* Efecto de desplazamiento sutil */
+}
+
+/* --- MOBILE ACCORDION LOGIC --- */
+
+.mobileAccordion {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mobileAccordion button {
+    background: none;
+    border: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.mobileSubMenu {
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    background-color: #fcfcfc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 8px;
+}
+
+.mobileSubMenuOpen {
+    max-height: 500px; /* Suficiente para la lista de servicios */
+    margin-top: 15px;
+    padding: 10px 0;
+    overflow-y: auto; /* Por si la pantalla es muy pequeña */
+}
+
+.mobileSubNavLink {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #6b7280;
+    text-decoration: none;
+    padding: 10px 20px;
+    width: 100%;
+    text-align: center;
+    transition: color 0.3s ease;
+}
+
+.mobileSubNavLink:active {
+    color: var(--primary-blue);
+    background-color: #f3f4f6;
+}
+
+/* Ajuste para que el scroll del submenú sea invisible pero funcional */
+.mobileSubMenu::-webkit-scrollbar {
+    width: 0px;
+}
