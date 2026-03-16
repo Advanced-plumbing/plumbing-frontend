@@ -1,0 +1,86 @@
+.servicesSection {
+    background-color: #004393; /* Azul corporativo */
+    padding: 60px 20px;
+    color: #ffffff;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 1rem;
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+    line-height: 1.5;
+    opacity: 0.9;
+}
+
+.serviceCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    height: 100%;
+}
+
+.iconWrapper {
+    margin-bottom: 20px;
+}
+
+.iconPlaceholder {
+    font-size: 4rem; /* Ajustar según tus iconos */
+    color: #ffffff;
+}
+
+.serviceTitle {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    line-height: 1.2;
+}
+
+.serviceDescription {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    opacity: 0.85;
+}
+
+/* Personalización de Swiper para que coincida con tus capturas */
+.mySwiper {
+    padding-bottom: 50px !important;
+}
+
+:global(.swiper-pagination-bullet) {
+    background: #ffffff !important;
+    opacity: 0.5;
+}
+
+:global(.swiper-pagination-bullet-active) {
+    opacity: 1;
+}
+
+:global(.swiper-button-next),
+:global(.swiper-button-prev) {
+    color: #ffffff !important;
+    transform: scale(0.5); /* Flechas más sutiles como en el diseño */
+}
+
+/* Ajustes Mobile */
+@media (max-width: 768px) {
+    .title {
+        font-size: 2rem;
+    }
+    .serviceCard {
+        padding: 10px;
+    }
+}

@@ -1,0 +1,186 @@
+.contactSection {
+    background-color: #004393;
+    padding: 100px 20px;
+    color: #ffffff;
+    font-family: 'Inter', 'Arial', sans-serif; /* Una fuente más moderna */
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    gap: 80px; /* Más espacio para que el diseño respire */
+    align-items: center;
+}
+
+/* --- Texto Izquierda --- */
+.infoSide {
+    flex: 1.1;
+    text-align: left;
+}
+
+.mainTitle {
+    font-size: 3.5rem;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.mainTitle span {
+    font-weight: 400; /* Contraste de peso para estilo moderno */
+}
+
+.divider {
+    width: 60px;
+    height: 4px;
+    background-color: #ffffff;
+    margin-bottom: 30px;
+}
+
+.description {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    margin-bottom: 40px;
+    opacity: 0.9;
+    max-width: 500px;
+}
+
+.outlineBtn {
+    background: transparent;
+    border: 2px solid #ffffff;
+    color: #ffffff;
+    padding: 14px 40px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.outlineBtn:hover {
+    background: #ffffff;
+    color: #0046ad;
+}
+
+/* --- Formulario Derecha --- */
+.formSide {
+    flex: 1;
+}
+
+.formCard {
+    background-color: rgba(255, 255, 255, 0.05); /* Sutil transparencia */
+    padding: 40px;
+    border-radius: 12px;
+}
+
+.formTitle {
+    font-size: 2.2rem;
+    font-weight: 900;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.row {
+    display: flex;
+    gap: 18px;
+}
+
+.field input,
+.field select,
+.field textarea {
+    width: 100%;
+    padding: 14px 18px;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    font-size: 0.95rem;
+    background-color: #ffffff;
+    color: #333;
+    transition: border 0.3s ease;
+}
+
+.field input:focus {
+    border: 2px solid #002e73;
+}
+
+.select {
+    color: #666 !important;
+}
+
+/* --- Captcha Estilizado --- */
+.captchaRow {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.captchaBox {
+    background: #f9f9f9;
+    border: 1px solid #d3d3d3;
+    border-radius: 3px;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    color: #555;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.captchaLeft {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.captchaLeft input { width: 24px; height: 24px; }
+
+.captchaRight {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.6rem;
+}
+
+.captchaRight img { width: 28px; }
+
+.submitBtn {
+    background-color: #002e73; /* Azul más oscuro para el botón */
+    color: #ffffff;
+    border: none;
+    padding: 18px;
+    font-weight: 900;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* --- Responsive --- */
+@media (max-width: 1100px) {
+    .container {
+        flex-direction: column;
+        gap: 60px;
+        text-align: center;
+    }
+    .infoSide {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .description { max-width: 100%; }
+}
+
+@media (max-width: 768px) {
+    .row { flex-direction: column; }
+    .mainTitle { font-size: 2.5rem; }
+    .contactSection { padding: 60px 20px; }
+}

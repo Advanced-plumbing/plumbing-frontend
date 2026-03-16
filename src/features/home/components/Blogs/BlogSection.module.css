@@ -1,0 +1,126 @@
+.blogSection {
+    padding: 80px 20px;
+    background-color: #ffffff;
+    font-family: 'Arial', sans-serif;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.sectionTitle {
+    text-align: center;
+    color: #0046ad;
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 50px;
+    letter-spacing: 1px;
+}
+
+.blogGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Desktop: 3 columnas */
+    gap: 30px;
+}
+
+.blogCard {
+    background-color: #f4f4f4; /* Fondo gris claro de la tarjeta */
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+}
+
+.blogCard:hover {
+    transform: translateY(-5px);
+}
+
+.imageWrapper {
+    width: 100%;
+    height: 220px;
+    position: relative;
+    overflow: hidden;
+}
+
+.placeholderImg {
+    width: 100%;
+    height: 100%;
+    background-color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.imgLabel {
+    color: white;
+    font-size: 0.8rem;
+}
+
+.content {
+    padding: 30px 25px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.blogTitle {
+    color: #0046ad;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.blogExcerpt {
+    color: #777;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    flex-grow: 1;
+}
+
+.readMoreBtn {
+    background-color: #0046ad;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    border-radius: 8px;
+    cursor: pointer;
+    align-self: flex-start;
+    transition: background-color 0.3s ease;
+}
+
+.readMoreBtn:hover {
+    background-color: #003585;
+}
+
+/* --- RESPONSIVE --- */
+
+/* Tablet (2 columnas) */
+@media (max-width: 1024px) {
+    .blogGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .sectionTitle {
+        font-size: 2.5rem;
+    }
+}
+
+/* Mobile (1 columna) */
+@media (max-width: 768px) {
+    .blogGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .sectionTitle {
+        font-size: 2.2rem;
+        margin-bottom: 30px;
+    }
+
+    .blogCard {
+        max-width: 450px;
+        margin: 0 auto;
+    }
+}
