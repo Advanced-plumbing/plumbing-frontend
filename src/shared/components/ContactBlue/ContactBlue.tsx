@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import styles from './ContactBlue.module.css';
+import Link from "next/link";
 
 const ContactBlue = () => {
     const [phone, setPhone] = useState('');
@@ -32,7 +33,7 @@ const ContactBlue = () => {
                         Advanced Plumbing & HVAC is here for you. We welcome you to learn more about our services,
                         ask questions, and schedule an appointment.
                     </p>
-                    <button className={styles.outlineBtn}>LEARN MORE</button>
+                    <Link href="/contact-us" className={styles.outlineBtn}>CONTACT US</Link>
                 </div>
 
                 {/* Lado Derecho: Formulario Estilizado */}

@@ -2,6 +2,7 @@
 import React from 'react';
 import Image from 'next/image';
 import styles from './CompanyOverview.module.css';
+import Link from "next/link";
 
 export const CompanyOverview = () => {
     return (
@@ -27,7 +28,7 @@ export const CompanyOverview = () => {
                             From emergency plumbing repairs to preventive maintenance and new installations,
                             we offer a comprehensive suite of plumbing services tailored to meet your needs.
                         </p>
-                        <button className={styles.contactBtn}>CONTACT US</button>
+                        <Link href="/contact-us" className={styles.contactBtn}>CONTACT US</Link>
                     </div>
 
                     {/* Lado de las Imágenes (Grid dinámico) */}

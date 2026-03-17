@@ -1,5 +1,6 @@
 import Image from "next/image";
 import styles from "./AboutUs.module.css";
+import Link from "next/link";
 
 export const AboutUs = () => {
     return (
@@ -56,9 +57,9 @@ export const AboutUs = () => {
                         </div>
                     </div>
 
-                    <button className={styles.learnMoreBtn}>
+                    <Link href="/about-us" className={styles.learnMoreBtn}>
                         Discover Our Method
-                    </button>
+                    </Link>
                 </div>
 
             </div>

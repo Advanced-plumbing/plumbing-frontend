@@ -83,11 +83,6 @@ export default async function BlogPostPage({
                                 }
                             </ul>
                         </div>
-
-                        <div className={styles.sidebarSection}>
-                            <h4 className={styles.sidebarTitle}>Recent Comments</h4>
-                            <p className={styles.noComments}>No comments to show.</p>
-                        </div>
                     </aside>
                 </div>
             </main>

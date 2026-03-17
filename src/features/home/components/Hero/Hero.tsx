@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useMousePosition } from "@/shared/hooks/use-mouse-position";
 import styles from "./Hero.module.css";
+import Link from "next/link";
 
 export const Hero = () => {
     const { x, y } = useMousePosition();
@@ -102,9 +103,9 @@ export const Hero = () => {
                     <p className={styles.description}>
                         Trusted professionals providing durable solutions for every plumbing challenge.
                     </p>
-                    <button className={styles.ctaButton}>
+                    <Link href="/contact-us" className={styles.ctaButton}>
                         Request an Estimate
-                    </button>
+                    </Link>
                 </div>
             </div>
         </section>
