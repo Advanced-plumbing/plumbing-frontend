@@ -25,7 +25,7 @@ export const Footer = () => {
                         <p>975 Rand Rd, Des Plaines, IL 60016</p>
                         <p>advancedplumbingteam@gmail.com</p>
                     </div>
-                    <a href="#" className={styles.socialIcon}>
+                    <a target="_blank" href="https://www.facebook.com/people/Advanced-Plumbing-Team/61570083030832/" className={styles.socialIcon}>
                         <FaFacebook size={24} />
                     </a>
                 </div>
