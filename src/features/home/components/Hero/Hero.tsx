@@ -7,20 +7,26 @@ import styles from "./Hero.module.css";
 export const Hero = () => {
     const { x, y } = useMousePosition();
     const [maskSize, setMaskSize] = useState(120);
+    const [scrollY, setScrollY] = useState(0);
 
-    // Ajustamos el tamaño del hueco según el dispositivo
+    // Trackear scroll
+    useEffect(() => {
+        const handleScroll = () => setScrollY(window.scrollY);
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
     useEffect(() => {
         const updateSize = () => {
-            if (window.innerWidth < 768) {
-                setMaskSize(80); // Más pequeño en móvil
-            } else {
-                setMaskSize(120);
-            }
+            setMaskSize(window.innerWidth < 768 ? 80 : 120);
         };
         updateSize();
         window.addEventListener("resize", updateSize);
         return () => window.removeEventListener("resize", updateSize);
     }, []);
+
+    // Coordenadas ajustadas al scroll
+    const adjustedY = y + scrollY;
 
     return (
         <section className={styles.hero}>
@@ -55,8 +61,8 @@ export const Hero = () => {
                     )`*/
 
                     /* OPCIÓN CÍRCULO:*/
-                       maskImage: `radial-gradient(circle ${maskSize}px at ${x}px ${y}px, transparent 50%, black 100%)`,
-                       WebkitMaskImage: `radial-gradient(circle ${maskSize}px at ${x}px ${y}px, transparent 50%, black 100%)`
+                       maskImage: `radial-gradient(circle ${maskSize}px at ${x}px ${adjustedY}px, transparent 50%, black 100%)`,
+                       WebkitMaskImage: `radial-gradient(circle ${maskSize}px at ${x}px ${adjustedY}px, transparent 50%, black 100%)`
 
                 }}
             >
@@ -74,7 +80,7 @@ export const Hero = () => {
                 className={styles.magnifier}
                 style={{
                     left: `${x}px`,
-                    top: `${y}px`,
+                    top: `${adjustedY}px`,
                     width: `${maskSize * 4}px`,   // era maskSize * 2 + 80
                     height: `${maskSize * 4}px`,  // era maskSize * 2 + 80
                 }}
