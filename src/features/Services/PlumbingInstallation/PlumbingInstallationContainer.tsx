@@ -10,7 +10,7 @@ import { WhyChooseUs } from "@/shared/components/WhyChooseUs/WhyChooseUs";
 export const PlumbingInstallationContainer = () => {
     const INSTALLATION_DETAIL_CONTENT = {
         title: "Professional Plumbing Installation Services",
-        imgSrc: "/images/sections/plumbing-installation-detail.jpg",
+        imgSrc: "/images/sections/plumbing-installation-detail.jpeg",
         subtitle: "Expert Plumbing Installation Services for Dependable Performance",
         content: "At Advanced Plumbing & HVAC, we are committed to delivering exceptional plumbing installation services customized to fit the specific requirements of your residence or commercial property. Whether you are constructing a new space, renovating, or enhancing your existing plumbing system, our experienced technicians guarantee precise and careful installation. From water heaters to complete repiping, we ensure that your plumbing system operates efficiently and reliably for years to come."
     };
@@ -42,7 +42,7 @@ export const PlumbingInstallationContainer = () => {
         <div style={{ paddingTop: '75px' }}>
             {/* Hero Principal */}
             <ContactUsToday
-                backgroundImage="/images/services/plumbing-installation-hero.jpg"
+                backgroundImage="/images/services/plumbing-installation-hero.jpeg"
             />
 
             <Accreditations />

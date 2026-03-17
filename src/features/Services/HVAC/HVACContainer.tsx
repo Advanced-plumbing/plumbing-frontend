@@ -10,7 +10,7 @@ import { WhyChooseUs } from "@/shared/components/WhyChooseUs/WhyChooseUs";
 export const HVACContainer = () => {
     const HVAC_DETAIL_CONTENT = {
         title: "HVAC Services for complete home comfort",
-        imgSrc: "/images/sections/hvac-detail.jpg",
+        imgSrc: "/images/sections/hvac-detail.png",
         subtitle: "Expert HVAC Services to Keep Your Home Comfortable Year-Round",
         content: "At Advanced Plumbing & HVAC, we don’t just stop at plumbing – we’re also your trusted partner for reliable, energy-efficient HVAC services. Whether you need heating, ventilation, or air conditioning solutions, our experienced team is here to ensure your home or business stays comfortable no matter the season. From system installations to repairs and maintenance, we deliver quality service you can count on."
     };
@@ -37,7 +37,7 @@ export const HVACContainer = () => {
     return (
         <div style={{ paddingTop: '75px' }}>
             <ContactUsToday
-                backgroundImage="/images/services/hvac-services-hero.jpg"
+                backgroundImage="/images/services/hvac-services-hero.png"
             />
 
             <Accreditations />

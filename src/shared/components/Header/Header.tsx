@@ -111,9 +111,6 @@ export const Header = ({ isHome = false }: HeaderProps) => {
                                 ))}
                             </div>
                         </div>
-
-                        <Link href="/#method" className={`${styles.navLink} ${linkClass}`}>Method</Link>
-                        <Link href="/#process" className={`${styles.navLink} ${linkClass}`}>Process</Link>
                     </nav>
 
                     <div className={styles.getInTouch} onClick={handleNavigation} role="button" tabIndex={0}>

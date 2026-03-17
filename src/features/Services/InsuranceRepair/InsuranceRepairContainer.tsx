@@ -10,7 +10,7 @@ import { WhyChooseUs } from "@/shared/components/WhyChooseUs/WhyChooseUs";
 export const InsuranceRepairContainer = () => {
     const INSURANCE_DETAIL_CONTENT = {
         title: "Expert Pipe burst repair Services",
-        imgSrc: "/images/sections/insurance-repair-detail.jpg",
+        imgSrc: "/images/sections/insurance-repair-detail.jpeg",
         subtitle: "Reliable Insurance Pipe Burst Repair Services for a Swift Recovery",
         content: "When pipes burst unexpectedly, the damage can be overwhelming. Advanced Plumbing & HVAC specializes in rapid, professional repairs and works directly with insurance providers to make the process as stress-free as possible. With extensive experience in handling pipe bursts, we’re here to restore your home or business to its original condition while ensuring your claim is processed smoothly."
     };
@@ -42,7 +42,7 @@ export const InsuranceRepairContainer = () => {
         <div style={{ paddingTop: '75px' }}>
             {/* Hero principal */}
             <ContactUsToday
-                backgroundImage="/images/services/insurance-repair-hero.jpg"
+                backgroundImage="/images/services/insurance-repair-hero.jpeg"
             />
 
             <Accreditations />

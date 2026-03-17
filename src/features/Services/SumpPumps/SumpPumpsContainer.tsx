@@ -10,7 +10,7 @@ import { WhyChooseUs } from "@/shared/components/WhyChooseUs/WhyChooseUs";
 export const SumpPumpsContainer = () => {
     const SUMP_PUMP_DETAIL = {
         title: "EXPERT SUMP PUMP SERVICES",
-        imgSrc: "/images/sections/sump-pumps-detail.jpg",
+        imgSrc: "/images/sections/sump-pumps-detail.jpeg",
         subtitle: "Reliable Sump Pump Services to Keep Your Property Dry and Safe",
         content: "Safeguard your home or business from water damage and flooding with the professional sump pump services from Advanced Plumbing & HVAC. Sump pumps play a vital role in managing water levels around your foundation, helping to avoid expensive repairs related to flooding. Our skilled technicians offer a full range of sump pump services, including installation, maintenance, and repairs, to ensure that your property stays dry and protected."
     };

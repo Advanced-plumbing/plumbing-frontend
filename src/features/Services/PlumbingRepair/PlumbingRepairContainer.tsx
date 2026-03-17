@@ -10,7 +10,7 @@ import { WhyChooseUs } from "@/shared/components/WhyChooseUs/WhyChooseUs";
 export const PlumbingRepairContainer = () => {
     const REPAIR_DETAIL_CONTENT = {
         title: "EXPERT PLUMBING REPAIR",
-        imgSrc: "/images/sections/plumbing-repair-detail.jpg",
+        imgSrc: "/images/sections/plumbing-repair-detail.jpeg",
         subtitle: "EXPERT PLUMBING REPAIR SERVICES YOU CAN TRUST",
         content: "When plumbing issues occur, Advanced Plumbing & HVAC is prepared to offer immediate and effective solutions tailored to your needs. Our technicians possess decades of combined experience and are trained to manage a broad array of plumbing repair tasks, ranging from common problems such as leaky faucets and clogged drains to more intricate pipe repairs and water line replacements. We strive to provide exceptional service, clear pricing, and enduring results."
     };
@@ -42,7 +42,7 @@ export const PlumbingRepairContainer = () => {
         <div style={{ paddingTop: '75px' }}>
             {/* Hero con imagen de acción/reparación */}
             <ContactUsToday
-                backgroundImage="/images/services/plumbing-repair-hero.jpg"
+                backgroundImage="/images/services/plumbing-repair-hero.jpeg"
             />
 
             <Accreditations />

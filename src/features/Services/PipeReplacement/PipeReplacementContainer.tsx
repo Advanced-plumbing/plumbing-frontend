@@ -10,7 +10,7 @@ import { WhyChooseUs } from "@/shared/components/WhyChooseUs/WhyChooseUs";
 export const PipeReplacementContainer = () => {
     const PIPE_REPLACEMENT_CONTENT = {
         title: "Professional Pipe Replacement Services",
-        imgSrc: "/images/sections/pipe-replacement-detail.jpg",
+        imgSrc: "/images/sections/pipe-replacement-detail.jpeg",
         subtitle: "Expert Pipe Replacement Services for a Dependable Plumbing System",
         content: "Aging or damaged pipes can cause a range of issues, from reduced water pressure to leaks that can lead to costly water damage. At Advanced Plumbing & HVAC, we offer specialized and effective pipe replacement services designed to meet the specific needs of your home or business. Our skilled technicians use premium materials to ensure your plumbing system remains robust and efficient for years."
     };
@@ -38,7 +38,7 @@ export const PipeReplacementContainer = () => {
         <div style={{ paddingTop: '75px' }}>
             {/* Hero principal */}
             <ContactUsToday
-                backgroundImage="/images/services/pipe-replacement-hero.jpg"
+                backgroundImage="/images/services/pipe-replacement-hero.jpeg"
             />
 
             <Accreditations />
