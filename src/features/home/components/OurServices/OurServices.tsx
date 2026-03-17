@@ -11,46 +11,71 @@ import 'swiper/css/navigation';
 
 const services = [
     {
+        title: 'Insurance Pipe Burst',
+        description: 'If you experience a pipe burst, our team will collaborate with you and your insurance company to promptly repair the damage and minimize further issues, handling every detail with ease.',
+        icon: '💧',
+    },
+    {
         title: 'Pipe Replacement',
-        description: 'Prevent water damage and expensive repairs with our professional pipe replacement services. We utilize high-quality materials.',
-        icon: '🚿', // Sustituir por tus iconos SVG o imágenes
+        description: 'Prevent water damage and expensive repairs with our professional pipe replacement services. We utilize high-quality materials to deliver reliable, long-lasting results.',
+        icon: '🔩',
     },
     {
         title: 'Water Heater Replacement',
-        description: 'If you’re tired of inconsistent hot water, we offer expert water heater replacements. We ensure you enjoy a reliable supply.',
+        description: "If you're tired of inconsistent hot water, we offer expert water heater replacements. We ensure you enjoy a reliable supply of hot water throughout the year.",
         icon: '🔥',
     },
     {
         title: 'Sump Pump',
-        description: 'Protect your property from flooding with our professional sump pump installation and maintenance services.',
+        description: 'Protect your property from flooding with our professional sump pump installation and maintenance services. We are dedicated to keeping your basement dry and secure.',
         icon: '🌀',
     },
     {
         title: 'Plumbing Repairs',
-        description: 'Eliminate leaks, clogs, and water-related problems with our quick and effective plumbing repair services.',
+        description: 'Eliminate leaks, clogs, and water-related problems with our quick and effective plumbing repair services. Our experts will ensure your system remains in optimal condition.',
         icon: '🔧',
     },
     {
-        title: 'Pipe Replacement',
-        description: 'Prevent water damage and expensive repairs with our professional pipe replacement services. We utilize high-quality materials.',
-        icon: '🚿', // Sustituir por tus iconos SVG o imágenes
+        title: 'Sewer Inspection w/ SeeSnake Camera',
+        description: 'Our advanced SeeSnake camera inspections can detect hidden issues within your sewer system. This detailed examination helps prevent costly repairs in the future.',
+        icon: '📷',
     },
     {
-        title: 'Water Heater Replacement',
-        description: 'If you’re tired of inconsistent hot water, we offer expert water heater replacements. We ensure you enjoy a reliable supply.',
-        icon: '🔥',
+        title: 'Drain & Sewer Cleaning',
+        description: 'Keep your plumbing system flowing smoothly with our thorough drain and sewer cleaning services. We remove debris, grease, and blockages that could disrupt your plumbing.',
+        icon: '🚛',
     },
     {
-        title: 'Sump Pump',
-        description: 'Protect your property from flooding with our professional sump pump installation and maintenance services.',
-        icon: '🌀',
+        title: 'Gas Line',
+        description: 'Safety is our top priority when it comes to gas lines. We offer safe and dependable gas line installation, repair, and inspection services you can trust.',
+        icon: '⛽',
     },
     {
-        title: 'Plumbing Repairs',
-        description: 'Eliminate leaks, clogs, and water-related problems with our quick and effective plumbing repair services.',
-        icon: '🔧',
+        title: 'Plumbing Installations',
+        description: 'From new constructions to remodels, we provide quality plumbing installations for sinks, showers, pipes, and fixtures, ensuring optimal performance and efficiency.',
+        icon: '🛁',
     },
-    // Añade aquí el resto de servicios
+    // Los 4 restantes — ajusta títulos/descripciones según tu contenido real
+    {
+        title: 'Leak Detection',
+        description: 'Using advanced technology, our team accurately locates hidden leaks in your plumbing system to prevent water damage and reduce water waste effectively.',
+        icon: '🔍',
+    },
+    {
+        title: 'Water Filtration',
+        description: 'Improve your home\'s water quality with our professional water filtration system installation and maintenance services for clean, safe drinking water.',
+        icon: '💎',
+    },
+    {
+        title: 'Bathroom Remodeling',
+        description: 'Transform your bathroom with our expert plumbing remodeling services. We handle everything from fixture upgrades to complete bathroom plumbing overhauls.',
+        icon: '🏠',
+    },
+    {
+        title: 'Emergency Plumbing',
+        description: 'Plumbing emergencies don\'t wait for business hours. Our team is available 24/7 to respond quickly and resolve any urgent plumbing issues in your home.',
+        icon: '🚨',
+    },
 ];
 
 const OurServices = () => {
@@ -68,11 +93,15 @@ const OurServices = () => {
                     spaceBetween={30}
                     slidesPerView={1}
                     navigation
-                    pagination={{ clickable: true }}
+                    pagination={{
+                        clickable: true,
+                        dynamicBullets: true,
+                    }}
+                    slidesPerGroup={4}
                     breakpoints={{
-                        640: { slidesPerView: 1 },
-                        768: { slidesPerView: 2 },
-                        1024: { slidesPerView: 4 },
+                        640: { slidesPerView: 1, slidesPerGroup: 1 },
+                        768: { slidesPerView: 2, slidesPerGroup: 2 },
+                        1024: { slidesPerView: 4, slidesPerGroup: 4 },
                     }}
                     className={styles.mySwiper}
                 >
