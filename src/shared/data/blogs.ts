@@ -182,6 +182,11 @@ export const BLOGS: Blog[] = [
         </ul>
 
         <p><strong>Stay Warm and Worry-Free This Winter.</strong> For expert help with winterizing your plumbing or addressing cold-weather concerns, contact us today. Call Advanced Plumbing & HVAC now at <strong>(815) 666 2286</strong> or book online to schedule your winter plumbing check-up.</p>
+        <div class="cta-box">
+            <h3>Working with Professionals</h3>
+            <p>No one-size-fits-all HVAC system exists. To find the perfect solution, work with a knowledgeable professional who understands the demands of Midwest living. Let us help you ensure your system operates at peak performance.</p>
+            <a href="/contact-us" class="cta-button">CONTACT US</a>
+        </div>
     `
     },
     {

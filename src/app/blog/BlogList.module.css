@@ -1,0 +1,63 @@
+.container {
+    max-width: 1200px;
+    margin: 75px auto 0 auto;
+    padding: 60px 20px;
+    height: 100vh;
+}
+
+.searchTitle {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 40px;
+    color: #1a1a1a;
+}
+
+.blogGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas como en el mockup */
+    gap: 40px 30px;
+}
+
+.blogCard {
+    display: flex;
+    flex-direction: column;
+}
+
+.cardTitle {
+    font-size: 1.5rem;
+    line-height: 1.2;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.cardTitle a {
+    color: #1a1a1a;
+    text-decoration: none;
+}
+
+.cardMeta {
+    font-size: 0.85rem;
+    color: #004393; /* Azul corporativo */
+    margin-bottom: 15px;
+}
+
+.cardPreview {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #444;
+}
+
+.readMore {
+    color: #004393;
+    font-weight: 600;
+    text-decoration: none;
+    margin-left: 5px;
+}
+
+@media (max-width: 992px) {
+    .blogGrid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+    .blogGrid { grid-template-columns: 1fr; }
+}

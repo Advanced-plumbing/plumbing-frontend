@@ -5,6 +5,7 @@ import { Header } from "@/shared/components/Header/Header";
 import { Footer } from "@/shared/components/Footer/Footer";
 import Image from "next/image";
 import Link from "next/link";
+import {SearchBar} from "@/shared/components/SearchBar/SearchBar";
 
 export async function generateStaticParams() {
     return BLOGS.map((blog) => ({
@@ -63,10 +64,7 @@ export default async function BlogPostPage({
                     <aside className={styles.sidebar}>
                         <div className={styles.sidebarSection}>
                             <h4 className={styles.sidebarTitle}>Search</h4>
-                            <div className={styles.searchBar}>
-                                <input type="text" placeholder="Search..." />
-                                <button className={styles.searchBtn}>Search</button>
-                            </div>
+                            <SearchBar /> {/* Reemplaza el div anterior por esto */}
                         </div>
 
                         <div className={styles.sidebarSection}>
