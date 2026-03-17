@@ -147,30 +147,41 @@
 
 /* RESPONSIVE */
 
-@media (max-width: 1200px) {
-    .container { gap: 3rem; }
-    .title { font-size: 2.8rem; }
-    .imageGrid { height: 500px; }
-}
-
 @media (max-width: 1024px) {
     .container {
         grid-template-columns: 1fr; /* Una columna en tablet */
         text-align: center;
+        display: flex; /* Cambiamos a flex para manejar el orden fácilmente */
+        flex-direction: column;
+        gap: 2rem;
     }
+
     .imageGrid {
-        max-width: 700px;
+        width: 100%;
+        max-width: 600px; /* Tamaño máximo para que no se vea gigante */
+        height: 400px; /* IMPORTANTE: El contenedor NECESITA altura para que 'fill' funcione */
         margin: 0 auto;
-        order: 2; /* Imagen abajo en tablet */
+        position: relative; /* REQUISITO: Para que la imagen absolute se contenga aquí */
+        order: 2; /* Mueve la imagen debajo del texto */
+        overflow: hidden;
+        border-radius: 12px;
     }
+
+    /* La imagen debe seguir siendo absolute, pero relativa a .imageGrid */
+    .image {
+        object-fit: cover; /* Mantiene la proporción sin deformarse */
+        position: absolute !important;
+    }
+
     .stats { justify-content: center; }
     .learnMoreBtn { align-self: center; }
 }
 
 @media (max-width: 768px) {
-    .section { padding: 80px 0; }
+    .section { padding: 40px 20px; }
     .title { font-size: 2.2rem; }
-    .imageGrid { height: 400px; gap: 10px; }
-    .experienceBadge { padding: 1.2rem; right: 10px; }
-    .years { font-size: 1.8rem; }
+
+    .imageGrid {
+        height: 300px; /* Más pequeña en móviles */
+    }
 }
