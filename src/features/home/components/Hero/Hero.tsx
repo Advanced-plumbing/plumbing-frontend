@@ -27,7 +27,7 @@ export const Hero = () => {
             {/* CAPA 1: Tuberías */}
             <div className={styles.layerPipes}>
                 <Image
-                    src="/images/pipe.jpg"
+                    src="/images/pipe-hero-alt-v3.jpg"
                     alt="Plumbing internal structure"
                     fill
                     priority
@@ -36,19 +36,54 @@ export const Hero = () => {
             </div>
 
             {/* CAPA 2: Pared (Con la Máscara) */}
+            {/* CAPA 2: Pared (Con la Máscara Cuadrada) */}
             <div
                 className={styles.layerWall}
                 style={{
-                    maskImage: `radial-gradient(circle ${maskSize}px at ${x}px ${y}px, transparent 100%, black 100%)`,
-                    WebkitMaskImage: `radial-gradient(circle ${maskSize}px at ${x}px ${y}px, transparent 100%, black 100%)`
+                    /* MÁSCARA CUADRADA (Polygon Clipping):
+                       Creamos un hueco cuadrado definiendo un camino que recorre los bordes externos
+                       y luego "dibuja" el cuadrado interior en sentido contrario.
+
+                    clipPath: `polygon(
+                        0% 0%, 100% 0%, 100% 100%, 0% 100%, 
+                        0% ${y - maskSize}px, 
+                        ${x - maskSize}px ${y - maskSize}px, 
+                        ${x - maskSize}px ${y + maskSize}px, 
+                        ${x + maskSize}px ${y + maskSize}px, 
+                        ${x + maskSize}px ${y - maskSize}px, 
+                        0% ${y - maskSize}px
+                    )`*/
+
+                    /* OPCIÓN CÍRCULO:*/
+                       maskImage: `radial-gradient(circle ${maskSize}px at ${x}px ${y}px, transparent 50%, black 100%)`,
+                       WebkitMaskImage: `radial-gradient(circle ${maskSize}px at ${x}px ${y}px, transparent 50%, black 100%)`
+
                 }}
             >
                 <Image
-                    src="/images/wall-alt.jpg"
+                    src="/images/wall-hero.jpg"
                     alt="Clean wall"
                     fill
                     priority
                     className="object-cover"
+                />
+            </div>
+
+            {/* CAPA 4: LUPA */}
+            <div
+                className={styles.magnifier}
+                style={{
+                    left: `${x}px`,
+                    top: `${y}px`,
+                    width: `${maskSize * 4}px`,   // era maskSize * 2 + 80
+                    height: `${maskSize * 4}px`,  // era maskSize * 2 + 80
+                }}
+            >
+                <Image
+                    src="/images/magnifier.png"
+                    alt="Magnifier"
+                    fill
+                    className={styles.magnifierImg}
                 />
             </div>
 

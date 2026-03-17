@@ -9,9 +9,20 @@
     position: absolute;
     inset: 0;
 }
-
 .layerWall {
     z-index: 10;
+}
+
+.magnifier {
+    position: absolute;
+    z-index: 30;
+    pointer-events: none;
+    transform: translate(-32%, -32%);  /* era -42%, -42% */
+}
+
+.magnifierImg {
+    object-fit: contain;
+    mix-blend-mode: multiply; /* Elimina el fondo negro del PNG */
 }
 
 .contentContainer {
