@@ -15,6 +15,12 @@
     align-items: center;
 }
 
+/* Envoltorio del mapa para controlar el ancho total en móvil */
+.mapSide {
+    width: 100%;
+    overflow: hidden;
+}
+
 .infoSide {
     display: flex;
     flex-direction: column;
@@ -35,18 +41,43 @@
     line-height: 1.4;
 }
 
-/* Responsivo para Mobile */
+/* --- Ajustes para Mobile --- */
 @media (max-width: 992px) {
+    /* Eliminamos el padding lateral de la sección para que el mapa llegue al borde */
+    .section {
+        padding: 0 0 60px 0;
+    }
+
+    .container {
+        max-width: 100%;
+    }
+
     .grid {
         grid-template-columns: 1fr;
+        gap: 40px;
         text-align: center;
+    }
+
+    .mapSide {
+        order: -1;
+        width: 100vw; /* Asegura el ancho completo de pantalla */
+        margin-left: 0;
+        margin-right: 0;
+        padding: 50px 30px 0 30px;
+    }
+
+    /* Ajustamos el iframe para que sea un poco más bajo en móvil como en el mockup */
+    .mapSide iframe {
+        height: 300px;
+    }
+
+    /* Añadimos padding solo al área de texto para que no toque los bordes */
+    .infoSide {
+        padding: 0 20px;
     }
 
     .title {
         font-size: 2.5rem;
-    }
-
-    .mapSide {
-        order: -1; /* Mapa primero en móvil según diseño */
+        margin-top: 10px;
     }
 }

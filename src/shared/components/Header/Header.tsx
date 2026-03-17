@@ -162,8 +162,6 @@ export const Header = ({ isHome = false }: HeaderProps) => {
                                 ))}
                             </div>
                         </div>
-
-                        <Link href="/#method" className={styles.mobileNavLink} onClick={() => setIsMenuOpen(false)}>Method</Link>
                         <button className={styles.mobileCTA} onClick={handleNavigation}>Get in touch</button>
                     </nav>
                 </div>
