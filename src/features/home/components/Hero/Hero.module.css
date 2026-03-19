@@ -130,3 +130,9 @@
         font-size: 2.1rem;
     }
 }
+/* Agrega esto al final del archivo */
+@media (pointer: coarse) {
+    .magnifier {
+        transition: left 0.05s linear, top 0.05s linear;
+    }
+}
