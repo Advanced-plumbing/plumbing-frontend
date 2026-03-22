@@ -1,23 +1,21 @@
-/* ─── Section wrapper ─── */
+/* ─── Section ─── */
 .section {
     position: relative;
     background-color: #f4f4f4;
     padding: 10rem 0 5rem 0;
-    border-top-left-radius: 40px;   /* esquina superior izquierda */
-    border-top-right-radius: 40px;  /* esquina superior derecha */
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    overflow: hidden;
 }
 
-/* ─── Background vector ─── */
+/* ─── Vector bg ─── */
 .vectorBg {
     position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
+    top: 0; left: 0; bottom: 0;
     width: auto;
     pointer-events: none;
     z-index: 0;
 }
-
 .vectorImg {
     margin-top: 3rem;
     position: relative !important;
@@ -28,7 +26,7 @@
     opacity: 0.5;
 }
 
-/* ─── Container ─── */
+/* ─── Container — title, cardWrapper, tabs all same width ─── */
 .container {
     position: relative;
     z-index: 1;
@@ -46,7 +44,6 @@
     flex-direction: column;
     gap: 0.75rem;
 }
-
 .sectionTitle {
     font-family: var(--font-jakarta);
     font-size: 3rem;
@@ -56,7 +53,6 @@
     letter-spacing: -0.03em;
     margin: 0;
 }
-
 .sectionSubtitle {
     font-family: var(--font-jakarta);
     font-size: 1rem;
@@ -65,50 +61,86 @@
     margin: 0;
     max-width: 560px;
 }
-
 .sectionSubtitle strong {
     font-weight: 700;
     color: #0a1628;
 }
 
-/* ─── Main card ─── */
-.card {
+/* ─── Card wrapper
+       position: relative → arrows use top:50% of this box = card center
+       overflow: visible  → arrows can escape left/right without clipping
+       The card fills 100% of this wrapper.
+       Arrows use negative left/right to sit just outside the card edge.
+─── */
+.cardWrapper {
     position: relative;
+    overflow: visible;
+}
+
+/* ─── Card arrows ─── */
+.cardArrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.2rem;
+    height: 2.2rem;
+    font-size: 2rem;
+    line-height: 1;
+
+    color: #185FA5;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
+    user-select: none;
+}
+.cardArrow:hover:not(:disabled) {
+    color: #042C53;
+    transform: translateY(-50%) scale(1.2);
+}
+.cardArrow:disabled {
+    opacity: 0.18;
+    cursor: default;
+}
+
+/* Sit just outside the card, not touching the edges */
+.cardArrowLeft  { left: -2.8rem; }
+.cardArrowRight { right: -2.8rem; }
+
+/* ─── Card — always 100% of cardWrapper ─── */
+.card {
     width: 100%;
+    position: relative;
     height: 480px;
-    border-radius: 1.25rem;
+    border-radius: 2rem;
     overflow: hidden;
     display: flex;
     align-items: flex-end;
 }
-
 .cardFading {
     opacity: 0;
     transform: scale(0.985);
-    transition:
-            opacity 250ms ease,
-            transform 250ms ease;
+    transition: opacity 250ms ease, transform 250ms ease;
 }
-
 .cardVisible {
     opacity: 1;
     transform: scale(1);
-    transition:
-            opacity 250ms ease 250ms,
-            transform 250ms ease 250ms;
+    transition: opacity 250ms ease 250ms, transform 250ms ease 250ms;
 }
-
 .cardImageWrapper {
     position: absolute;
     inset: 0;
 }
-
 .cardImage {
     object-fit: cover;
     object-position: top;
 }
-
-/* Dark gradient overlay */
 .cardOverlay {
     position: absolute;
     inset: 0;
@@ -125,25 +157,22 @@
     position: relative;
     z-index: 2;
     width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: row;
     align-items: flex-end;
     justify-content: space-between;
-    padding: 2.5rem 2.5rem;
+    padding: 2.5rem;
     gap: 2rem;
-    height: 100%;
 }
-
 .cardText {
     display: flex;
     flex-direction: column;
     height: 100%;
     justify-content: center;
-    align-content: center;
     gap: 1rem;
     max-width: 420px;
 }
-
 .serviceTitle {
     font-family: var(--font-jakarta);
     font-size: 2.8rem;
@@ -152,15 +181,8 @@
     letter-spacing: -0.03em;
     margin: 0;
 }
-
-.titleWhite {
-    color: #ffffff;
-}
-
-.titleBlue {
-    color: #3b9eff;
-}
-
+.titleWhite { color: #ffffff; }
+.titleBlue  { color: #3b9eff; }
 .serviceDesc {
     font-family: var(--font-jakarta);
     font-size: 0.95rem;
@@ -169,7 +191,7 @@
     margin: 0;
 }
 
-/* ─── CTA button ─── */
+/* ─── CTA ─── */
 .ctaButton {
     flex-shrink: 0;
     display: inline-flex;
@@ -188,7 +210,6 @@
     align-self: flex-end;
     margin-bottom: 0.2rem;
 }
-
 .ctaButton:hover {
     background-color: #3b9eff;
     color: #ffffff;
@@ -197,12 +218,31 @@
 
 /* ─── Tabs ─── */
 .tabsWrapper {
-    position: relative;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.25rem;
 }
-
+.tabArrow {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    font-size: 1.5rem;
+    line-height: 1;
+    color: #185FA5;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.2s ease, transform 0.15s ease;
+    user-select: none;
+}
+.tabArrow:hover {
+    color: #042C53;
+    transform: scale(1.15);
+}
 .tabsList {
     display: flex;
     flex-direction: row;
@@ -214,11 +254,7 @@
     flex: 1;
     padding: 0.25rem 0;
 }
-
-.tabsList::-webkit-scrollbar {
-    display: none;
-}
-
+.tabsList::-webkit-scrollbar { display: none; }
 .tab {
     flex-shrink: 0;
     font-family: var(--font-jakarta);
@@ -233,12 +269,10 @@
     transition: color 0.2s ease, background-color 0.2s ease;
     white-space: nowrap;
 }
-
 .tab:hover {
     color: #0a1628;
     background-color: rgba(10, 22, 40, 0.06);
 }
-
 .tabActive {
     color: #0a1628;
     font-weight: 700;
@@ -247,86 +281,32 @@
     padding-bottom: 0.4rem;
 }
 
-/* Tab navigation arrows */
-.tabArrow {
-    display: none;
-    align-items: center;
-    justify-content: center;
-    width: 2rem;
-    height: 2rem;
-    font-size: 1.4rem;
-    color: #c0392b;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    line-height: 1;
-    padding: 0;
-    flex-shrink: 0;
-    transition: color 0.2s ease;
-}
-
-.tabArrow:hover {
-    color: #0a1628;
-}
-
 /* ─── TABLET ─── */
 @media (max-width: 1024px) {
-    .sectionTitle {
-        font-size: 2.4rem;
-    }
-
-    .card {
-        height: 420px;
-    }
-
+    .sectionTitle { font-size: 2.4rem; }
+    .card { height: 420px; }
     .cardContent {
         flex-direction: column;
         align-items: flex-start;
         padding: 2rem;
         gap: 1.25rem;
     }
+    .cardText { max-width: 100%; height: auto; }
+    .serviceTitle { font-size: 2.2rem; }
+    .ctaButton { align-self: flex-start; }
 
-    .cardText {
-        max-width: 100%;
-    }
-
-    .serviceTitle {
-        font-size: 2.2rem;
-    }
-
-    .ctaButton {
-        align-self: flex-start;
-    }
-
-    .tabArrow {
-        display: flex;
-    }
+    /* Reduce negative offset on smaller screens */
+    .cardArrowLeft  { left: -2rem; }
+    .cardArrowRight { right: -2rem; }
 }
 
 /* ─── MOBILE ─── */
 @media (max-width: 768px) {
-    .section {
-        padding: 4rem 0 3rem;
-    }
-
-    .container {
-        padding: 0 1.25rem;
-        gap: 1.5rem;
-    }
-
-    .sectionTitle {
-        font-size: 2rem;
-    }
-
-    .sectionSubtitle {
-        font-size: 0.9rem;
-    }
-
-    .card {
-        height: 520px;
-        border-radius: 1rem;
-    }
-
+    .section { padding: 4rem 0 3rem; }
+    .container { padding: 0 1.25rem; gap: 1.5rem; }
+    .sectionTitle { font-size: 2rem; }
+    .sectionSubtitle { font-size: 0.9rem; }
+    .card { height: 520px; border-radius: 1rem; }
     .cardOverlay {
         background: linear-gradient(
                 to top,
@@ -335,7 +315,6 @@
                 rgba(5, 15, 35, 0.15) 100%
         );
     }
-
     .cardContent {
         flex-direction: column;
         align-items: flex-start;
@@ -344,11 +323,7 @@
         gap: 1rem;
         height: 100%;
     }
-
-    .serviceTitle {
-        font-size: 1.9rem;
-    }
-
+    .serviceTitle { font-size: 1.9rem; }
     .serviceDesc {
         font-size: 0.88rem;
         display: -webkit-box;
@@ -356,26 +331,13 @@
         -webkit-box-orient: vertical;
         overflow: hidden;
     }
+    .ctaButton { width: 100%; padding: 0.9rem; font-size: 0.95rem; text-align: center; }
+    .tab { font-size: 0.82rem; padding: 0.4rem 0.75rem; }
 
-    .ctaButton {
-        width: 100%;
-        padding: 0.9rem;
-        font-size: 0.95rem;
-        text-align: center;
-    }
-
-    .tab {
-        font-size: 0.82rem;
-        padding: 0.4rem 0.75rem;
-    }
-
-    .tabArrow {
-        display: flex;
-    }
+    /* Hide card arrows on mobile — tab arrows handle navigation */
+    .cardArrow { display: none; }
 }
 
 @media (max-width: 480px) {
-    .serviceTitle {
-        font-size: 1.6rem;
-    }
+    .serviceTitle { font-size: 1.6rem; }
 }

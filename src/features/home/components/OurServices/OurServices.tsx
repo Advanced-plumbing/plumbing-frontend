@@ -98,7 +98,7 @@ const services = [
     },
 ];
 
-const TRANSITION_DURATION = 500; // ms
+const TRANSITION_DURATION = 500;
 
 export default function OurServices() {
     const [activeIndex, setActiveIndex] = useState(0);
@@ -119,16 +119,17 @@ export default function OurServices() {
         }, TRANSITION_DURATION / 2);
     }, [activeIndex, isTransitioning]);
 
-    // Scroll active tab into view on mobile
+    const scrollTabs = useCallback((direction: 'left' | 'right') => {
+        if (!listRef.current) return;
+        listRef.current.scrollBy({ left: direction === 'left' ? -220 : 220, behavior: 'smooth' });
+    }, []);
+
     useEffect(() => {
         if (activeItemRef.current && listRef.current) {
             const item = activeItemRef.current;
             const container = listRef.current;
-            const itemLeft = item.offsetLeft;
-            const itemWidth = item.offsetWidth;
-            const containerWidth = container.offsetWidth;
             container.scrollTo({
-                left: itemLeft - containerWidth / 2 + itemWidth / 2,
+                left: item.offsetLeft - container.offsetWidth / 2 + item.offsetWidth / 2,
                 behavior: 'smooth',
             });
         }
@@ -137,21 +138,14 @@ export default function OurServices() {
     useEffect(() => () => { if (timeoutRef.current) clearTimeout(timeoutRef.current); }, []);
 
     const current = services[displayIndex];
-    const active = services[activeIndex];
+    const active  = services[activeIndex];
+    const isFirst = activeIndex === 0;
+    const isLast  = activeIndex === services.length - 1;
 
     return (
         <section className={styles.section}>
-            {/* Background vector */}
             <div className={styles.vectorBg}>
-                <Image
-                    src="/images/vector.png"
-                    alt=""
-                    width={0}
-                    height={0}
-                    sizes="100vw"
-                    className={styles.vectorImg}
-                    aria-hidden
-                />
+                <Image src="/images/vector.png" alt="" width={0} height={0} sizes="100vw" className={styles.vectorImg} aria-hidden />
             </div>
 
             <div className={styles.container}>
@@ -164,38 +158,49 @@ export default function OurServices() {
                     </p>
                 </div>
 
-                {/* Main card */}
-                <div className={`${styles.card} ${isTransitioning ? styles.cardFading : styles.cardVisible}`}>
-                    {/* Image background */}
-                    <div className={styles.cardImageWrapper}>
-                        <Image
-                            src={current.image}
-                            alt={current.titleLine2}
-                            fill
-                            className={styles.cardImage}
-                            priority
-                        />
-                        <div className={styles.cardOverlay} />
+                {/*
+                    cardWrapper: position relative, overflow visible.
+                    The card fills 100% of this. The arrows sit absolute
+                    at top:50% of THIS wrapper — perfectly centered on the card —
+                    and use negative left/right to escape without shrinking the card.
+                */}
+                <div className={styles.cardWrapper}>
+                    <button
+                        className={`${styles.cardArrow} ${styles.cardArrowLeft}`}
+                        onClick={() => goTo(Math.max(0, activeIndex - 1))}
+                        disabled={isFirst}
+                        aria-label="Previous service"
+                    >‹</button>
+
+                    <div className={`${styles.card} ${isTransitioning ? styles.cardFading : styles.cardVisible}`}>
+                        <div className={styles.cardImageWrapper}>
+                            <Image src={current.image} alt={current.titleLine2} fill className={styles.cardImage} priority />
+                            <div className={styles.cardOverlay} />
+                        </div>
+                        <div className={styles.cardContent}>
+                            <div className={styles.cardText}>
+                                <h3 className={styles.serviceTitle}>
+                                    <span className={styles.titleWhite}>{active.titleLine1}</span>
+                                    <br />
+                                    <span className={styles.titleBlue}>{active.titleLine2}</span>
+                                </h3>
+                                <p className={styles.serviceDesc}>{current.description}</p>
+                            </div>
+                            <Link href="/contact-us" className={styles.ctaButton}>Get in touch</Link>
+                        </div>
                     </div>
 
-                    {/* Content */}
-                    <div className={styles.cardContent}>
-                        <div className={styles.cardText}>
-                            <h3 className={styles.serviceTitle}>
-                                <span className={styles.titleWhite}>{active.titleLine1}</span>
-                                <br />
-                                <span className={styles.titleBlue}>{active.titleLine2}</span>
-                            </h3>
-                            <p className={styles.serviceDesc}>{current.description}</p>
-                        </div>
-                        <Link href="/contact-us" className={styles.ctaButton}>
-                            Get in touch
-                        </Link>
-                    </div>
+                    <button
+                        className={`${styles.cardArrow} ${styles.cardArrowRight}`}
+                        onClick={() => goTo(Math.min(services.length - 1, activeIndex + 1))}
+                        disabled={isLast}
+                        aria-label="Next service"
+                    >›</button>
                 </div>
 
-                {/* Tabs list */}
+                {/* Tabs */}
                 <div className={styles.tabsWrapper}>
+                    <button className={`${styles.tabArrow}`} onClick={() => scrollTabs('left')} aria-label="Scroll tabs left">‹</button>
                     <div className={styles.tabsList} ref={listRef}>
                         {services.map((s, i) => (
                             <button
@@ -208,21 +213,7 @@ export default function OurServices() {
                             </button>
                         ))}
                     </div>
-                    {/* Scroll arrows for the tab list on tablet/mobile */}
-                    <button
-                        className={`${styles.tabArrow} ${styles.tabArrowLeft}`}
-                        onClick={() => goTo(Math.max(0, activeIndex - 1))}
-                        aria-label="Previous service"
-                    >
-                        ‹
-                    </button>
-                    <button
-                        className={`${styles.tabArrow} ${styles.tabArrowRight}`}
-                        onClick={() => goTo(Math.min(services.length - 1, activeIndex + 1))}
-                        aria-label="Next service"
-                    >
-                        ›
-                    </button>
+                    <button className={`${styles.tabArrow}`} onClick={() => scrollTabs('right')} aria-label="Scroll tabs right">›</button>
                 </div>
             </div>
         </section>
