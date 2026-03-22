@@ -10,7 +10,6 @@ export const HomeContainer = () => {
     return (
         <main>
             <Hero />
-            <ContactUsToday />
             <Accreditations />
             <AboutUs/>
             <OurServices />

@@ -1,86 +1,381 @@
-.servicesSection {
-    background-color: #004393; /* Azul corporativo */
-    padding: 60px 20px;
-    color: #ffffff;
-    font-family: 'Arial', sans-serif;
-    text-align: center;
+/* ─── Section wrapper ─── */
+.section {
+    position: relative;
+    background-color: #f4f4f4;
+    padding: 10rem 0 5rem 0;
+    border-top-left-radius: 40px;   /* esquina superior izquierda */
+    border-top-right-radius: 40px;  /* esquina superior derecha */
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
+/* ─── Background vector ─── */
+.vectorBg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: auto;
+    pointer-events: none;
+    z-index: 0;
 }
 
-.title {
-    font-size: 2.5rem;
-    font-weight: 800;
-    margin-bottom: 10px;
-}
-
-.subtitle {
-    font-size: 1rem;
-    max-width: 600px;
-    margin: 0 auto 40px auto;
-    line-height: 1.5;
-    opacity: 0.9;
-}
-
-.serviceCard {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    height: 100%;
-}
-
-.iconWrapper {
-    margin-bottom: 20px;
-}
-
-.iconPlaceholder {
-    font-size: 4rem; /* Ajustar según tus iconos */
-    color: #ffffff;
-}
-
-.serviceTitle {
-    font-size: 1.25rem;
-    font-weight: 700;
-    margin-bottom: 15px;
-    line-height: 1.2;
-}
-
-.serviceDescription {
-    font-size: 0.9rem;
-    line-height: 1.6;
-    opacity: 0.85;
-}
-
-/* Personalización de Swiper para que coincida con tus capturas */
-.mySwiper {
-    padding-bottom: 50px !important;
-}
-
-:global(.swiper-pagination-bullet) {
-    background: #ffffff !important;
+.vectorImg {
+    margin-top: 3rem;
+    position: relative !important;
+    width: 620px !important;
+    height: auto !important;
+    object-fit: contain;
+    object-position: left top;
     opacity: 0.5;
 }
 
-:global(.swiper-pagination-bullet-active) {
+/* ─── Container ─── */
+.container {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* ─── Header ─── */
+.header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.sectionTitle {
+    font-family: var(--font-jakarta);
+    font-size: 3rem;
+    font-weight: 800;
+    color: #0a1628;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin: 0;
+}
+
+.sectionSubtitle {
+    font-family: var(--font-jakarta);
+    font-size: 1rem;
+    color: #4a5568;
+    line-height: 1.6;
+    margin: 0;
+    max-width: 560px;
+}
+
+.sectionSubtitle strong {
+    font-weight: 700;
+    color: #0a1628;
+}
+
+/* ─── Main card ─── */
+.card {
+    position: relative;
+    width: 100%;
+    height: 480px;
+    border-radius: 1.25rem;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+}
+
+.cardFading {
+    opacity: 0;
+    transform: scale(0.985);
+    transition:
+            opacity 250ms ease,
+            transform 250ms ease;
+}
+
+.cardVisible {
     opacity: 1;
+    transform: scale(1);
+    transition:
+            opacity 250ms ease 250ms,
+            transform 250ms ease 250ms;
 }
 
-:global(.swiper-button-next),
-:global(.swiper-button-prev) {
-    color: #ffffff !important;
-    transform: scale(0.5); /* Flechas más sutiles como en el diseño */
+.cardImageWrapper {
+    position: absolute;
+    inset: 0;
 }
 
-/* Ajustes Mobile */
+.cardImage {
+    object-fit: cover;
+    object-position: top;
+}
+
+/* Dark gradient overlay */
+.cardOverlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+            to right,
+            rgba(5, 15, 35, 0.55) 0%,
+            rgba(5, 15, 35, 0.35) 45%,
+            rgba(5, 15, 35, 0.05) 100%
+    );
+}
+
+/* ─── Card content ─── */
+.cardContent {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 2.5rem 2.5rem;
+    gap: 2rem;
+    height: 100%;
+}
+
+.cardText {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    align-content: center;
+    gap: 1rem;
+    max-width: 420px;
+}
+
+.serviceTitle {
+    font-family: var(--font-jakarta);
+    font-size: 2.8rem;
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin: 0;
+}
+
+.titleWhite {
+    color: #ffffff;
+}
+
+.titleBlue {
+    color: #3b9eff;
+}
+
+.serviceDesc {
+    font-family: var(--font-jakarta);
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.82);
+    line-height: 1.65;
+    margin: 0;
+}
+
+/* ─── CTA button ─── */
+.ctaButton {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    color: #0a1628;
+    font-family: var(--font-jakarta);
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 0.85rem 2rem;
+    border-radius: 9999px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+    align-self: flex-end;
+    margin-bottom: 0.2rem;
+}
+
+.ctaButton:hover {
+    background-color: #3b9eff;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+/* ─── Tabs ─── */
+.tabsWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.tabsList {
+    display: flex;
+    flex-direction: row;
+    gap: 0.25rem;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    flex: 1;
+    padding: 0.25rem 0;
+}
+
+.tabsList::-webkit-scrollbar {
+    display: none;
+}
+
+.tab {
+    flex-shrink: 0;
+    font-family: var(--font-jakarta);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #4a5568;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    transition: color 0.2s ease, background-color 0.2s ease;
+    white-space: nowrap;
+}
+
+.tab:hover {
+    color: #0a1628;
+    background-color: rgba(10, 22, 40, 0.06);
+}
+
+.tabActive {
+    color: #0a1628;
+    font-weight: 700;
+    border-bottom: 2px solid #3b9eff;
+    border-radius: 0;
+    padding-bottom: 0.4rem;
+}
+
+/* Tab navigation arrows */
+.tabArrow {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    font-size: 1.4rem;
+    color: #c0392b;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    flex-shrink: 0;
+    transition: color 0.2s ease;
+}
+
+.tabArrow:hover {
+    color: #0a1628;
+}
+
+/* ─── TABLET ─── */
+@media (max-width: 1024px) {
+    .sectionTitle {
+        font-size: 2.4rem;
+    }
+
+    .card {
+        height: 420px;
+    }
+
+    .cardContent {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 2rem;
+        gap: 1.25rem;
+    }
+
+    .cardText {
+        max-width: 100%;
+    }
+
+    .serviceTitle {
+        font-size: 2.2rem;
+    }
+
+    .ctaButton {
+        align-self: flex-start;
+    }
+
+    .tabArrow {
+        display: flex;
+    }
+}
+
+/* ─── MOBILE ─── */
 @media (max-width: 768px) {
-    .title {
+    .section {
+        padding: 4rem 0 3rem;
+    }
+
+    .container {
+        padding: 0 1.25rem;
+        gap: 1.5rem;
+    }
+
+    .sectionTitle {
         font-size: 2rem;
     }
-    .serviceCard {
-        padding: 10px;
+
+    .sectionSubtitle {
+        font-size: 0.9rem;
+    }
+
+    .card {
+        height: 520px;
+        border-radius: 1rem;
+    }
+
+    .cardOverlay {
+        background: linear-gradient(
+                to top,
+                rgba(5, 15, 35, 0.92) 0%,
+                rgba(5, 15, 35, 0.55) 55%,
+                rgba(5, 15, 35, 0.15) 100%
+        );
+    }
+
+    .cardContent {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-end;
+        padding: 1.5rem 1.25rem;
+        gap: 1rem;
+        height: 100%;
+    }
+
+    .serviceTitle {
+        font-size: 1.9rem;
+    }
+
+    .serviceDesc {
+        font-size: 0.88rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .ctaButton {
+        width: 100%;
+        padding: 0.9rem;
+        font-size: 0.95rem;
+        text-align: center;
+    }
+
+    .tab {
+        font-size: 0.82rem;
+        padding: 0.4rem 0.75rem;
+    }
+
+    .tabArrow {
+        display: flex;
+    }
+}
+
+@media (max-width: 480px) {
+    .serviceTitle {
+        font-size: 1.6rem;
     }
 }

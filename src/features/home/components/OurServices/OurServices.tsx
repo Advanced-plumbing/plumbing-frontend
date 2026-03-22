@@ -1,126 +1,230 @@
-"use client"; // <--- Esta es la clave para solucionar el error
-import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Navigation } from 'swiper/modules';
+"use client";
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 import styles from './OurServices.module.css';
-
-// Importar estilos de Swiper
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
 
 const services = [
     {
-        title: 'Insurance Pipe Burst',
-        description: 'If you experience a pipe burst, our team will collaborate with you and your insurance company to promptly repair the damage and minimize further issues, handling every detail with ease.',
-        icon: '💧',
+        listLabel: 'Pipe Burst',
+        titleLine1: 'Insurance',
+        titleLine2: 'Pipe Burst',
+        image: '/images/OurServices/our_services_1.png',
+        description: 'We quickly identify and repair damaged, corroded, or leaking pipes to restore proper water flow and prevent further damage. Our team ensures efficient solutions that extend the lifespan of your plumbing system while minimizing disruption to your home or business.',
     },
     {
-        title: 'Pipe Replacement',
-        description: 'Prevent water damage and expensive repairs with our professional pipe replacement services. We utilize high-quality materials to deliver reliable, long-lasting results.',
-        icon: '🔩',
+        listLabel: 'Pipe Replace',
+        titleLine1: 'Pipe',
+        titleLine2: 'Replacement',
+        image: '/images/OurServices/our_services_1.png',
+        description: 'Prevent water damage and costly repairs with our professional pipe replacement services. We use high-quality, durable materials to deliver reliable long-lasting results, ensuring your plumbing system operates at peak performance for years to come.',
     },
     {
-        title: 'Water Heater Replacement',
-        description: "If you're tired of inconsistent hot water, we offer expert water heater replacements. We ensure you enjoy a reliable supply of hot water throughout the year.",
-        icon: '🔥',
+        listLabel: 'Water Heater',
+        titleLine1: 'Water Heater',
+        titleLine2: 'Replacement',
+        image: '/images/OurServices/our_services_1.png',
+        description: "If you're tired of inconsistent hot water or an aging system, we offer expert water heater replacements. Our certified technicians ensure you enjoy a reliable, energy-efficient supply of hot water throughout every season of the year.",
     },
     {
-        title: 'Sump Pump',
-        description: 'Protect your property from flooding with our professional sump pump installation and maintenance services. We are dedicated to keeping your basement dry and secure.',
-        icon: '🌀',
+        listLabel: 'Sump Pump',
+        titleLine1: 'Sump Pump',
+        titleLine2: 'Services',
+        image: '/images/OurServices/our_services_1.png',
+        description: 'Protect your property from flooding with our professional sump pump installation and maintenance services. Our team conducts thorough assessments to recommend the right system for your home, keeping your basement dry, secure, and protected year-round.',
     },
     {
-        title: 'Plumbing Repairs',
-        description: 'Eliminate leaks, clogs, and water-related problems with our quick and effective plumbing repair services. Our experts will ensure your system remains in optimal condition.',
-        icon: '🔧',
+        listLabel: 'Plumbing Repairs',
+        titleLine1: 'Plumbing',
+        titleLine2: 'Repairs',
+        image: '/images/OurServices/our_services_1.png',
+        description: 'Eliminate leaks, clogs, and water-related problems with our quick and effective plumbing repair services. Our licensed experts diagnose issues accurately and deliver lasting fixes, ensuring your entire system remains in optimal condition with minimal disruption.',
     },
     {
-        title: 'Sewer Inspection w/ SeeSnake Camera',
-        description: 'Our advanced SeeSnake camera inspections can detect hidden issues within your sewer system. This detailed examination helps prevent costly repairs in the future.',
-        icon: '📷',
+        listLabel: 'Sewer Work',
+        titleLine1: 'Sewer Inspection',
+        titleLine2: 'w/ SeeSnake Camera',
+        image: '/images/OurServices/our_services_1.png',
+        description: 'Our advanced SeeSnake camera inspections provide a detailed view of the interior of your sewer system, detecting hidden blockages, cracks, and root intrusions. This thorough examination helps prevent costly emergency repairs and extends the life of your sewer line.',
     },
     {
-        title: 'Drain & Sewer Cleaning',
-        description: 'Keep your plumbing system flowing smoothly with our thorough drain and sewer cleaning services. We remove debris, grease, and blockages that could disrupt your plumbing.',
-        icon: '🚛',
+        listLabel: 'Drain Clean',
+        titleLine1: 'Drain &',
+        titleLine2: 'Sewer Cleaning',
+        image: '/images/OurServices/our_services_1.png',
+        description: 'Keep your plumbing system flowing smoothly with our thorough drain and sewer cleaning services. We remove debris, grease, and blockages that could disrupt your plumbing, preventing costly damage and keeping your home or business functioning without interruption.',
     },
     {
-        title: 'Gas Line',
-        description: 'Safety is our top priority when it comes to gas lines. We offer safe and dependable gas line installation, repair, and inspection services you can trust.',
-        icon: '⛽',
+        listLabel: 'Gas Line',
+        titleLine1: 'Gas Line',
+        titleLine2: 'Services',
+        image: '/images/OurServices/our_services_1.png',
+        description: 'Safety is our top priority when it comes to gas lines. We offer safe, certified, and dependable gas line installation, repair, and inspection services for residential and commercial properties. Trust our licensed technicians to handle every detail with precision and care.',
     },
     {
-        title: 'Plumbing Installations',
-        description: 'From new constructions to remodels, we provide quality plumbing installations for sinks, showers, pipes, and fixtures, ensuring optimal performance and efficiency.',
-        icon: '🛁',
-    },
-    // Los 4 restantes — ajusta títulos/descripciones según tu contenido real
-    {
-        title: 'Leak Detection',
-        description: 'Using advanced technology, our team accurately locates hidden leaks in your plumbing system to prevent water damage and reduce water waste effectively.',
-        icon: '🔍',
+        listLabel: 'Installations',
+        titleLine1: 'Plumbing',
+        titleLine2: 'Installations',
+        image: '/images/OurServices/our_services_1.png',
+        description: 'From new constructions to full remodels, we provide quality plumbing installations for sinks, showers, toilets, pipes, and fixtures of all kinds. Our team ensures every installation meets local code requirements and delivers optimal performance and long-term efficiency.',
     },
     {
-        title: 'Water Filtration',
-        description: 'Improve your home\'s water quality with our professional water filtration system installation and maintenance services for clean, safe drinking water.',
-        icon: '💎',
+        listLabel: 'Leak Check',
+        titleLine1: 'Leak',
+        titleLine2: 'Detection',
+        image: '/images/OurServices/our_services_1.png',
+        description: 'Using advanced technology and precision equipment, our team accurately locates hidden leaks within your plumbing system before they become major problems. Early detection saves you money, prevents water damage, and reduces unnecessary water waste.',
     },
     {
-        title: 'Bathroom Remodeling',
-        description: 'Transform your bathroom with our expert plumbing remodeling services. We handle everything from fixture upgrades to complete bathroom plumbing overhauls.',
-        icon: '🏠',
+        listLabel: 'Water Filtration',
+        titleLine1: 'Water',
+        titleLine2: 'Filtration',
+        image: '/images/OurServices/our_services_1.png',
+        description: "Improve your home's water quality with our professional water filtration system installation and maintenance services. We help you choose the right solution for your needs, delivering clean, safe, great-tasting drinking water straight from every tap in your home.",
     },
     {
-        title: 'Emergency Plumbing',
-        description: 'Plumbing emergencies don\'t wait for business hours. Our team is available 24/7 to respond quickly and resolve any urgent plumbing issues in your home.',
-        icon: '🚨',
+        listLabel: 'Bathroom',
+        titleLine1: 'Bathroom',
+        titleLine2: 'Remodeling',
+        image: '/images/OurServices/our_services_1.png',
+        description: 'Transform your bathroom with our expert plumbing remodeling services. We handle everything from individual fixture upgrades to complete bathroom plumbing overhauls, coordinating every detail to deliver a beautiful, fully functional space you will love for years.',
+    },
+    {
+        listLabel: 'Emergency',
+        titleLine1: 'Emergency',
+        titleLine2: 'Plumbing',
+        image: '/images/OurServices/our_services_1.png',
+        description: "Plumbing emergencies don't wait for business hours. Our team is available 24 hours a day, 7 days a week, 365 days a year to respond quickly and resolve any urgent plumbing issues. We arrive fast and fix the problem right the first time.",
     },
 ];
 
-const OurServices = () => {
-    return (
-        <section className={styles.servicesSection}>
-            <div className={styles.container}>
-                <h2 className={styles.title}>Our Services</h2>
-                <p className={styles.subtitle}>
-                    Whether you’re dealing with a minor issue or a plumbing emergency.
-                    Our team is equipped to handle all your plumbing needs.
-                </p>
+const TRANSITION_DURATION = 500; // ms
 
-                <Swiper
-                    modules={[Pagination, Navigation]}
-                    spaceBetween={30}
-                    slidesPerView={1}
-                    navigation
-                    pagination={{
-                        clickable: true,
-                        dynamicBullets: true,
-                    }}
-                    slidesPerGroup={4}
-                    breakpoints={{
-                        640: { slidesPerView: 1, slidesPerGroup: 1 },
-                        768: { slidesPerView: 2, slidesPerGroup: 2 },
-                        1024: { slidesPerView: 4, slidesPerGroup: 4 },
-                    }}
-                    className={styles.mySwiper}
-                >
-                    {services.map((service, index) => (
-                        <SwiperSlide key={index}>
-                            <div className={styles.serviceCard}>
-                                <div className={styles.iconWrapper}>
-                                    {/* Aquí puedes colocar los SVG de tus imágenes */}
-                                    <span className={styles.iconPlaceholder}>{service.icon}</span>
-                                </div>
-                                <h3 className={styles.serviceTitle}>{service.title}</h3>
-                                <p className={styles.serviceDescription}>{service.description}</p>
-                            </div>
-                        </SwiperSlide>
-                    ))}
-                </Swiper>
+export default function OurServices() {
+    const [activeIndex, setActiveIndex] = useState(0);
+    const [displayIndex, setDisplayIndex] = useState(0);
+    const [isTransitioning, setIsTransitioning] = useState(false);
+    const listRef = useRef<HTMLDivElement>(null);
+    const activeItemRef = useRef<HTMLButtonElement>(null);
+    const timeoutRef = useRef<ReturnType<typeof setTimeout>>(null);
+
+    const goTo = useCallback((index: number) => {
+        if (index === activeIndex || isTransitioning) return;
+        setIsTransitioning(true);
+        setActiveIndex(index);
+        if (timeoutRef.current) clearTimeout(timeoutRef.current);
+        timeoutRef.current = setTimeout(() => {
+            setDisplayIndex(index);
+            setIsTransitioning(false);
+        }, TRANSITION_DURATION / 2);
+    }, [activeIndex, isTransitioning]);
+
+    // Scroll active tab into view on mobile
+    useEffect(() => {
+        if (activeItemRef.current && listRef.current) {
+            const item = activeItemRef.current;
+            const container = listRef.current;
+            const itemLeft = item.offsetLeft;
+            const itemWidth = item.offsetWidth;
+            const containerWidth = container.offsetWidth;
+            container.scrollTo({
+                left: itemLeft - containerWidth / 2 + itemWidth / 2,
+                behavior: 'smooth',
+            });
+        }
+    }, [activeIndex]);
+
+    useEffect(() => () => { if (timeoutRef.current) clearTimeout(timeoutRef.current); }, []);
+
+    const current = services[displayIndex];
+    const active = services[activeIndex];
+
+    return (
+        <section className={styles.section}>
+            {/* Background vector */}
+            <div className={styles.vectorBg}>
+                <Image
+                    src="/images/vector.png"
+                    alt=""
+                    width={0}
+                    height={0}
+                    sizes="100vw"
+                    className={styles.vectorImg}
+                    aria-hidden
+                />
+            </div>
+
+            <div className={styles.container}>
+                {/* Header */}
+                <div className={styles.header}>
+                    <h2 className={styles.sectionTitle}>Our Services</h2>
+                    <p className={styles.sectionSubtitle}>
+                        Whether you&apos;re dealing with a minor issue or a plumbing emergency.{' '}
+                        <strong>Our team is equipped to handle all your plumbing needs.</strong>
+                    </p>
+                </div>
+
+                {/* Main card */}
+                <div className={`${styles.card} ${isTransitioning ? styles.cardFading : styles.cardVisible}`}>
+                    {/* Image background */}
+                    <div className={styles.cardImageWrapper}>
+                        <Image
+                            src={current.image}
+                            alt={current.titleLine2}
+                            fill
+                            className={styles.cardImage}
+                            priority
+                        />
+                        <div className={styles.cardOverlay} />
+                    </div>
+
+                    {/* Content */}
+                    <div className={styles.cardContent}>
+                        <div className={styles.cardText}>
+                            <h3 className={styles.serviceTitle}>
+                                <span className={styles.titleWhite}>{active.titleLine1}</span>
+                                <br />
+                                <span className={styles.titleBlue}>{active.titleLine2}</span>
+                            </h3>
+                            <p className={styles.serviceDesc}>{current.description}</p>
+                        </div>
+                        <Link href="/contact-us" className={styles.ctaButton}>
+                            Get in touch
+                        </Link>
+                    </div>
+                </div>
+
+                {/* Tabs list */}
+                <div className={styles.tabsWrapper}>
+                    <div className={styles.tabsList} ref={listRef}>
+                        {services.map((s, i) => (
+                            <button
+                                key={i}
+                                ref={i === activeIndex ? activeItemRef : null}
+                                className={`${styles.tab} ${i === activeIndex ? styles.tabActive : ''}`}
+                                onClick={() => goTo(i)}
+                            >
+                                {s.listLabel}
+                            </button>
+                        ))}
+                    </div>
+                    {/* Scroll arrows for the tab list on tablet/mobile */}
+                    <button
+                        className={`${styles.tabArrow} ${styles.tabArrowLeft}`}
+                        onClick={() => goTo(Math.max(0, activeIndex - 1))}
+                        aria-label="Previous service"
+                    >
+                        ‹
+                    </button>
+                    <button
+                        className={`${styles.tabArrow} ${styles.tabArrowRight}`}
+                        onClick={() => goTo(Math.min(services.length - 1, activeIndex + 1))}
+                        aria-label="Next service"
+                    >
+                        ›
+                    </button>
+                </div>
             </div>
         </section>
     );
-};
-
-export default OurServices;
+}
