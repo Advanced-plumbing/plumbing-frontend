@@ -102,6 +102,29 @@
     transform: translateY(-2px);
 }
 
+/* ── Agrega al final de ContactUsToday.module.css ── */
+
+.successMsg {
+    text-align: center;
+    padding: 2.5rem 1rem;
+    color: #003270;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.6;
+}
+
+.errorMsg {
+    color: #fca5a5;
+    font-size: 0.85rem;
+    text-align: center;
+    margin: 0;
+}
+
+.submitBtn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
 /* RESPONSIVE */
 
 @media (max-width: 1024px) {
