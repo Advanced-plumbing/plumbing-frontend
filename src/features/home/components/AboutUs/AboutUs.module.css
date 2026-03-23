@@ -1,187 +1,363 @@
+/* ─── Section ─── */
 .section {
-    padding: 120px 0;
-    background-color: white;
-    overflow: hidden;
+    padding: 7rem 0 0;
+    background-color: #ffffff;
+    overflow-x: hidden;
 }
 
+/* ─── Top grid ─── */
 .container {
-    max-width: 1500px;
+    max-width: 1300px;
     margin: 0 auto;
-    padding: 0 1.5rem;
+    padding: 0 2rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 5rem;
     align-items: center;
 }
 
-/* COMPOSICIÓN DE IMÁGENES */
+/* ─── Images ─── */
 .imageGrid {
-    position: relative;
     display: flex;
-    gap: 20px;
-    height: 600px;
+    gap: 16px;
+    height: 540px;
 }
 
 .mainImageWrapper {
     flex: 1;
     position: relative;
-    border-radius: 30px;
+    border-radius: 24px;
     overflow: hidden;
     height: 100%;
-    box-shadow: 20px 20px 60px rgba(0, 0, 0, 0.05);
 }
 
 .secondaryImageWrapper {
-    flex: 0.8;
+    flex: 0.75;
     position: relative;
-    border-radius: 30px;
+    border-radius: 24px;
     overflow: hidden;
-    height: 80%;
+    height: 100%;
     margin-top: auto;
-    box-shadow: 20px 20px 60px rgba(0, 0, 0, 0.1);
 }
 
 .image {
     object-fit: cover;
-    transition: transform 0.5s ease;
+    transition: transform 0.6s ease;
+}
+
+.mainImageWrapper .image {
+    object-position: left top;
+}
+
+.secondaryImageWrapper .image {
+    object-position: center top;
 }
 
 .imageGrid:hover .image {
-    transform: scale(1.05);
+    transform: scale(1.04);
 }
 
-.experienceBadge {
-    position: absolute;
-    bottom: 30px;
-    right: -20px;
-    background: #004393;
-    color: white;
-    padding: 2rem;
-    border-radius: 20px;
+/* ─── Content ─── */
+.content {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    box-shadow: 0 15px 30px rgba(0, 67, 147, 0.3);
-}
-
-.years {
-    font-size: 2.5rem;
-    font-weight: 800;
-    line-height: 1;
-}
-
-.expText {
-    font-size: 0.8rem;
-    text-align: center;
-    text-transform: uppercase;
-    font-weight: 600;
-    margin-top: 5px;
-}
-
-/* CONTENIDO */
-.subtitle {
-    color: #004393;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    font-size: 0.9rem;
-    display: block;
-    margin-bottom: 1rem;
+    gap: 1.5rem;
 }
 
 .title {
-    font-size: 3.5rem;
+    font-family: var(--font-jakarta);
+    font-size: 3.2rem;
     font-weight: 800;
-    color: #1a1a1a;
+    color: #0a1628;
     line-height: 1.1;
-    margin-bottom: 2rem;
     letter-spacing: -0.03em;
-}
-
-.title span {
-    color: #004393;
+    margin: 0;
 }
 
 .description {
-    font-size: 1.15rem;
+    font-family: var(--font-jakarta);
+    font-size: 1rem;
     color: #4b5563;
-    line-height: 1.7;
-    margin-bottom: 1.5rem;
+    line-height: 1.75;
+    margin: 0;
 }
-
-.stats {
-    display: flex;
-    gap: 3rem;
-    margin: 2.5rem 0;
-}
-
-.statItem h3 {
-    font-size: 2rem;
-    color: #004393;
-    font-weight: 800;
-    margin-bottom: 5px;
-}
-
-.statItem p {
-    font-weight: 600;
-    color: #1a1a1a;
-    font-size: 0.9rem;
-}
-
-.learnMoreBtn {
-    background: transparent;
-    border: 2px solid #004393;
-    color: #004393;
-    padding: 1rem 2.5rem;
-    border-radius: 9999px;
+.description strong {
     font-weight: 700;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    color: #0a1628;
+}
+
+/* ─── Bars ─── */
+.bars {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+}
+
+.barRow {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.barHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.barLabel {
+    font-family: var(--font-jakarta);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #0a1628;
+}
+
+.barNum {
+    font-family: var(--font-jakarta);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #0a1628;
+    min-width: 3rem;
+    text-align: right;
+}
+
+.barTrack {
+    width: 100%;
+    height: 5px;
+    background: #e5e7eb;
+    border-radius: 9999px;
+    overflow: hidden;
+}
+
+.barFill {
+    height: 100%;
+    background: #185FA5;
+    border-radius: 9999px;
+    width: 0%;
+}
+
+/* ─── CTA ─── */
+.ctaButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-start;
+    background-color: #185FA5;
+    color: #ffffff;
+    font-family: var(--font-jakarta);
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 0.9rem 2.2rem;
+    border-radius: 9999px;
     text-decoration: none;
+    transition: background-color 0.2s ease, transform 0.15s ease;
+    margin-top: 0.5rem;
+}
+.ctaButton:hover {
+    background-color: #0C447C;
+    transform: translateY(-2px);
 }
 
-.learnMoreBtn:hover {
-    background: #004393;
-    color: white;
+/* ─── KPI strip ─── */
+.kpiStrip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 3.5rem 2rem;
+    max-width: 1300px;
+    margin: 2rem auto 0;
 }
 
-/* RESPONSIVE */
+.kpiItem {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0 1.5rem;
+}
 
+.kpiValue {
+    font-family: var(--font-jakarta);
+    font-size: 3rem;
+    font-weight: 800;
+    color: #185FA5;
+    line-height: 1;
+    letter-spacing: -0.03em;
+}
+
+.kpiLabel {
+    font-family: var(--font-jakarta);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #6b7280;
+    text-align: center;
+}
+
+/* ─── Separator wrapper ─── */
+.kpiSepWrapper {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 60%;
+    /* Clip so the arrow doesn't show outside the line bounds */
+    overflow: hidden;
+}
+
+/* Static line — always present, full height */
+.kpiSepLine {
+    position: absolute;
+    inset: 0;
+    background: #d1d5db;
+    width: 1px;
+}
+
+/*
+    Arrow tip: starts at bottom (top: 100%) and travels to top (top: -8px).
+    transition-property is `top` so it slides up along the line.
+*/
+.kpiSepArrow {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #9ca3af;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* Start position: just below the bottom of the line */
+    top: 100%;
+    opacity: 0;
+
+    transition: top 0.7s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+}
+
+/* End position: at the very top of the line */
+.kpiSepArrowVisible {
+    top: -7px;
+    opacity: 1;
+}
+
+/* ─── TABLET (max 1024px) ─── */
 @media (max-width: 1024px) {
     .container {
-        grid-template-columns: 1fr; /* Una columna en tablet */
-        text-align: center;
-        display: flex; /* Cambiamos a flex para manejar el orden fácilmente */
-        flex-direction: column;
-        gap: 2rem;
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        /* consistent horizontal padding — same as section */
+        padding: 0 1.5rem;
     }
 
     .imageGrid {
         width: 100%;
-        max-width: 600px; /* Tamaño máximo para que no se vea gigante */
-        height: 400px; /* IMPORTANTE: El contenedor NECESITA altura para que 'fill' funcione */
-        margin: 0 auto;
-        position: relative; /* REQUISITO: Para que la imagen absolute se contenga aquí */
-        order: 2; /* Mueve la imagen debajo del texto */
-        overflow: hidden;
-        border-radius: 12px;
+        height: 340px;
+        /* No max-width — fills the container */
     }
 
-    /* La imagen debe seguir siendo absolute, pero relativa a .imageGrid */
-    .image {
-        object-fit: cover; /* Mantiene la proporción sin deformarse */
-        position: absolute !important;
+    .mainImageWrapper,
+    .secondaryImageWrapper {
+        border-radius: 20px;
     }
 
-    .stats { justify-content: center; }
-    .learnMoreBtn { align-self: center; }
+    .content {
+        align-items: center;
+        /* Match container padding so nothing bleeds */
+        width: 100%;
+    }
+
+    .title {
+        font-size: 2.4rem;
+        text-align: center;
+    }
+
+    .description {
+        font-size: 0.95rem;
+        text-align: center;
+    }
+
+    /*
+        Bars stretch to full container width.
+        No 100vw trick — keep it inside the same padding as everything else.
+    */
+    .bars {
+        width: 100%;
+    }
+
+    .ctaButton {
+        align-self: center;
+    }
+
+    .kpiStrip {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2.5rem 0;
+        padding: 3rem 1.5rem;
+    }
+
+    .kpiSepWrapper {
+        display: none;
+    }
 }
 
+/* ─── MOBILE (max 768px) ─── */
 @media (max-width: 768px) {
-    .section { padding: 40px 20px; }
-    .title { font-size: 2.2rem; }
+    .section {
+        padding: 4rem 0 0;
+    }
+
+    .container {
+        padding: 0 1.25rem;
+        gap: 2rem;
+    }
 
     .imageGrid {
-        height: 300px; /* Más pequeña en móviles */
+        height: 220px;
+    }
+
+    .mainImageWrapper,
+    .secondaryImageWrapper {
+        border-radius: 14px;
+    }
+
+    .secondaryImageWrapper {
+        display: none;
+    }
+
+    .title {
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    .description {
+        font-size: 0.9rem;
+        text-align: center;
+    }
+
+    /* Bars: same width as container, no overflow */
+    .bars {
+        width: 100%;
+    }
+
+    .kpiStrip {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 2.5rem 1.25rem;
+        gap: 2rem 0;
+    }
+
+    .kpiValue {
+        font-size: 2.2rem;
+    }
+
+    .kpiLabel {
+        font-size: 0.82rem;
+    }
+
+    .kpiSepWrapper {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 1.8rem;
     }
 }

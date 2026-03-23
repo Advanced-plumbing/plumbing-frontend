@@ -5,7 +5,6 @@
     padding: 10rem 0 5rem 0;
     border-top-left-radius: 40px;
     border-top-right-radius: 40px;
-    overflow: hidden;
 }
 
 /* ─── Vector bg ─── */
@@ -17,7 +16,7 @@
     z-index: 0;
 }
 .vectorImg {
-    margin-top: 3rem;
+    margin-top: 6rem;
     position: relative !important;
     width: 620px !important;
     height: auto !important;
