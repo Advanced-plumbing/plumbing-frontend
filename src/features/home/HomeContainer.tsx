@@ -1,5 +1,4 @@
 import { Hero } from "./components/Hero/Hero";
-import { ContactUsToday } from "@/shared/components/ContactUsToday/ContactUsToday";
 import {Accreditations} from "@/shared/components/Accreditations/Accreditations";
 import {AboutUs} from "@/features/home/components/AboutUs/AboutUs";
 import OurServices from "@/features/home/components/OurServices/OurServices";

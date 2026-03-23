@@ -1,25 +1,26 @@
 /* ─── Section ─── */
 .section {
-    position: relative;
-    padding: 6rem 0 5rem;
-    background-color: #f0f2f5;
+    position: relative;        /* ← esto faltaba para que el vector absolute funcione */
+    padding: 0 20px 80px 20px;
     overflow: hidden;
+    background-color: #f4f4f4;
 }
 
 /* ─── Decorative vector — right side ─── */
 .vectorRight {
     position: absolute;
     top: 0;
-    right: 0;
+    right: 0;                  /* ← right, no left */
     bottom: 0;
     width: auto;
     pointer-events: none;
     z-index: 0;
 }
+
 .vectorImg {
     position: relative !important;
-    width: auto !important;
-    height: 100% !important;
+    width: 980px !important;
+    height: auto !important;
     object-fit: contain;
     object-position: right top;
     opacity: 0.45;
@@ -29,7 +30,7 @@
 .container {
     position: relative;
     z-index: 1;
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
     padding: 0 2rem;
     display: flex;
@@ -71,7 +72,7 @@
 .grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
+    gap: 3.5rem;
 }
 
 /* ─── Card ─── */
@@ -92,7 +93,6 @@
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
 }
 
-/* Background image */
 .cardBg {
     position: absolute;
     inset: 0;
@@ -102,7 +102,6 @@
     object-position: center;
 }
 
-/* Gradient overlay — dark at bottom, lighter at top */
 .cardOverlay {
     position: absolute;
     inset: 0;
@@ -114,11 +113,10 @@
     );
 }
 
-/* Text content */
 .cardContent {
     position: relative;
     z-index: 2;
-    padding: 1.5rem 5rem 1.5rem 1.4rem;
+    padding: 1.5rem 1.4rem;
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
@@ -134,7 +132,6 @@
     margin: 0;
 }
 
-/* Blue highlighted words inside the title */
 .cardTitle :global(.highlight) {
     color: #267AF6;
 }
@@ -152,7 +149,6 @@
     overflow: hidden;
 }
 
-/* Read more button */
 .readMoreBtn {
     align-self: flex-start;
     background-color: #267AF6;
@@ -201,15 +197,8 @@
 /* ─── TABLET ─── */
 @media (max-width: 1024px) {
     .sectionTitle { font-size: 2.4rem; }
-
-    .grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    /* Hide the 3rd card on tablet to keep 2-col clean */
-    .card:nth-child(3) {
-        display: none;
-    }
+    .grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+    .card:nth-child(3) { display: none; }
 }
 
 /* ─── MOBILE ─── */
@@ -217,20 +206,9 @@
     .section { padding: 4rem 0 3.5rem; }
     .container { padding: 0 1.25rem; gap: 2rem; }
     .sectionTitle { font-size: 2rem; }
-
-    .grid {
-        grid-template-columns: 1fr;
-    }
-
-    /* Show all 3 cards stacked on mobile */
-    .card:nth-child(3) {
-        display: flex;
-    }
-
-    .card {
-        height: 320px;
-    }
-
+    .grid { grid-template-columns: 1fr; gap: 1.25rem; }
+    .card:nth-child(3) { display: flex; }
+    .card { height: 320px; }
     .cardTitle { font-size: 1.2rem; }
 }
 
