@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import styles from './ContactBlue.module.css';
 import Link from "next/link";
 
@@ -18,83 +19,87 @@ const ContactBlue = () => {
     };
 
     return (
-        <section className={styles.contactSection}>
-            <div className={styles.container}>
+        <>
+            <section className={styles.contactSection}>
+                <div className={styles.container}>
 
-                {/* Lado Izquierdo: Texto con mejor balance */}
-                <div className={styles.infoSide}>
-                    <h2 className={styles.mainTitle}>
-                        Ready to Work with <br />
-                        <span>Advanced Plumbing & HVAC?</span>
-                    </h2>
-                    <div className={styles.divider}></div>
-                    <p className={styles.description}>
-                        When you need a plumbing team that's professional, reliable, and ready to tackle any challenge,
-                        Advanced Plumbing & HVAC is here for you. We welcome you to learn more about our services,
-                        ask questions, and schedule an appointment.
-                    </p>
-                    <Link href="/contact-us" className={styles.outlineBtn}>CONTACT US</Link>
-                </div>
+                    <div className={styles.infoSide}>
+                        <h2 className={styles.mainTitle}>
+                            Ready to Work with <br />
+                            <span>Advanced Plumbing & HVAC?</span>
+                        </h2>
+                        <div className={styles.divider}></div>
+                        <p className={styles.description}>
+                            When you need a plumbing team that's professional, reliable, and ready to tackle any challenge,
+                            Advanced Plumbing & HVAC is here for you. We welcome you to learn more about our services,
+                            ask questions, and schedule an appointment.
+                        </p>
+                        <Link href="/contact-us" className={styles.outlineBtn}>CONTACT US</Link>
+                    </div>
 
-                {/* Lado Derecho: Formulario Estilizado */}
-                <div className={styles.formSide}>
-                    <div className={styles.formCard}>
-                        <h2 className={styles.formTitle}>CONTACT US</h2>
-                        <form className={styles.form}>
-                            <div className={styles.row}>
-                                <div className={styles.field}><input type="text" placeholder="First Name *" required /></div>
-                                <div className={styles.field}><input type="text" placeholder="Last Name *" required /></div>
-                            </div>
-
-                            <div className={styles.row}>
+                    <div className={styles.formSide}>
+                        <div className={styles.formCard}>
+                            <h2 className={styles.formTitle}>CONTACT US</h2>
+                            <form className={styles.form}>
+                                <div className={styles.row}>
+                                    <div className={styles.field}><input type="text" placeholder="First Name *" required /></div>
+                                    <div className={styles.field}><input type="text" placeholder="Last Name *" required /></div>
+                                </div>
+                                <div className={styles.row}>
+                                    <div className={styles.field}>
+                                        <input type="tel" placeholder="(000) 000-0000" value={phone} onChange={handlePhoneChange} maxLength={14} required />
+                                    </div>
+                                    <div className={styles.field}><input type="email" placeholder="Email *" required /></div>
+                                </div>
+                                <div className={styles.row}>
+                                    <div className={styles.field}><input type="text" placeholder="Address *" required /></div>
+                                    <div className={styles.field}><input type="text" placeholder="City *" required /></div>
+                                </div>
+                                <div className={styles.row}>
+                                    <div className={styles.field}><input type="text" placeholder="State *" required /></div>
+                                    <div className={styles.field}><input type="text" placeholder="Zip Code *" required /></div>
+                                </div>
                                 <div className={styles.field}>
-                                    <input type="tel" placeholder="(000) 000-0000" value={phone} onChange={handlePhoneChange} maxLength={14} required />
+                                    <select className={styles.select} required defaultValue="">
+                                        <option value="" disabled>Please Select Service</option>
+                                        <option value="1">Plumbing Replacement</option>
+                                        <option value="2">Water Heater</option>
+                                        <option value="3">Sump Pump</option>
+                                    </select>
                                 </div>
-                                <div className={styles.field}><input type="email" placeholder="Email *" required /></div>
-                            </div>
-
-                            <div className={styles.row}>
-                                <div className={styles.field}><input type="text" placeholder="Address *" required /></div>
-                                <div className={styles.field}><input type="text" placeholder="City *" required /></div>
-                            </div>
-
-                            <div className={styles.row}>
-                                <div className={styles.field}><input type="text" placeholder="State *" required /></div>
-                                <div className={styles.field}><input type="text" placeholder="Zip Code *" required /></div>
-                            </div>
-
-                            <div className={styles.field}>
-                                <select className={styles.select} required defaultValue="">
-                                    <option value="" disabled>Please Select Service</option>
-                                    <option value="1">Plumbing Replacement</option>
-                                    <option value="2">Water Heater</option>
-                                    <option value="3">Sump Pump</option>
-                                </select>
-                            </div>
-
-                            <div className={styles.field}>
-                                <textarea placeholder="Your Message" rows={3}></textarea>
-                            </div>
-
-                            <div className={styles.captchaRow}>
-                                <div className={styles.captchaBox}>
-                                    <div className={styles.captchaLeft}>
-                                        <input type="checkbox" id="robot" />
-                                        <label htmlFor="robot">No soy un robot</label>
-                                    </div>
-                                    <div className={styles.captchaRight}>
-                                        <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" alt="re" />
-                                        <span>reCAPTCHA</span>
+                                <div className={styles.field}>
+                                    <textarea placeholder="Your Message" rows={3}></textarea>
+                                </div>
+                                <div className={styles.captchaRow}>
+                                    <div className={styles.captchaBox}>
+                                        <div className={styles.captchaLeft}>
+                                            <input type="checkbox" id="robot" />
+                                            <label htmlFor="robot">No soy un robot</label>
+                                        </div>
+                                        <div className={styles.captchaRight}>
+                                            <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" alt="re" />
+                                            <span>reCAPTCHA</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <button type="submit" className={styles.submitBtn}>SEND MESSAGE</button>
-                        </form>
+                                <button type="submit" className={styles.submitBtn}>SEND MESSAGE</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
+            </section>
+
+            {/* ── Banner image ── */}
+            <div className={styles.banner}>
+                <Image
+                    src="/images/contact-banner-alt.png"
+                    alt="Advanced Plumbing team"
+                    fill
+                    className={styles.bannerImg}
+                    priority={false}
+                />
             </div>
-        </section>
+        </>
     );
 };
 

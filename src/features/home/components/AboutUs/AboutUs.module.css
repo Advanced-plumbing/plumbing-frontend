@@ -131,7 +131,7 @@
 
 .barFill {
     height: 100%;
-    background: #185FA5;
+    background: #267AF6;
     border-radius: 9999px;
     width: 0%;
 }
@@ -142,7 +142,7 @@
     align-items: center;
     justify-content: center;
     align-self: flex-start;
-    background-color: #185FA5;
+    background-color: #267AF6;
     color: #ffffff;
     font-family: var(--font-jakarta);
     font-size: 0.95rem;
@@ -154,7 +154,7 @@
     margin-top: 0.5rem;
 }
 .ctaButton:hover {
-    background-color: #0C447C;
+    background-color: #267AF6;
     transform: translateY(-2px);
 }
 
@@ -180,7 +180,7 @@
     font-family: var(--font-jakarta);
     font-size: 3rem;
     font-weight: 800;
-    color: #185FA5;
+    color: #267AF6;
     line-height: 1;
     letter-spacing: -0.03em;
 }

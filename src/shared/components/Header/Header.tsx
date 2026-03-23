@@ -78,7 +78,7 @@ export const Header = ({ isHome = false }: HeaderProps) => {
                 {/* LOGO */}
                 <Link href="/" className={styles.logoWrapper}>
                     <Image
-                        src="/logos/logo.png"
+                        src="/logos/logo-2.png"
                         alt="Advanced Plumbing"
                         fill
                         priority

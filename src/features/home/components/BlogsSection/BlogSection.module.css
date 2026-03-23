@@ -11,7 +11,7 @@
 
 .sectionTitle {
     text-align: center;
-    color: #0046ad;
+    color: #267AF6;
     font-size: 3rem;
     font-weight: 800;
     margin-bottom: 50px;
@@ -64,7 +64,7 @@
 }
 
 .blogTitle {
-    color: #0046ad;
+    color: #267AF6;
     font-size: 1.5rem;
     font-weight: 700;
     margin-bottom: 20px;
@@ -80,7 +80,7 @@
 }
 
 .readMoreBtn {
-    background-color: #0046ad;
+    background-color: #267AF6;
     color: white;
     border: none;
     padding: 12px 25px;
@@ -93,7 +93,7 @@
 }
 
 .readMoreBtn:hover {
-    background-color: #003585;
+    background-color: #267AF6;
 }
 
 /* --- RESPONSIVE --- */

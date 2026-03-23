@@ -29,7 +29,7 @@
 .container {
     position: relative;
     z-index: 1;
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
     padding: 0 2rem;
     display: flex;
@@ -275,9 +275,9 @@
 .tabActive {
     color: #0a1628;
     font-weight: 700;
-    border-bottom: 2px solid #3b9eff;
+    border-top: 2px solid #3b9eff;
     border-radius: 0;
-    padding-bottom: 0.4rem;
+    padding-top: 0.4rem;
 }
 
 /* ─── TABLET ─── */

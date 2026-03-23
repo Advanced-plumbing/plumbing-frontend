@@ -9,9 +9,9 @@ export const Footer = () => {
                 {/* Lado Izquierdo: Logo e ID */}
                 <div className={styles.brandSide}>
                     <Image
-                        src="/logos/logo-white.png"
+                        src="/logos/logo-alt-white.png"
                         alt="Advanced Plumbing White"
-                        width={250}
+                        width={300}
                         height={80}
                     />
                     <p className={styles.plumberId}>Plumber ID: 058-199827</p>
