@@ -15,7 +15,6 @@
     align-items: center;
 }
 
-/* Envoltorio del mapa para controlar el ancho total en móvil */
 .mapSide {
     width: 100%;
     overflow: hidden;
@@ -41,65 +40,64 @@
     line-height: 1.4;
 }
 
-/* --- Ajustes para Mobile --- */
-/* --- Ajustes para Mobile --- */
+/* --- Mobile --- */
 @media (max-width: 992px) {
     .section {
-        padding: 0 0 60px 0; /* Quitamos padding lateral de la sección */
-        overflow-x: hidden; /* Evita scroll horizontal por el 100vw */
+        padding: 0;
+        overflow: hidden; /* <- clave: evita cualquier desbordamiento */
     }
 
     .container {
         max-width: 100%;
+        padding: 0;
         margin: 0;
     }
 
     .grid {
         grid-template-columns: 1fr;
-        gap: 0; /* El espacio lo daremos con padding interno */
+        gap: 0;
         text-align: center;
     }
 
     .mapSide {
         order: -1;
-        width: 100vw;
-        position: relative;
-        left: 50%;
-        right: 50%;
-        margin-left: -50vw;
-        margin-right: -50vw;
-        padding: 0; /* ELIMINAR el padding que tenías aquí, eso causaba el desfase */
+        width: 100%;      /* <- simplemente 100%, sin trucos de vw */
+        margin: 0;
+        padding: 0;
     }
 
     .mapSide iframe {
-        height: 350px; /* Ajustado al mockup */
+        width: 100%;
+        height: 300px;
         display: block;
     }
 
-    /* Lado de la Información: Aquí es donde aplicamos el centrado */
     .infoSide {
-        padding: 40px 20px; /* Padding para que el texto no toque los bordes del móvil */
+        padding: 40px 20px;
         display: flex;
         flex-direction: column;
-        align-items: center; /* Centra los items horizontalmente */
+        align-items: center;
         width: 100%;
         box-sizing: border-box;
     }
 
     .title {
-        font-size: 2.8rem; /* Tamaño más cercano al mockup móvil */
+        font-size: 2.2rem;
         margin-top: 0;
         margin-bottom: 20px;
         width: 100%;
+        word-break: break-word;
     }
 
     .contactItem {
-        margin-bottom: 15px;
         width: 100%;
+        box-sizing: border-box;
     }
 
     .contactItem p {
-        font-size: 1.3rem;
-        word-wrap: break-word; /* Evita que el email largo rompa el diseño */
+        font-size: 1.1rem;
+        word-break: break-word;   /* <- evita que el email se salga */
+        overflow-wrap: break-word;
+        width: 100%;
     }
 }
