@@ -7,13 +7,12 @@ import styles from "./AboutUs.module.css";
 // ── CONFIG: change target to control where each bar stops ──
 const BARS_CONFIG = [
     { label: "Precision & Craftsmanship", target: 100, reverse: false },
-    { label: "Client Trust & Satisfaction", target: 100, reverse: false },
     { label: "Unresolved Issues",           target: 0,   reverse: true  },
 ];
 
 const KPIS = [
     { value: 15,   suffix: "+",  label: "Years of Experience" },
-    { value: 1000, suffix: "",   label: "Happy Customers" },
+    { value: 100, suffix: "%",   label: "Happy Customers" },
     { value: 350,  suffix: "+",  label: "Projects Completed" },
     { value: 24,   suffix: "/7", label: "Emergency Service" },
 ];

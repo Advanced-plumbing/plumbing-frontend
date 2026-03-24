@@ -19,7 +19,7 @@
 }
 
 .brandTitle {
-    color: #0046ad;
+    color: #266fdc;
     font-size: 1.8rem;
     font-weight: 800;
     margin-bottom: 20px;
@@ -29,7 +29,7 @@
     font-size: 3.2rem;
     font-weight: 900;
     line-height: 1.1;
-    color: #003a8c;
+    color: #266fdc;
     margin-bottom: 25px;
 }
 
@@ -45,7 +45,7 @@
 }
 
 .contactBtn {
-    background-color: #0046ad;
+    background-color: #266fdc;
     color: white;
     padding: 12px 35px;
     border: none;

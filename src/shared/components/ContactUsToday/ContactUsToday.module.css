@@ -47,7 +47,7 @@
 }
 
 .title {
-    color: #004393; /* Tu azul oficial */
+    color: #266fdc; /* Tu azul oficial */
     font-size: 2.2rem;
     font-weight: 800;
     text-align: center;
@@ -80,12 +80,12 @@
 
 .field input:focus, .field select:focus, .field textarea:focus {
     outline: none;
-    border-color: #004393;
+    border-color: #266fdc;
     box-shadow: 0 0 0 4px rgba(0, 67, 147, 0.1);
 }
 
 .submitBtn {
-    background-color: #004393;
+    background-color: #266fdc;
     color: white;
     padding: 1.2rem;
     border-radius: 12px;
@@ -98,7 +98,7 @@
 }
 
 .submitBtn:hover {
-    background-color: #003270;
+    background-color: #266fdc;
     transform: translateY(-2px);
 }
 
@@ -107,7 +107,7 @@
 .successMsg {
     text-align: center;
     padding: 2.5rem 1rem;
-    color: #003270;
+    color: #266fdc;
     font-size: 1rem;
     font-weight: 600;
     line-height: 1.6;

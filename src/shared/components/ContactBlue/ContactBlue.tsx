@@ -236,7 +236,7 @@ const ContactBlue = () => {
             {/* Banner image */}
             <div className={styles.banner}>
                 <Image
-                    src="/images/contact-banner-alt.png"
+                    src="/images/contact-banner-2.png"
                     alt="Advanced Plumbing team"
                     fill
                     className={styles.bannerImg}

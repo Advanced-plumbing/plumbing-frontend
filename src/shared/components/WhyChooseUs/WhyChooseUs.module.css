@@ -10,7 +10,7 @@
 
 .mainTitle {
     text-align: center;
-    color: #004393;
+    color: #266fdc;
     font-size: clamp(1.8rem, 4vw, 2.5rem);
     font-weight: 800;
     margin-bottom: 50px;
@@ -47,7 +47,7 @@
 }
 
 .cardTitle {
-    color: #004393;
+    color: #266fdc;
     font-size: 1.25rem;
     font-weight: 800;
     line-height: 1.3;

@@ -110,6 +110,7 @@
     font-size: 0.9rem;
     font-weight: 600;
     color: #0a1628;
+    margin-bottom: 0.4rem;
 }
 
 .barNum {
@@ -123,7 +124,7 @@
 
 .barTrack {
     width: 100%;
-    height: 5px;
+    height: 27px;
     background: #e5e7eb;
     border-radius: 9999px;
     overflow: hidden;

@@ -269,7 +269,7 @@
 
 .bannerImg {
     object-fit: cover;
-    object-position: center 60%; /* ← ajusta qué parte de la foto se ve:
+    object-position: center 70%; /* ← ajusta qué parte de la foto se ve:
                                         0%  = arriba
                                         50% = centro
                                        100% = abajo                    */
