@@ -1,171 +1,163 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import styles from "./Header.module.css";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
-interface HeaderProps {
-    isHome?: boolean;
-}
+interface ServiceItem { name: string; path: string; }
 
-// Interfaz para el tipado de los servicios
-interface ServiceItem {
-    name: string;
-    path: string;
-}
-
-export const Header = ({ isHome = false }: HeaderProps) => {
+export const Header = ({ isHome = false }: { isHome?: boolean }) => {
     const [isScrolled, setIsScrolled] = useState(false);
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [isServicesOpen, setIsServicesOpen] = useState(false); // Estado para el acordeón móvil
-
-    const router = useRouter();
+    const [isHovered, setIsHovered] = useState(false);
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const pathname = usePathname();
+    const hoverTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     const servicesList: ServiceItem[] = [
-        "Drain & Sewer Cleaning",
-        "Filter System Under Sink Installation",
-        "Gas Line",
-        "HVAC Services",
-        "Insurance Pipe Burst Repair",
-        "Pipe Replacement",
-        "Plumbing Installation",
-        "Plumbing Repair",
-        "Sewer inspection SeeSnake Camera",
-        "Sump Pumps",
-        "Tankless Water Heater Installation",
-        "Toilet Clog Removal",
+        "Drain & Sewer Cleaning", "Filter System Under Sink Installation",
+        "Gas Line", "HVAC Services", "Insurance Pipe Burst Repair",
+        "Pipe Replacement", "Plumbing Installation", "Plumbing Repair",
+        "Sewer inspection SeeSnake Camera", "Sump Pumps",
+        "Tankless Water Heater Installation", "Toilet Clog Removal",
         "Water Heater Replacement"
-    ].map(service => {
-        // Generamos el slug base
-        let slug = service.toLowerCase()
-            .replace(/ & /g, '-')     // Maneja el "&"
-            .replace(/\s+/g, '-')     // Espacios a guiones
-            .replace(/[()]/g, '');    // Quita paréntesis
-
-        // Construimos el path asegurando que no se repita "-services"
-        const path = `/${slug}-services/`.replace("-services-services", "-services");
-
-        return {
-            name: service,
-            path: path
-        };
-    });
-
-    const handleNavigation = () => {
-        setIsMenuOpen(false);
-        router.push('/contact-us/');
-    };
+    ].map(service => ({
+        name: service,
+        path: `/${service.toLowerCase().replace(/ & /g, '-').replace(/\s+/g, '-').replace(/[()]/g, '')}-services/`.replace("-services-services", "-services")
+    }));
 
     useEffect(() => {
-        const handleScroll = () => setIsScrolled(window.scrollY > 50);
-        window.addEventListener("scroll", handleScroll);
+        const handleScroll = () => setIsScrolled(window.scrollY > 60);
+        window.addEventListener("scroll", handleScroll, { passive: true });
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    const headerClass = isHome
-        ? (isScrolled ? styles.headerScrolled : styles.headerTransparent)
-        : styles.headerScrolled;
+    useEffect(() => {
+        document.body.style.overflow = (isDialogOpen || isMobileMenuOpen) ? "hidden" : "";
+        return () => { document.body.style.overflow = ""; };
+    }, [isDialogOpen, isMobileMenuOpen]);
 
-    const linkClass = isHome
-        ? (isScrolled ? styles.navLinkScrolled : styles.navLinkTransparent)
-        : styles.navLinkScrolled;
+    const handleMouseEnter = () => {
+        if (hoverTimeout.current) clearTimeout(hoverTimeout.current);
+        setIsHovered(true);
+    };
+    const handleMouseLeave = () => {
+        hoverTimeout.current = setTimeout(() => setIsHovered(false), 300);
+    };
+
+    const expanded = !isScrolled || isHovered;
 
     return (
-        <header className={`${styles.header} ${headerClass}`}>
-            <div className={styles.container}>
-                {/* LOGO */}
-                <Link href="/" className={styles.logoWrapper}>
-                    <Image
-                        src="/logos/logo-2.png"
-                        alt="Advanced Plumbing"
-                        fill
-                        priority
-                        className="object-contain object-left"
-                    />
-                </Link>
+        <>
+            {/* ── DESKTOP HEADER ── */}
+            <header className={styles.headerWrapper}>
+                <div
+                    className={styles.pill}
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                >
+                    <Link href="/" className={styles.logoLink}>
+                        <div className={styles.logoWrap}>
+                            <Image src="/logos/icon-logo.png" alt="Advanced Plumbing" fill priority className="object-contain" />
+                        </div>
+                    </Link>
 
-                {/* DESKTOP NAVIGATION */}
-                <div className={styles.navigationWrapper}>
-                    <nav className={styles.nav}>
-                        <Link href="/" className={`${styles.navLink} ${linkClass} ${pathname === "/" ? styles.navLinkActive : ""}`}>
+                    <nav className={styles.pillNav}>
+                        {/* Home — siempre visible */}
+                        <Link
+                            href="/"
+                            className={`${styles.pillLink} ${pathname === "/" ? styles.pillLinkActive : ""}`}
+                        >
                             Home
                         </Link>
-                        <Link href="/about-us" className={`${styles.navLink} ${linkClass} ${pathname === "/about-us" ? styles.navLinkActive : ""}`}>
-                            About
-                        </Link>
 
-                        {/* DESKTOP DROPDOWN */}
-                        <div className={styles.dropdownContainer}>
-                            <span className={`${styles.navLink} ${linkClass}`}>Services ▾</span>
-                            <div className={styles.dropdownMenu}>
-                                {servicesList.map((service) => (
-                                    <Link
-                                        key={service.name}
-                                        href={service.path}
-                                        className={styles.dropdownItem}
-                                    >
-                                        {service.name}
-                                    </Link>
-                                ))}
-                            </div>
+                        {/* About — se oculta al hacer scroll */}
+                        <div className={`${styles.aboutWrapper} ${!expanded ? styles.aboutHidden : ""}`}>
+                            <Link
+                                href="/about-us"
+                                className={`${styles.pillLink} ${pathname === "/about-us" ? styles.pillLinkActive : ""}`}
+                            >
+                                About
+                            </Link>
                         </div>
                     </nav>
 
-                    <div className={styles.getInTouch} onClick={handleNavigation} role="button" tabIndex={0}>
-                        <div className={styles.arrowCircle}>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className={styles.arrowIcon}>
-                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                                <polyline points="12 5 19 12 12 19"></polyline>
-                            </svg>
-                        </div>
-                        <span className={styles.touchText}>Get in touch</span>
-                    </div>
+                    <button
+                        className={styles.burgerBtn}
+                        onClick={() => setIsDialogOpen(true)}
+                        aria-label="Open services menu"
+                    >
+                        <span className={styles.burgerLine} />
+                        <span className={styles.burgerLine} />
+                    </button>
                 </div>
 
-                {/* MOBILE BUTTON */}
-                <button
-                    className={`${styles.mobileMenuBtn} ${isMenuOpen ? styles.mobileMenuBtnOpen : ""}`}
-                    onClick={() => setIsMenuOpen(!isMenuOpen)}
-                    aria-label="Toggle menu"
-                >
-                    <span className={!isHome || isScrolled ? styles.barDark : styles.barBlue}></span>
-                    <span className={!isHome || isScrolled ? styles.barDark : styles.barBlue}></span>
-                </button>
-
-                {/* MOBILE OVERLAY MENU */}
-                <div className={`${styles.mobileOverlay} ${isMenuOpen ? styles.mobileOverlayOpen : ""}`}>
-                    <nav className={styles.mobileNav}>
-                        <Link href="/" className={styles.mobileNavLink} onClick={() => setIsMenuOpen(false)}>Home</Link>
-                        <Link href="/about-us" className={styles.mobileNavLink} onClick={() => setIsMenuOpen(false)}>About</Link>
-
-                        {/* MOBILE ACCORDION */}
-                        <div className={styles.mobileAccordion}>
-                            <button
-                                className={styles.mobileNavLink}
-                                onClick={() => setIsServicesOpen(!isServicesOpen)}
-                                type="button"
-                            >
-                                Services {isServicesOpen ? "▴" : "▾"}
-                            </button>
-                            <div className={`${styles.mobileSubMenu} ${isServicesOpen ? styles.mobileSubMenuOpen : ""}`}>
-                                {servicesList.map((service) => (
-                                    <Link
-                                        key={service.name}
-                                        href={service.path}
-                                        className={styles.mobileSubNavLink}
-                                        onClick={() => setIsMenuOpen(false)}
-                                    >
-                                        {service.name}
-                                    </Link>
-                                ))}
-                            </div>
+                {/* ── MOBILE PILL ── */}
+                <div className={styles.mobilePill}>
+                    <Link href="/" className={styles.logoLink}>
+                        <div className={styles.logoWrap}>
+                            <Image src="/logos/icon-logo.png" alt="Advanced Plumbing" fill priority className="object-contain" />
                         </div>
-                        <button className={styles.mobileCTA} onClick={handleNavigation}>Get in touch</button>
-                    </nav>
+                    </Link>
+                    <button
+                        className={styles.burgerBtn}
+                        onClick={() => setIsMobileMenuOpen(true)}
+                        aria-label="Open menu"
+                    >
+                        <span className={styles.burgerLine} />
+                        <span className={styles.burgerLine} />
+                    </button>
+                </div>
+            </header>
+
+            {/* ── SERVICES FULLSCREEN DIALOG ── */}
+            <div className={`${styles.dialog} ${isDialogOpen ? styles.dialogOpen : ""}`}>
+                <div className={styles.dialogInner}>
+                    <div className={styles.dialogBar}>
+                        <div className={styles.dialogLogoWrap}>
+                            <Image src="/logos/icon-logo.png" alt="Advanced Plumbing" fill className="object-contain object-left" />
+                        </div>
+                        <nav className={styles.dialogBarNav}>
+                            <Link href="/" className={styles.dialogBarLink} onClick={() => setIsDialogOpen(false)}>Home</Link>
+                            <Link href="/about-us" className={styles.dialogBarLink} onClick={() => setIsDialogOpen(false)}>About</Link>
+                        </nav>
+                        <button className={styles.closeBtn} onClick={() => setIsDialogOpen(false)} aria-label="Close">✕</button>
+                    </div>
+
+                    <ul className={styles.servicesList}>
+                        {servicesList.map((s, i) => (
+                            <li key={s.name} className={styles.serviceItem}>
+                                <span className={styles.serviceNum}>{String(i + 1).padStart(2, "0")}</span>
+                                <Link href={s.path} className={styles.serviceLink} onClick={() => setIsDialogOpen(false)}>
+                                    {s.name}
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
                 </div>
             </div>
-        </header>
+
+            {/* ── MOBILE FULLSCREEN MENU ── */}
+            <div className={`${styles.mobileDialog} ${isMobileMenuOpen ? styles.mobileDialogOpen : ""}`}>
+                <div className={styles.mobileDialogBar}>
+                    <div className={styles.mobileLogoWrap}>
+                        <Image src="/logos/icon-logo.png" alt="Advanced Plumbing" fill className="object-contain object-left" />
+                    </div>
+                    <button className={styles.closeBtn} onClick={() => setIsMobileMenuOpen(false)}>✕</button>
+                </div>
+                <nav className={styles.mobileDialogNav}>
+                    <Link href="/" className={styles.mobileDialogLink} onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
+                    <Link href="/about-us" className={styles.mobileDialogLink} onClick={() => setIsMobileMenuOpen(false)}>About</Link>
+                    <div className={styles.mobileDivider} />
+                    {servicesList.map((s, i) => (
+                        <Link key={s.name} href={s.path} className={styles.mobileServiceLink} onClick={() => setIsMobileMenuOpen(false)}>
+                            <span className={styles.mobileServiceNum}>{String(i + 1).padStart(2, "0")}</span>
+                            {s.name}
+                        </Link>
+                    ))}
+                </nav>
+            </div>
+        </>
     );
 };
