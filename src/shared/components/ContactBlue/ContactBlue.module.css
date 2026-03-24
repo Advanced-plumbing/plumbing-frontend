@@ -103,9 +103,12 @@
     border-radius: 6px;
     border: 1px solid transparent;
     font-size: 0.95rem;
-    background-color: #ffffff;
-    color: #333;
+    background-color: rgba(255, 255, 255, 0.2); /* semitransparente */
+    color: white;
     transition: border 0.3s ease;
+
+    -webkit-backdrop-filter: blur(6px); /* soporte Safari */
+    backdrop-filter: blur(6px); /* desenfoque */
 }
 
 .field input:focus {
@@ -116,23 +119,78 @@
     color: #666 !important;
 }
 
+.field input::placeholder,
+.field textarea::placeholder {
+    color: white;
+    opacity: 0.7; /* opcional, para que no sea tan intenso */
+}
+
 /* --- Captcha --- */
 .captchaRow {
     display: flex;
     justify-content: flex-start;
 }
 
+/* Focus — sutil, no agresivo */
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+    outline: none;
+    border: 1.5px solid rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.28);
+}
+
+/* Select — mismo estilo que los inputs */
+.field select {
+    width: 100%;
+    padding: 14px 18px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    font-size: 0.95rem;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.75);   /* placeholder-like */
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    cursor: pointer;
+    appearance: none;
+    /* flecha custom en blanco */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='white' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 40px;
+}
+
+/* Cuando ya tiene un valor seleccionado, blanco completo */
+.field select:not([value=""]) {
+    color: #ffffff;
+}
+
+/* Las options del dropdown (el browser controla esto, pero podemos darle fondo) */
+.field select option {
+    background-color: #1e5fc4;
+    color: #ffffff;
+}
+
+/* Elimina el !important del .select anterior */
+.select {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+/* reCAPTCHA — estilo glass */
 .captchaBox {
-    background: #f9f9f9;
-    border: 1px solid #d3d3d3;
-    border-radius: 3px;
-    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 6px;
+    padding: 12px 16px;
     display: flex;
     align-items: center;
     gap: 30px;
-    color: #555;
+    color: rgba(255, 255, 255, 0.9);
     width: 100%;
     justify-content: space-between;
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    box-sizing: border-box;
 }
 
 .captchaLeft {
@@ -141,29 +199,64 @@
     gap: 10px;
 }
 
-.captchaLeft input { width: 24px; height: 24px; }
+.captchaLeft label {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.captchaLeft input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    accent-color: rgba(255, 255, 255, 0.8);
+    background: transparent;
+    border: none;
+    padding: 0;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+}
 
 .captchaRight {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 2px;
     font-size: 0.6rem;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 0.3px;
 }
 
-.captchaRight img { width: 28px; }
+.captchaRight img {
+    width: 26px;
+    opacity: 0.85;
+}
 
+/* Submit — glass coherente con el resto */
 .submitBtn {
-    background-color: white;
-    color: #1e529e;
-    border: none;
-    padding: 18px;
-    font-weight: 900;
+    background-color: rgba(255, 255, 255, 0.18);
+    color: #ffffff;
+    border: 1.5px solid rgba(255, 255, 255, 0.45);
+    padding: 16px;
+    font-weight: 800;
     font-size: 1rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
     border-radius: 6px;
     cursor: pointer;
     margin-top: 10px;
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    transition: background-color 0.25s ease, border-color 0.25s ease;
+    width: 100%;
+}
+
+.submitBtn:hover {
+    background-color: rgba(255, 255, 255, 0.28);
+    border-color: rgba(255, 255, 255, 0.7);
+}
+
+.submitBtn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
 }
 
 /* ── Banner image ── */
@@ -196,11 +289,6 @@
     font-size: 0.88rem;
     text-align: center;
     margin: 0;
-}
-
-.submitBtn:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
 }
 
 /* ── Water fill effect ── */
