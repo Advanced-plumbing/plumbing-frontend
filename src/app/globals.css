@@ -7,10 +7,12 @@
   --secondary-blue: #004393; /* Azul brillante de los botones */
   --text-gray: #4b5563; /* Un gris oscuro para el texto secundario */
 }
-
 body {
-  font-family: var(--font-jakarta), sans-serif;
-  color: #1a1d1e; /* Un negro suave */
+  /* Usamos la variable que definiste en el localFont de layout.tsx */
+  font-family: var(--font-eras);
+  color: #1a1d1e;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body, html {

@@ -14,8 +14,11 @@ const config: Config = {
                 },
             },
             fontFamily: {
+                // Ahora 'font-sans' usará Eras por defecto
+                sans: ["var(--font-eras)", "sans-serif"],
+                eras: ["var(--font-eras)", "sans-serif"],
                 jakarta: ["var(--font-jakarta)", "sans-serif"],
-            },
+            }
         },
     },
     plugins: [],

@@ -44,7 +44,6 @@
     gap: 0.75rem;
 }
 .sectionTitle {
-    font-family: var(--font-jakarta);
     font-size: 3rem;
     font-weight: 800;
     color: #0a1628;
@@ -53,7 +52,6 @@
     margin: 0;
 }
 .sectionSubtitle {
-    font-family: var(--font-jakarta);
     font-size: 1rem;
     color: #4a5568;
     line-height: 1.6;
@@ -173,7 +171,6 @@
     max-width: 420px;
 }
 .serviceTitle {
-    font-family: var(--font-jakarta);
     font-size: 2.8rem;
     font-weight: 800;
     line-height: 1.05;
@@ -183,7 +180,6 @@
 .titleWhite { color: #ffffff; }
 .titleBlue  { color: #3b9eff; }
 .serviceDesc {
-    font-family: var(--font-jakarta);
     font-size: 0.95rem;
     color: rgba(255, 255, 255, 0.82);
     line-height: 1.65;
@@ -198,7 +194,6 @@
     justify-content: center;
     background-color: #ffffff;
     color: #0a1628;
-    font-family: var(--font-jakarta);
     font-size: 0.95rem;
     font-weight: 700;
     padding: 0.85rem 2rem;
@@ -256,7 +251,6 @@
 .tabsList::-webkit-scrollbar { display: none; }
 .tab {
     flex-shrink: 0;
-    font-family: var(--font-jakarta);
     font-size: 0.9rem;
     font-weight: 600;
     color: #4a5568;

@@ -65,7 +65,6 @@
 }
 
 .title {
-    font-family: var(--font-jakarta);
     font-size: 3.2rem;
     font-weight: 800;
     color: #0a1628;
@@ -75,7 +74,6 @@
 }
 
 .description {
-    font-family: var(--font-jakarta);
     font-size: 1rem;
     color: #4b5563;
     line-height: 1.75;
@@ -106,7 +104,6 @@
 }
 
 .barLabel {
-    font-family: var(--font-jakarta);
     font-size: 0.9rem;
     font-weight: 600;
     color: #0a1628;
@@ -114,7 +111,6 @@
 }
 
 .barNum {
-    font-family: var(--font-jakarta);
     font-size: 0.9rem;
     font-weight: 700;
     color: #0a1628;
@@ -145,7 +141,6 @@
     align-self: flex-start;
     background-color: #267AF6;
     color: #ffffff;
-    font-family: var(--font-jakarta);
     font-size: 0.95rem;
     font-weight: 700;
     padding: 0.9rem 2.2rem;
@@ -178,7 +173,6 @@
 }
 
 .kpiValue {
-    font-family: var(--font-jakarta);
     font-size: 3rem;
     font-weight: 800;
     color: #267AF6;
@@ -187,7 +181,6 @@
 }
 
 .kpiLabel {
-    font-family: var(--font-jakarta);
     font-size: 0.9rem;
     font-weight: 500;
     color: #6b7280;

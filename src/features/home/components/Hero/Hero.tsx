@@ -5,7 +5,7 @@ import { useMousePosition } from "@/shared/hooks/use-mouse-position";
 import styles from "./Hero.module.css";
 import Link from "next/link";
 
-export const Hero = () => {
+export const HeroV2 = () => {
     const { x, y } = useMousePosition();
     const [maskSize, setMaskSize] = useState(120);
     const [scrollY, setScrollY] = useState(0);
@@ -151,10 +151,10 @@ export const Hero = () => {
             <div className={styles.contentContainer}>
                 <div className={styles.textWrapper}>
                     <h1 className={styles.title}>
-                        Complete Residential Plumbing Services Tailored to Your Home
+                        Plumbing you can trust, results that last.
                     </h1>
                     <p className={styles.description}>
-                        Trusted professionals providing durable solutions for every plumbing challenge.
+                        From fast repairs to full installations, we keep your home or business running smoothly with trusted, long-lasting solutions.
                     </p>
                     <Link href="/contact-us" className={styles.ctaButton}>
                         Request an Estimate
