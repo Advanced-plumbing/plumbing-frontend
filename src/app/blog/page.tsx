@@ -23,7 +23,7 @@ export default async function BlogPage({
     return (
         <>
             <Header />
-            <main className={styles.container}>
+            <main className={styles.container} data-header-theme="dark">
                 {query && (
                     <h1 className={styles.searchTitle}>
                         Search Results for: {query.toUpperCase()}

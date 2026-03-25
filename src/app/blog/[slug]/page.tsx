@@ -29,7 +29,7 @@ export default async function BlogPostPage({
     return (
         <>
             <Header />
-            <main className={styles.mainWrapper}>
+            <main className={styles.mainWrapper} data-header-theme="dark">
                 <div className={styles.container}>
                     {/* COLUMNA IZQUIERDA: CONTENIDO */}
                     <article className={styles.articleContent}>
