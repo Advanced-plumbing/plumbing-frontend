@@ -6,6 +6,7 @@ import { Accreditations } from "@/shared/components/Accreditations/Accreditation
 import { ServiceDetailSection } from "@/shared/components/ServiceDetailSection/ServiceDetailSection";
 import { ComprehensiveServicesSection } from "@/shared/components/ComprehensiveServicesSection/ComprehensiveServicesSection";
 import { WhyChooseUs } from "@/shared/components/WhyChooseUs/WhyChooseUs";
+import {ServicesHero} from "@/shared/components/ServicesHero/ServicesHero";
 
 export const InsuranceRepairContainer = () => {
     const INSURANCE_DETAIL_CONTENT = {
@@ -41,19 +42,7 @@ export const InsuranceRepairContainer = () => {
     return (
         <div >
             {/* Hero principal */}
-            <ContactUsToday
-                backgroundImage="/images/services/insurance-repair-hero.jpeg"
-            />
-
-            <Accreditations />
-
-            {/* Sección de Detalle: Imagen + Texto descriptivo */}
-            <ServiceDetailSection
-                title={INSURANCE_DETAIL_CONTENT.title}
-                imgSrc={INSURANCE_DETAIL_CONTENT.imgSrc}
-                subtitle={INSURANCE_DETAIL_CONTENT.subtitle}
-                content={INSURANCE_DETAIL_CONTENT.content}
-            />
+            <ServicesHero title={INSURANCE_DETAIL_CONTENT.title} content={INSURANCE_DETAIL_CONTENT.content}/>
 
             {/* Sección Azul: Detalle de servicios de seguros */}
             <ComprehensiveServicesSection

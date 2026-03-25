@@ -6,6 +6,7 @@ import { Accreditations } from "@/shared/components/Accreditations/Accreditation
 import { ServiceDetailSection } from "@/shared/components/ServiceDetailSection/ServiceDetailSection";
 import { ComprehensiveServicesSection } from "@/shared/components/ComprehensiveServicesSection/ComprehensiveServicesSection";
 import { WhyChooseUs } from "@/shared/components/WhyChooseUs/WhyChooseUs";
+import {ServicesHero} from "@/shared/components/ServicesHero/ServicesHero";
 
 export const ToiletClogContainer = () => {
     const TOILET_CLOG_DETAIL = {
@@ -37,19 +38,7 @@ export const ToiletClogContainer = () => {
     return (
         <div >
             {/* Hero enfocado en servicio rápido */}
-            <ContactUsToday
-                backgroundImage="/images/services/toilet-clog-hero.jpg"
-            />
-
-            <Accreditations />
-
-            {/* Sección de Detalle: Resolución de problemas inmediata */}
-            <ServiceDetailSection
-                title={TOILET_CLOG_DETAIL.title}
-                imgSrc={TOILET_CLOG_DETAIL.imgSrc}
-                subtitle={TOILET_CLOG_DETAIL.subtitle}
-                content={TOILET_CLOG_DETAIL.content}
-            />
+            <ServicesHero title={TOILET_CLOG_DETAIL.title} content={TOILET_CLOG_DETAIL.content}/>
 
             {/* Sección Azul: Detalle de servicios de limpieza y prevención */}
             <ComprehensiveServicesSection

@@ -6,6 +6,7 @@ import { Accreditations } from "@/shared/components/Accreditations/Accreditation
 import { ServiceDetailSection } from "@/shared/components/ServiceDetailSection/ServiceDetailSection";
 import { ComprehensiveServicesSection } from "@/shared/components/ComprehensiveServicesSection/ComprehensiveServicesSection";
 import { WhyChooseUs } from "@/shared/components/WhyChooseUs/WhyChooseUs";
+import {ServicesHero} from "@/shared/components/ServicesHero/ServicesHero";
 
 export const FilterSystemContainer = () => {
     const FILTER_SYSTEM_CONTENT = {
@@ -41,19 +42,7 @@ export const FilterSystemContainer = () => {
     return (
         <div>
             {/* Hero */}
-            <ContactUsToday
-                backgroundImage="/images/services/filter-installation-hero.jpeg"
-            />
-
-            <Accreditations />
-
-            {/* Sección de Detalle */}
-            <ServiceDetailSection
-                title={FILTER_SYSTEM_CONTENT.title}
-                imgSrc={FILTER_SYSTEM_CONTENT.imgSrc}
-                subtitle={FILTER_SYSTEM_CONTENT.subtitle}
-                content={FILTER_SYSTEM_CONTENT.content}
-            />
+            <ServicesHero title={FILTER_SYSTEM_CONTENT.title} content={FILTER_SYSTEM_CONTENT.content}/>
 
             {/* Sección de Beneficios (Comprehensive) */}
             <ComprehensiveServicesSection

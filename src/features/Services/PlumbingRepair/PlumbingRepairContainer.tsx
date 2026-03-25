@@ -6,6 +6,7 @@ import { Accreditations } from "@/shared/components/Accreditations/Accreditation
 import { ServiceDetailSection } from "@/shared/components/ServiceDetailSection/ServiceDetailSection";
 import { ComprehensiveServicesSection } from "@/shared/components/ComprehensiveServicesSection/ComprehensiveServicesSection";
 import { WhyChooseUs } from "@/shared/components/WhyChooseUs/WhyChooseUs";
+import {ServicesHero} from "@/shared/components/ServicesHero/ServicesHero";
 
 export const PlumbingRepairContainer = () => {
     const REPAIR_DETAIL_CONTENT = {
@@ -41,19 +42,7 @@ export const PlumbingRepairContainer = () => {
     return (
         <div>
             {/* Hero con imagen de acción/reparación */}
-            <ContactUsToday
-                backgroundImage="/images/services/plumbing-repair-hero.jpeg"
-            />
-
-            <Accreditations />
-
-            {/* Sección de Detalle: Respaldo técnico y experiencia */}
-            <ServiceDetailSection
-                title={REPAIR_DETAIL_CONTENT.title}
-                imgSrc={REPAIR_DETAIL_CONTENT.imgSrc}
-                subtitle={REPAIR_DETAIL_CONTENT.subtitle}
-                content={REPAIR_DETAIL_CONTENT.content}
-            />
+            <ServicesHero title={REPAIR_DETAIL_CONTENT.title} content={REPAIR_DETAIL_CONTENT.content}/>
 
             {/* Sección Azul: Catálogo de reparaciones comunes */}
             <ComprehensiveServicesSection

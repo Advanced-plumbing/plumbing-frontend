@@ -6,10 +6,11 @@ import { Accreditations } from "@/shared/components/Accreditations/Accreditation
 import { ServiceDetailSection } from "@/shared/components/ServiceDetailSection/ServiceDetailSection";
 import { ComprehensiveServicesSection } from "@/shared/components/ComprehensiveServicesSection/ComprehensiveServicesSection";
 import { WhyChooseUs } from "@/shared/components/WhyChooseUs/WhyChooseUs";
+import {ServicesHero} from "@/shared/components/ServicesHero/ServicesHero";
 
 export const SewerInspectionContainer = () => {
     const SEWER_DETAIL_CONTENT = {
-        title: "sewer inspection w/ SeeSnake camera technology",
+        title: "Sewer inspection w/ SeeSnake camera technology",
         imgSrc: "/images/sections/sewer-inspection-detail.jpg",
         subtitle: "Advanced Sewer Inspection with SeeSnake Camera Technology",
         content: "Discover hidden problems in your plumbing system with precision and clarity. Advanced Plumbing & HVAC offers professional sewer inspection services utilizing state-of-the-art SeeSnake camera technology. Our camera inspections enable us to diagnose and assess sewer and drain issues with exceptional accuracy, providing you with a clear understanding of your system’s condition and ensuring the appropriate solution for every problem."
@@ -33,19 +34,7 @@ export const SewerInspectionContainer = () => {
     return (
         <div >
             {/* Hero con tecnología visual */}
-            <ContactUsToday
-                backgroundImage="/images/services/sewer-inspection-camera-hero.jpg"
-            />
-
-            <Accreditations />
-
-            {/* Sección de Detalle: Tecnología y precisión */}
-            <ServiceDetailSection
-                title={SEWER_DETAIL_CONTENT.title}
-                imgSrc={SEWER_DETAIL_CONTENT.imgSrc}
-                subtitle={SEWER_DETAIL_CONTENT.subtitle}
-                content={SEWER_DETAIL_CONTENT.content}
-            />
+            <ServicesHero title={SEWER_DETAIL_CONTENT.title} content={SEWER_DETAIL_CONTENT.content}/>
 
             {/* Sección Azul: Beneficios técnicos de la cámara */}
             <ComprehensiveServicesSection

@@ -6,6 +6,7 @@ import { Accreditations } from "@/shared/components/Accreditations/Accreditation
 import { ServiceDetailSection } from "@/shared/components/ServiceDetailSection/ServiceDetailSection";
 import { ComprehensiveServicesSection } from "@/shared/components/ComprehensiveServicesSection/ComprehensiveServicesSection";
 import { WhyChooseUs } from "@/shared/components/WhyChooseUs/WhyChooseUs";
+import {ServicesHero} from "@/shared/components/ServicesHero/ServicesHero";
 
 export const PlumbingInstallationContainer = () => {
     const INSTALLATION_DETAIL_CONTENT = {
@@ -41,19 +42,7 @@ export const PlumbingInstallationContainer = () => {
     return (
         <div >
             {/* Hero Principal */}
-            <ContactUsToday
-                backgroundImage="/images/services/plumbing-installation-hero.jpeg"
-            />
-
-            <Accreditations />
-
-            {/* Sección de Detalle: Texto e Imagen de alta calidad */}
-            <ServiceDetailSection
-                title={INSTALLATION_DETAIL_CONTENT.title}
-                imgSrc={INSTALLATION_DETAIL_CONTENT.imgSrc}
-                subtitle={INSTALLATION_DETAIL_CONTENT.subtitle}
-                content={INSTALLATION_DETAIL_CONTENT.content}
-            />
+            <ServicesHero title={INSTALLATION_DETAIL_CONTENT.title} content={INSTALLATION_DETAIL_CONTENT.content}/>
 
             {/* Sección Azul: Lista de instalaciones específicas */}
             <ComprehensiveServicesSection

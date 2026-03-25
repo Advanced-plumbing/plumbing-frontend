@@ -6,6 +6,7 @@ import { Accreditations } from "@/shared/components/Accreditations/Accreditation
 import { ServiceDetailSection } from "@/shared/components/ServiceDetailSection/ServiceDetailSection";
 import { ComprehensiveServicesSection } from "@/shared/components/ComprehensiveServicesSection/ComprehensiveServicesSection";
 import { WhyChooseUs } from "@/shared/components/WhyChooseUs/WhyChooseUs";
+import {ServicesHero} from "@/shared/components/ServicesHero/ServicesHero";
 
 export const HVACContainer = () => {
     const HVAC_DETAIL_CONTENT = {
@@ -36,19 +37,7 @@ export const HVACContainer = () => {
 
     return (
         <div >
-            <ContactUsToday
-                backgroundImage="/images/services/hvac-services-hero.png"
-            />
-
-            <Accreditations />
-
-            {/* Sección de Detalle */}
-            <ServiceDetailSection
-                title={HVAC_DETAIL_CONTENT.title}
-                imgSrc={HVAC_DETAIL_CONTENT.imgSrc}
-                subtitle={HVAC_DETAIL_CONTENT.subtitle}
-                content={HVAC_DETAIL_CONTENT.content}
-            />
+            <ServicesHero title={HVAC_DETAIL_CONTENT.title} content={HVAC_DETAIL_CONTENT.content}/>
 
             {/* Sección Azul: Comprehensive HVAC Services */}
             <ComprehensiveServicesSection

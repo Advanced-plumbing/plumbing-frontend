@@ -6,6 +6,7 @@ import { Accreditations } from "@/shared/components/Accreditations/Accreditation
 import { ServiceDetailSection } from "@/shared/components/ServiceDetailSection/ServiceDetailSection";
 import { ComprehensiveServicesSection } from "@/shared/components/ComprehensiveServicesSection/ComprehensiveServicesSection";
 import { WhyChooseUs } from "@/shared/components/WhyChooseUs/WhyChooseUs";
+import {ServicesHero} from "@/shared/components/ServicesHero/ServicesHero";
 
 export const PipeReplacementContainer = () => {
     const PIPE_REPLACEMENT_CONTENT = {
@@ -37,19 +38,7 @@ export const PipeReplacementContainer = () => {
     return (
         <div>
             {/* Hero principal */}
-            <ContactUsToday
-                backgroundImage="/images/services/pipe-replacement-hero.jpeg"
-            />
-
-            <Accreditations />
-
-            {/* Sección de Detalle: Imagen + Descripción de experto */}
-            <ServiceDetailSection
-                title={PIPE_REPLACEMENT_CONTENT.title}
-                imgSrc={PIPE_REPLACEMENT_CONTENT.imgSrc}
-                subtitle={PIPE_REPLACEMENT_CONTENT.subtitle}
-                content={PIPE_REPLACEMENT_CONTENT.content}
-            />
+            <ServicesHero title={PIPE_REPLACEMENT_CONTENT.title} content={PIPE_REPLACEMENT_CONTENT.content}/>
 
             {/* Sección Azul: Catálogo de servicios de reemplazo */}
             <ComprehensiveServicesSection

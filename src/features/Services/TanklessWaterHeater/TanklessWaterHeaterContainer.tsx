@@ -6,6 +6,7 @@ import { Accreditations } from "@/shared/components/Accreditations/Accreditation
 import { ServiceDetailSection } from "@/shared/components/ServiceDetailSection/ServiceDetailSection";
 import { ComprehensiveServicesSection } from "@/shared/components/ComprehensiveServicesSection/ComprehensiveServicesSection";
 import { WhyChooseUs } from "@/shared/components/WhyChooseUs/WhyChooseUs";
+import {ServicesHero} from "@/shared/components/ServicesHero/ServicesHero";
 
 export const TanklessWaterHeaterContainer = () => {
     const TANKLESS_DETAIL_CONTENT = {
@@ -37,19 +38,7 @@ export const TanklessWaterHeaterContainer = () => {
     return (
         <div>
             {/* Hero enfocado en modernidad y eficiencia */}
-            <ContactUsToday
-                backgroundImage="/images/services/tankless-water-heater-hero.jpeg"
-            />
-
-            <Accreditations />
-
-            {/* Sección de Detalle: El cambio a tecnología On-Demand */}
-            <ServiceDetailSection
-                title={TANKLESS_DETAIL_CONTENT.title}
-                imgSrc={TANKLESS_DETAIL_CONTENT.imgSrc}
-                subtitle={TANKLESS_DETAIL_CONTENT.subtitle}
-                content={TANKLESS_DETAIL_CONTENT.content}
-            />
+            <ServicesHero title={TANKLESS_DETAIL_CONTENT.title} content={TANKLESS_DETAIL_CONTENT.content}/>
 
             {/* Sección Azul: Beneficios clave de la instalación sin tanque */}
             <ComprehensiveServicesSection

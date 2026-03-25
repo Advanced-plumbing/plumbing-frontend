@@ -6,6 +6,7 @@ import { Accreditations } from "@/shared/components/Accreditations/Accreditation
 import { ServiceDetailSection } from "@/shared/components/ServiceDetailSection/ServiceDetailSection";
 import { ComprehensiveServicesSection } from "@/shared/components/ComprehensiveServicesSection/ComprehensiveServicesSection";
 import { WhyChooseUs } from "@/shared/components/WhyChooseUs/WhyChooseUs";
+import {ServicesHero} from "@/shared/components/ServicesHero/ServicesHero";
 
 export const SumpPumpsContainer = () => {
     const SUMP_PUMP_DETAIL = {
@@ -41,19 +42,7 @@ export const SumpPumpsContainer = () => {
     return (
         <div >
             {/* Hero enfocado en protección del hogar */}
-            <ContactUsToday
-                backgroundImage="/images/services/sump-pumps-hero.jpg"
-            />
-
-            <Accreditations />
-
-            {/* Sección de Detalle: Prevención y Seguridad */}
-            <ServiceDetailSection
-                title={SUMP_PUMP_DETAIL.title}
-                imgSrc={SUMP_PUMP_DETAIL.imgSrc}
-                subtitle={SUMP_PUMP_DETAIL.subtitle}
-                content={SUMP_PUMP_DETAIL.content}
-            />
+            <ServicesHero title={SUMP_PUMP_DETAIL.title} content={SUMP_PUMP_DETAIL.content}/>
 
             {/* Sección Azul: Catálogo de servicios de bombeo y respaldo */}
             <ComprehensiveServicesSection

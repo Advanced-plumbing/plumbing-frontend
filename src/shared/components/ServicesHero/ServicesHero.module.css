@@ -1,0 +1,169 @@
+/* ── SECTION ── */
+.section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: black;
+}
+
+/* ── BG IMAGE ── */
+.bgImage {
+    object-fit: cover;
+    object-position: center center;
+    z-index: 0;
+}
+
+/* ── OVERLAY — gradiente izquierda ── */
+.overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+            to right,
+            rgba(0, 0, 0, 0.72) 0%,
+            rgba(0, 0, 0, 0.45) 45%,
+            rgba(0, 0, 0, 0.05) 100%
+    );
+}
+
+/* ── CONTAINER ── */
+.container {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 0 48px;
+}
+
+/* ── TEXT WRAPPER ── */
+.textWrapper {
+    max-width: 600px;
+}
+
+/* ── TITLE ── */
+.title {
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: 0.05em;
+    margin-bottom: 24px;
+}
+
+.titleWhite {
+    color: #ffffff;
+}
+
+.titleBlue {
+    color: #4a9eff;
+    display: block;
+    font-style: italic;
+}
+
+/* ── BODY ── */
+.body {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 20px;
+    max-width: 520px;
+    font-family: var(--font-montserrat), sans-serif;
+}
+
+.bodyBold {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 36px;
+    max-width: 420px;
+}
+
+.bodyBold strong {
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.bodyExtra {
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* ── CTA ── */
+.cta {
+    display: inline-block;
+    background: #2263c3;
+    color: #ffffff;
+    padding: 13px 36px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    transition: background 0.3s ease, transform 0.2s ease;
+    margin-top: 32px;
+}
+
+.cta:hover {
+    background: #1a4fa0;
+    transform: translateY(-2px);
+}
+
+/* ══════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════ */
+
+/* ── TABLET ── */
+@media (max-width: 1024px) {
+    .container { padding: 0 32px; }
+
+    .textWrapper { max-width: 420px; }
+
+    .title { font-size: 3.2rem; }
+}
+
+/* ── TABLET PORTRAIT ── */
+@media (max-width: 768px) {
+    .section { height: 100svh; }
+
+    .container { padding: 0 24px; }
+
+    .textWrapper { max-width: 100%; }
+
+    .title { font-size: 2.6rem; }
+
+    .body,
+    .bodyBold { max-width: 100%; font-size: 0.9rem; }
+
+    .overlay {
+        background: linear-gradient(
+                to right,
+                rgba(0, 0, 0, 0.78) 0%,
+                rgba(0, 0, 0, 0.55) 60%,
+                rgba(0, 0, 0, 0.2) 100%
+        );
+    }
+}
+
+/* ── MOBILE ── */
+@media (max-width: 480px) {
+    .container { padding: 0 20px; }
+
+    .title { font-size: 2.1rem; }
+
+    .body,
+    .bodyBold { font-size: 0.88rem; }
+
+    .cta {
+        width: 100%;
+        text-align: center;
+        padding: 13px 24px;
+    }
+}
+
+/* ── MOBILE XS ── */
+@media (max-width: 360px) {
+    .title { font-size: 1.85rem; }
+}

@@ -6,6 +6,7 @@ import { Accreditations } from "@/shared/components/Accreditations/Accreditation
 import { ServiceDetailSection } from "@/shared/components/ServiceDetailSection/ServiceDetailSection";
 import { ComprehensiveServicesSection } from "@/shared/components/ComprehensiveServicesSection/ComprehensiveServicesSection";
 import { WhyChooseUs } from "@/shared/components/WhyChooseUs/WhyChooseUs";
+import {ServicesHero} from "@/shared/components/ServicesHero/ServicesHero";
 
 export const WaterHeaterReplacementContainer = () => {
     const REPLACEMENT_DETAIL_CONTENT = {
@@ -37,19 +38,7 @@ export const WaterHeaterReplacementContainer = () => {
     return (
         <div >
             {/* Hero enfocado en renovación de equipos */}
-            <ContactUsToday
-                backgroundImage="/images/services/water-heater-replacement-hero.jpeg"
-            />
-
-            <Accreditations />
-
-            {/* Sección de Detalle: Reemplazo profesional y sin complicaciones */}
-            <ServiceDetailSection
-                title={REPLACEMENT_DETAIL_CONTENT.title}
-                imgSrc={REPLACEMENT_DETAIL_CONTENT.imgSrc}
-                subtitle={REPLACEMENT_DETAIL_CONTENT.subtitle}
-                content={REPLACEMENT_DETAIL_CONTENT.content}
-            />
+            <ServicesHero title={REPLACEMENT_DETAIL_CONTENT.title} content={REPLACEMENT_DETAIL_CONTENT.content}/>
 
             {/* Sección Azul: Los 4 pilares del servicio de reemplazo */}
             <ComprehensiveServicesSection

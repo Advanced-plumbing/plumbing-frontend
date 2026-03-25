@@ -6,6 +6,7 @@ import { Accreditations } from "@/shared/components/Accreditations/Accreditation
 import { ServiceDetailSection } from "@/shared/components/ServiceDetailSection/ServiceDetailSection";
 import { ComprehensiveServicesSection } from "@/shared/components/ComprehensiveServicesSection/ComprehensiveServicesSection";
 import { WhyChooseUs } from "@/shared/components/WhyChooseUs/WhyChooseUs";
+import {ServicesHero} from "@/shared/components/ServicesHero/ServicesHero";
 
 export const GasLineContainer = () => {
     const GAS_LINE_CONTENT = {
@@ -37,19 +38,7 @@ export const GasLineContainer = () => {
     return (
         <div >
             {/* Hero principal */}
-            <ContactUsToday
-                backgroundImage="/images/services/gas-line-hero.jpeg"
-            />
-
-            <Accreditations />
-
-            {/* Sección de Detalle (Imagen + Texto) */}
-            <ServiceDetailSection
-                title={GAS_LINE_CONTENT.title}
-                imgSrc={GAS_LINE_CONTENT.imgSrc}
-                subtitle={GAS_LINE_CONTENT.subtitle}
-                content={GAS_LINE_CONTENT.content}
-            />
+            <ServicesHero title={GAS_LINE_CONTENT.title} content={GAS_LINE_CONTENT.content}/>
 
             {/* Sección Azul (Lista de servicios específicos de Gas) */}
             <ComprehensiveServicesSection

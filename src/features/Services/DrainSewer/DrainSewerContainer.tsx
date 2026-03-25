@@ -8,6 +8,7 @@ import {
     ComprehensiveServicesSection
 } from "@/shared/components/ComprehensiveServicesSection/ComprehensiveServicesSection";
 import {WhyChooseUs} from "@/shared/components/WhyChooseUs/WhyChooseUs";
+import {ServicesHero} from "@/shared/components/ServicesHero/ServicesHero";
 
 
 
@@ -39,21 +40,12 @@ export const DrainSewerContainer = () => {
         title: "Professional Drain & Sewer Services",
         imgSrc: "/images/sections/drain-sewer-cleaning-services.jpg",
         subtitle: "Expert Drain and Sewer Cleaning for a Healthier Plumbing System",
-        content: "Clogged drains and sewer lines can cause serious issues, ranging from slow drainage to significant backups. At Advanced Plumbing & HVAC, we specialize in providing professional drain and sewer cleaning services to maintain the efficiency of your plumbing system and to prevent disruptive clogs in your home or business. Equipped with advanced tools and extensive experience, our technicians are capable of addressing everything from minor blockages to comprehensive sewer line cleanings, ensuring reliable drainage."
+        content: "Clogged drains and sewer lines can cause serious issues, ranging from slow drainage to significant backups. At Advanced Plumbing & HVAC, we specialize in providing professional drain and sewer cleaning services to maintain the efficiency of your plumbing system and to prevent disruptive clogs in your home or business."
     };
 
     return (
         <div >
-            <ContactUsToday
-                backgroundImage="/images/background-images/advance-plumbing-draining-services-scaled.jpeg"
-            />
-            <Accreditations/>
-            <ServiceDetailSection
-                title={DRAIN_SEWER_CONTENT.title}
-                imgSrc={DRAIN_SEWER_CONTENT.imgSrc}
-                subtitle={DRAIN_SEWER_CONTENT.subtitle}
-                content={DRAIN_SEWER_CONTENT.content}
-            />
+            <ServicesHero title={DRAIN_SEWER_CONTENT.title} content={DRAIN_SEWER_CONTENT.content}/>
             <ComprehensiveServicesSection
                 title="OUR COMPREHENSIVE DRAIN & SEWER CLEANING SERVICES"
                 items={COMPREHENSIVE_ITEMS}
