@@ -5,10 +5,10 @@ import Link from "next/link";
 import styles from "./AboutUsMain.module.css";
 
 const partnerLogos = [
-    { src: "/logos/bbb-logo.png", alt: "BBB Accredited Business", width: 180 },
-    { src: "/logos/birdeye-logo.png", alt: "Birdeye Reviews", width: 160 },
-    { src: "/logos/google-reviews-logo.png", alt: "Google Reviews 5 Stars", width: 180 },
-    { src: "/logos/yelp-logo.png", alt: "Yelp Reviews 5 Stars", width: 140 },
+    { src: "/logos/bbb-logo-white.png", alt: "BBB Accredited Business", width: 180 },
+    { src: "/logos/birdeye-logo-white.png", alt: "Birdeye Reviews", width: 160 },
+    { src: "/logos/google-reviews-logo-white.png", alt: "Google Reviews 5 Stars", width: 180 },
+    { src: "/logos/yelp-logo-white.png", alt: "Yelp Reviews 5 Stars", width: 140 },
 ];
 
 export const AboutUsMain = () => {
@@ -74,6 +74,7 @@ export const AboutUsMain = () => {
                                 <div className={`${styles.bigStat} ${visible ? styles.slideDown : ""}`}>
                                     4.9<span className={styles.star}>★</span>
                                 </div>
+                                <br/>
                             </div>
                             <div className={styles.tagsRow}>
                                 <div className={`${styles.tag} ${visible ? styles.slideFromLeft : ""}`}
@@ -98,15 +99,17 @@ export const AboutUsMain = () => {
                             </div>
                             <p className={styles.yearsLabel}>Years Experience</p>
                             <div className={styles.tagsRow}>
-                                <div className={`${styles.tag} ${visible ? styles.slideFromRight : ""}`}
-                                     style={{ animationDelay: "0.6s" }}>
-                                    Professional
+                                <div className={styles.tagsRowWrapper}>
+                                    <div className={`${styles.tag} ${visible ? styles.slideFromRight : ""}`}
+                                         style={{ animationDelay: "0.6s" }}>
+                                        Professional
+                                    </div>
+                                    <div className={`${styles.tag} ${visible ? styles.slideFromRight : ""}`}
+                                         style={{ animationDelay: "0.75s" }}>
+                                        Reliable
+                                    </div>
                                 </div>
                                 <div className={`${styles.tag} ${styles.tagOutline} ${visible ? styles.slideFromRight : ""}`}
-                                     style={{ animationDelay: "0.75s" }}>
-                                    Reliable
-                                </div>
-                                <div className={`${styles.tag} ${visible ? styles.slideFromRight : ""}`}
                                      style={{ animationDelay: "0.9s" }}>
                                     Efficient
                                 </div>
@@ -138,7 +141,7 @@ export const AboutUsMain = () => {
                         <div className={`${styles.logoBlur} ${visible ? styles.logoBlurVisible : ""}`}>
                             <div className={styles.logoInner}>
                                 <Image
-                                    src="/logos/icon-logo.png"
+                                    src="/logos/icon-logo-alt.png"
                                     alt="Advanced Plumbing"
                                     fill
                                     className="object-contain"
