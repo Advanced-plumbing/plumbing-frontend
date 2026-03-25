@@ -35,7 +35,7 @@ export const GasLineContainer = () => {
     ];
 
     return (
-        <div style={{ paddingTop: '75px' }}>
+        <div >
             {/* Hero principal */}
             <ContactUsToday
                 backgroundImage="/images/services/gas-line-hero.jpeg"

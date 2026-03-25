@@ -39,7 +39,7 @@ export const FilterSystemContainer = () => {
     ];
 
     return (
-        <div style={{ paddingTop: '75px' }}>
+        <div>
             {/* Hero */}
             <ContactUsToday
                 backgroundImage="/images/services/filter-installation-hero.jpeg"

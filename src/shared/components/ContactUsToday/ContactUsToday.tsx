@@ -67,7 +67,7 @@ export const ContactUsToday = ({
     ];
 
     return (
-        <section className={styles.section}>
+        <section className={styles.section} data-header-theme="light">
             {/* Background with overlay */}
             <div className={styles.bgWrapper}>
                 <Image src={backgroundImage} alt="Home Restoration" fill className={styles.bgImage} />

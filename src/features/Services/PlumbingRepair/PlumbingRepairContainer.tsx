@@ -39,7 +39,7 @@ export const PlumbingRepairContainer = () => {
     ];
 
     return (
-        <div style={{ paddingTop: '75px' }}>
+        <div>
             {/* Hero con imagen de acción/reparación */}
             <ContactUsToday
                 backgroundImage="/images/services/plumbing-repair-hero.jpeg"

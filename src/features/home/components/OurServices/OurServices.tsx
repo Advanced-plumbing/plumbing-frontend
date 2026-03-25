@@ -143,14 +143,14 @@ export default function OurServices() {
     const isLast  = activeIndex === services.length - 1;
 
     return (
-        <section className={styles.section}>
+        <section className={styles.section} data-header-theme="dark">
             <div className={styles.vectorBg}>
                 <Image src="/images/vector.png" alt="" width={0} height={0} sizes="100vw" className={styles.vectorImg} aria-hidden />
             </div>
 
             <div className={styles.container}>
                 {/* Header */}
-                <div className={styles.header}>
+                <div className={styles.header} data-header-theme="dark">
                     <h2 className={styles.sectionTitle}>Our Services</h2>
                     <p className={styles.sectionSubtitle}>
                         Whether you&apos;re dealing with a minor issue or a plumbing emergency.{' '}
@@ -164,7 +164,7 @@ export default function OurServices() {
                     at top:50% of THIS wrapper — perfectly centered on the card —
                     and use negative left/right to escape without shrinking the card.
                 */}
-                <div className={styles.cardWrapper}>
+                <div className={styles.cardWrapper} data-header-theme="light">
                     <button
                         className={`${styles.cardArrow} ${styles.cardArrowLeft}`}
                         onClick={() => goTo(Math.max(0, activeIndex - 1))}
@@ -199,7 +199,7 @@ export default function OurServices() {
                 </div>
 
                 {/* Tabs */}
-                <div className={styles.tabsWrapper}>
+                <div className={styles.tabsWrapper} data-header-theme="dark">
                     <button className={`${styles.tabArrow}`} onClick={() => scrollTabs('left')} aria-label="Scroll tabs left">‹</button>
                     <div className={styles.tabsList} ref={listRef}>
                         {services.map((s, i) => (

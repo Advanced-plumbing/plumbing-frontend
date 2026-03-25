@@ -35,7 +35,7 @@ export const ToiletClogContainer = () => {
     ];
 
     return (
-        <div style={{ paddingTop: '75px' }}>
+        <div >
             {/* Hero enfocado en servicio rápido */}
             <ContactUsToday
                 backgroundImage="/images/services/toilet-clog-hero.jpg"

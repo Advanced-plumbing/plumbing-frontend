@@ -9,6 +9,7 @@
     justify-content: center;
     padding-top: 20px;
     pointer-events: none;
+    font-family: var(--font-montserrat), sans-serif;
 }
 
 /* ── PILL ── */
@@ -20,7 +21,7 @@
     background: rgba(255, 255, 255, 0.18);
     -webkit-backdrop-filter: blur(12px);
     backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.22);
+    border: 1px solid rgba(255, 255, 255, 0);
     border-radius: 999px;
     padding: 7px 7px 7px 12px;
     box-shadow: 0 4px 32px rgba(0, 0, 0, 0.12);
@@ -41,6 +42,7 @@
     flex-shrink: 0;
 }
 
+
 /* ── NAV ── */
 .pillNav {
     display: flex;
@@ -57,11 +59,6 @@
     border-radius: 999px;
     white-space: nowrap;
     transition: background 0.25s ease, color 0.25s ease;
-}
-
-.pillLink:hover {
-    background: rgba(255, 255, 255, 0.15);
-    color: #ffffff;
 }
 
 .pillLinkActive {
@@ -108,7 +105,7 @@
 .burgerLine {
     display: block;
     width: 13px;
-    height: 1.5px;
+    height: 1px;
     background: rgba(255, 255, 255, 0.9);
     border-radius: 2px;
 }
@@ -116,6 +113,30 @@
 /* ── MOBILE PILL — oculto en desktop ── */
 .mobilePill {
     display: none;
+}
+
+.pillDark {
+    transition: background 0.5s ease, border-color 0.5s ease;
+}
+
+.pillDark .pillLink {
+    color: rgba(0, 0, 0, 0.85);
+}
+
+.pillDark .pillLinkActive {
+    color: #000000;
+}
+
+.pillDark .burgerLine {
+    background: rgba(0, 0, 0, 0.75);
+}
+
+.pillDark .burgerBtn {
+    border-color: rgba(0, 0, 0, 0.2);
+}
+
+.pillDark .burgerBtn:hover {
+    background: rgba(0, 0, 0, 0.08);
 }
 
 /* ── FULLSCREEN DIALOG ── */
@@ -214,6 +235,7 @@
     gap: 28px;
     padding: 20px 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+    font-family: var(--font-montserrat), sans-serif;
 }
 
 .serviceItem:first-child {

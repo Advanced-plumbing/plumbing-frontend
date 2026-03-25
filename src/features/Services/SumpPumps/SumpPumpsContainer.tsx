@@ -39,7 +39,7 @@ export const SumpPumpsContainer = () => {
     ];
 
     return (
-        <div style={{ paddingTop: '75px' }}>
+        <div >
             {/* Hero enfocado en protección del hogar */}
             <ContactUsToday
                 backgroundImage="/images/services/sump-pumps-hero.jpg"

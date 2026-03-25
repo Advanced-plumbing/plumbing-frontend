@@ -109,7 +109,7 @@ export const AboutUs = () => {
     const { ref: kpiRef, inView: kpiInView } = useInView(0.2);
 
     return (
-        <section className={styles.section}>
+        <section className={styles.section} data-header-theme="dark">
             <div className={styles.container}>
                 {/* Images */}
                 <div className={styles.imageGrid}>

@@ -41,11 +41,12 @@
 }
 
 .description {
-    font-size: 1.15rem;
+    font-size: 1rem;
     line-height: 1.7;
     margin-bottom: 40px;
     opacity: 0.9;
     max-width: 500px;
+    font-family: var(--font-montserrat), sans-serif;
 }
 
 .outlineBtn {

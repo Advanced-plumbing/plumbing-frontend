@@ -3,7 +3,7 @@ import styles from './GetInContact.module.css';
 
 export const GetInContact = () => {
     return (
-        <section className={styles.section}>
+        <section className={styles.section} data-header-theme="dark">
             <div className={styles.container}>
                 <div className={styles.grid}>
 

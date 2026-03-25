@@ -60,6 +60,7 @@
     color: #4b5563;
     line-height: 1.65;
     margin: 0;
+    font-family: var(--font-montserrat), sans-serif;
 }
 .sectionSubtitle strong {
     font-weight: 700;
@@ -143,6 +144,7 @@
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    font-family: var(--font-montserrat), sans-serif;
 }
 
 .readMoreBtn {
@@ -157,6 +159,7 @@
     cursor: pointer;
     transition: background-color 0.2s ease, transform 0.15s ease;
     margin-top: 0.25rem;
+    font-family: var(--font-montserrat), sans-serif;
 }
 .readMoreBtn:hover {
     background-color: #185FA5;
@@ -182,6 +185,7 @@
     border-radius: 9999px;
     text-decoration: none;
     transition: background-color 0.2s ease, transform 0.15s ease;
+    font-family: var(--font-montserrat), sans-serif;
 }
 .moreBlogsBtn:hover {
     background-color: #185FA5;

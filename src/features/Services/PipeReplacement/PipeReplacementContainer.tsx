@@ -35,7 +35,7 @@ export const PipeReplacementContainer = () => {
     ];
 
     return (
-        <div style={{ paddingTop: '75px' }}>
+        <div>
             {/* Hero principal */}
             <ContactUsToday
                 backgroundImage="/images/services/pipe-replacement-hero.jpeg"

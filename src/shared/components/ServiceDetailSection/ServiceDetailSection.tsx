@@ -16,7 +16,7 @@ export const ServiceDetailSection = ({
                                          content,
                                      }: ServiceDetailSectionProps) => {
     return (
-        <section className={styles.container}>
+        <section className={styles.container} data-header-theme="dark">
             {/* Título Principal Superior */}
             <h2 className={styles.mainTitle}>{title}</h2>
 

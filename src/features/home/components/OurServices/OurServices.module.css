@@ -57,6 +57,7 @@
     line-height: 1.6;
     margin: 0;
     max-width: 560px;
+    font-family: var(--font-montserrat), sans-serif;
 }
 .sectionSubtitle strong {
     font-weight: 700;
@@ -184,6 +185,7 @@
     color: rgba(255, 255, 255, 0.82);
     line-height: 1.65;
     margin: 0;
+    font-family: var(--font-montserrat), sans-serif;
 }
 
 /* ─── CTA ─── */

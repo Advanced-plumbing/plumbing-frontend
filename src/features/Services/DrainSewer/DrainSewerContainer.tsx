@@ -43,7 +43,7 @@ export const DrainSewerContainer = () => {
     };
 
     return (
-        <div style={{ paddingTop: '75px' }}>
+        <div >
             <ContactUsToday
                 backgroundImage="/images/background-images/advance-plumbing-draining-services-scaled.jpeg"
             />

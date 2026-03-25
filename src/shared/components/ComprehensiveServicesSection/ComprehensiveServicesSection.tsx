@@ -18,7 +18,7 @@ export const ComprehensiveServicesSection = ({
                                                  items,
                                              }: ComprehensiveServicesSectionProps) => {
     return (
-        <section className={styles.wrapper}>
+        <section className={styles.wrapper} data-header-theme="light">
             <div className={styles.container}>
                 <h2 className={styles.mainTitle}>{title}</h2>
 

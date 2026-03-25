@@ -27,7 +27,7 @@ const WHY_DATA = [
 
 export const WhyChooseUs = () => {
     return (
-        <section className={styles.wrapper}>
+        <section className={styles.wrapper} data-header-theme="dark">
             <div className={styles.container}>
                 <h2 className={styles.mainTitle}>WHY ADVANCED PLUMBING & HVAC?</h2>
 

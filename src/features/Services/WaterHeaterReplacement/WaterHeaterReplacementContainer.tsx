@@ -35,7 +35,7 @@ export const WaterHeaterReplacementContainer = () => {
     ];
 
     return (
-        <div style={{ paddingTop: '75px' }}>
+        <div >
             {/* Hero enfocado en renovación de equipos */}
             <ContactUsToday
                 backgroundImage="/images/services/water-heater-replacement-hero.jpeg"

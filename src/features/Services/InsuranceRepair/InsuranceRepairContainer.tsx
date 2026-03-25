@@ -39,7 +39,7 @@ export const InsuranceRepairContainer = () => {
     ];
 
     return (
-        <div style={{ paddingTop: '75px' }}>
+        <div >
             {/* Hero principal */}
             <ContactUsToday
                 backgroundImage="/images/services/insurance-repair-hero.jpeg"

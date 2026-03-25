@@ -14,10 +14,13 @@ const config: Config = {
                 },
             },
             fontFamily: {
-                // Ahora 'font-sans' usará Eras por defecto
+                // Eras como fuente principal (Brand)
                 sans: ["var(--font-eras)", "sans-serif"],
                 eras: ["var(--font-eras)", "sans-serif"],
+                // Jakarta para elementos de UI
                 jakarta: ["var(--font-jakarta)", "sans-serif"],
+                // Montserrat para descripciones y lectura
+                montserrat: ["var(--font-montserrat)", "sans-serif"],
             }
         },
     },

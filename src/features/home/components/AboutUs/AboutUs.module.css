@@ -78,6 +78,7 @@
     color: #4b5563;
     line-height: 1.75;
     margin: 0;
+    font-family: var(--font-montserrat), sans-serif;
 }
 .description strong {
     font-weight: 700;
@@ -178,6 +179,7 @@
     color: #267AF6;
     line-height: 1;
     letter-spacing: -0.03em;
+    font-family: var(--font-montserrat), sans-serif;
 }
 
 .kpiLabel {
@@ -185,6 +187,7 @@
     font-weight: 500;
     color: #6b7280;
     text-align: center;
+    font-family: var(--font-montserrat), sans-serif;
 }
 
 /* ─── Separator wrapper ─── */

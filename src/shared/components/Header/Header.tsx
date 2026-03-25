@@ -14,6 +14,31 @@ export const Header = ({ isHome = false }: { isHome?: boolean }) => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const pathname = usePathname();
     const hoverTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const [isDark, setIsDark] = useState(false);
+
+    useEffect(() => {
+        const sections = document.querySelectorAll("[data-header-theme]");
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const theme = entry.target.getAttribute("data-header-theme");
+                        setIsDark(theme === "dark");
+                    }
+                });
+            },
+            {
+                // El threshold 0 con rootMargin hace que dispare cuando
+                // el top de la sección cruza los primeros 80px del viewport
+                rootMargin: "-60px 0px -90% 0px",
+                threshold: 0,
+            }
+        );
+
+        sections.forEach((s) => observer.observe(s));
+        return () => observer.disconnect();
+    }, []);
 
     const servicesList: ServiceItem[] = [
         "Drain & Sewer Cleaning", "Filter System Under Sink Installation",
@@ -53,7 +78,7 @@ export const Header = ({ isHome = false }: { isHome?: boolean }) => {
             {/* ── DESKTOP HEADER ── */}
             <header className={styles.headerWrapper}>
                 <div
-                    className={styles.pill}
+                    className={`${styles.pill} ${isDark ? styles.pillDark : ""}`}
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                 >
@@ -94,7 +119,7 @@ export const Header = ({ isHome = false }: { isHome?: boolean }) => {
                 </div>
 
                 {/* ── MOBILE PILL ── */}
-                <div className={styles.mobilePill}>
+                <div className={`${styles.mobilePill} ${isDark ? styles.pillDark : ""}`}>
                     <Link href="/" className={styles.logoLink}>
                         <div className={styles.logoWrap}>
                             <Image src="/logos/icon-logo.png" alt="Advanced Plumbing" fill priority className="object-contain" />
@@ -121,6 +146,7 @@ export const Header = ({ isHome = false }: { isHome?: boolean }) => {
                         <nav className={styles.dialogBarNav}>
                             <Link href="/" className={styles.dialogBarLink} onClick={() => setIsDialogOpen(false)}>Home</Link>
                             <Link href="/about-us" className={styles.dialogBarLink} onClick={() => setIsDialogOpen(false)}>About</Link>
+                            <Link href="/contact-us" className={styles.dialogBarLink} onClick={() => setIsDialogOpen(false)}>Contact us</Link>
                         </nav>
                         <button className={styles.closeBtn} onClick={() => setIsDialogOpen(false)} aria-label="Close">✕</button>
                     </div>

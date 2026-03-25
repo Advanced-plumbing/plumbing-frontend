@@ -87,7 +87,7 @@ const ContactBlue = () => {
 
     return (
         <>
-            <section className={styles.contactSection}>
+            <section className={styles.contactSection} data-header-theme="light">
                 <div className={styles.container}>
 
                     {/* Left side */}
@@ -98,9 +98,10 @@ const ContactBlue = () => {
                         </h2>
                         <div className={styles.divider} />
                         <p className={styles.description}>
-                            When you need a plumbing team that's professional, reliable, and ready to tackle any challenge,
-                            Advanced Plumbing & HVAC is here for you. We welcome you to learn more about our services,
-                            ask questions, and schedule an appointment.
+                            When you need a plumbing team that’s professional, reliable, and ready to tackle any challenge,
+                            Advanced Plumbing & HVAC is here for you. We welcome you to learn more about our services, ask
+                            questions, and schedule an appointment to experience the difference of working with a team that
+                            truly values your satisfaction.
                         </p>
                         <Link href="/contact-us" className={styles.outlineBtn}>CONTACT US</Link>
                     </div>

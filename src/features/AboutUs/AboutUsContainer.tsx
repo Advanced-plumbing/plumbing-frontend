@@ -9,7 +9,6 @@ import {CoreValues} from "@/features/AboutUs/components/CoreValues/CoreValues";
 const AboutUsContainer = () => {
     return (
         <div style={{
-            paddingTop: '75px',
             width: '100%',
             display: 'flex',
             flexDirection: 'column'

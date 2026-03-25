@@ -31,7 +31,7 @@ export const SewerInspectionContainer = () => {
     ];
 
     return (
-        <div style={{ paddingTop: '75px' }}>
+        <div >
             {/* Hero con tecnología visual */}
             <ContactUsToday
                 backgroundImage="/images/services/sewer-inspection-camera-hero.jpg"

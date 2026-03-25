@@ -7,7 +7,6 @@
 
 .heroImg {
     object-fit: cover;
-    object-position: center 30%;
 }
 
 .overlay {
@@ -26,7 +25,7 @@
     position: absolute;
     inset: 0;
     z-index: 2;
-    max-width: 1500px;
+    max-width: 1600px;
     margin: 0 auto;
     padding: 0 1.5rem;
     display: flex;
@@ -35,7 +34,7 @@
 }
 
 .textWrapper {
-    max-width: 30%;
+    max-width: 600px;
 }
 
 .title {
@@ -44,7 +43,7 @@
     color: #ffffff;
     line-height: 1.1;
     margin-bottom: 1.5rem;
-    letter-spacing: -0.04em;
+    letter-spacing: 0.08em;
 }
 
 .title span {
@@ -52,17 +51,17 @@
 }
 
 .description {
-    font-size: 1rem;
+    font-size: 1.2rem;
     width: 80%;
-    color: white;
+    color: white ;
     line-height: 1.6;
     margin-bottom: 2.5rem;
-    opacity: 0.85;
+    font-family: var(--font-montserrat), sans-serif;
 }
 
 .ctaButton {
     display: inline-block;
-    background-color: #2263c3;
+    background-color: #267AF6;
     color: white;
     padding: 1rem 2.2rem;
     border-radius: 9999px;
@@ -73,7 +72,7 @@
 }
 
 .ctaButton:hover {
-    background-color: #1a4fa0;
+    background-color: #2471e3;
     transform: translateY(-2px);
 }
 

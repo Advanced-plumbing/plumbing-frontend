@@ -35,7 +35,7 @@ export const HVACContainer = () => {
     ];
 
     return (
-        <div style={{ paddingTop: '75px' }}>
+        <div >
             <ContactUsToday
                 backgroundImage="/images/services/hvac-services-hero.png"
             />

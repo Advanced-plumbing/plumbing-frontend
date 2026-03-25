@@ -35,7 +35,7 @@ export const TanklessWaterHeaterContainer = () => {
     ];
 
     return (
-        <div style={{ paddingTop: '75px' }}>
+        <div>
             {/* Hero enfocado en modernidad y eficiencia */}
             <ContactUsToday
                 backgroundImage="/images/services/tankless-water-heater-hero.jpeg"

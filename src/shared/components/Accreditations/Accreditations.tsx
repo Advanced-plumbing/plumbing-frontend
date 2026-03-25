@@ -10,7 +10,7 @@ const partnerLogos = [
 
 export const Accreditations = () => {
     return (
-        <section className={styles.wrapper}>
+        <section className={styles.wrapper} data-header-theme="dark">
             <div className={styles.container}>
                 <div className={styles.header}>
                     <span className={styles.subtitle}>Trusted & Certified</span>

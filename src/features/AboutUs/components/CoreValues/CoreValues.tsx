@@ -5,7 +5,7 @@ import styles from './CoreValues.module.css';
 
 export const CoreValues = () => {
     return (
-        <section className={styles.section}>
+        <section className={styles.section} data-header-theme="light">
             <div className={styles.container}>
                 <div className={styles.grid}>
 

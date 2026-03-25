@@ -8,7 +8,6 @@ import {Accreditations} from "@/shared/components/Accreditations/Accreditations"
 const ContactUsContainer = () => {
     return (
         <div style={{
-            paddingTop: '75px',
             width: '100%',
             display: 'flex',
             flexDirection: 'column'
