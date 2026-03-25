@@ -46,6 +46,8 @@
     line-height: 1.8;
     margin-bottom: 20px;
     opacity: 0.95;
+
+    font-family: var(--font-montserrat), sans-serif;
 }
 
 /* --- Lado de Imagen --- */

@@ -1,0 +1,328 @@
+/* ── SECTION ── */
+.section {
+    background: linear-gradient(135deg, #267AF6 0%, #164790 100%);
+    padding: 80px 20px 100px;
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+.container {
+    max-width: 1600px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+/* ── TEXT COLUMN ── */
+.textCol {
+    color: #ffffff;
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.textVisible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.title {
+    font-size: 3.6rem;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 24px;
+    color: #ffffff;
+}
+
+.body {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.82);
+    margin-bottom: 36px;
+    max-width: 480px;
+}
+
+.cta {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1.5px solid rgba(255, 255, 255, 0.5);
+    color: #ffffff;
+    padding: 13px 36px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    transition: background 0.3s ease, border-color 0.3s ease;
+    margin-bottom: 52px;
+}
+
+.cta:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Certificates */
+.certs { }
+
+.certsLabel {
+    display: block;
+    font-size: 0.78rem;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 14px;
+    letter-spacing: 0.02em;
+}
+
+.certsRow {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.logoWrap {
+    position: relative;
+    height: 32px;
+    flex-shrink: 0;
+    opacity: 0.85;
+    filter: brightness(0) invert(1);
+    transition: opacity 0.2s ease;
+}
+
+.logoWrap:hover { opacity: 1; }
+
+/* ── CARDS COLUMN ── */
+.cardsCol {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.topRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+/* ── CARD BASE ── */
+.card {
+    border-radius: 20px;
+    padding: 24px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    overflow: hidden;
+}
+
+.cardVisible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.cardLeft {
+    background: linear-gradient(160deg, #83B2F8 0%, #2E79E5 100%);
+    transition-delay: 0.1s;
+}
+
+.cardRight {
+    background: linear-gradient(160deg, #4C8AE4 0%, #12366D 100%);
+    transition-delay: 0.25s;
+}
+
+/* Overflow container para las cifras que entran por arriba */
+.cardOverflow {
+    overflow: hidden;
+}
+
+/* Big stat — entra desde arriba */
+.bigStat {
+    font-size: 3.8rem;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    opacity: 0;
+    transform: translateY(-60px);
+}
+
+.slideDown {
+    animation: slideDown 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 0.3s;
+}
+
+@keyframes slideDown {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.star {
+    font-size: 1.8rem;
+    vertical-align: super;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.yearsLabel {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 500;
+    margin: -10px 0 0;
+    letter-spacing: 0.02em;
+}
+
+/* Tags row */
+.tagsRow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tag {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.18);
+    border-radius: 999px;
+    padding: 5px 12px;
+    white-space: nowrap;
+    opacity: 0;
+}
+
+.tagOutline {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Tags — entran desde izquierda */
+.slideFromLeft {
+    animation: slideFromLeft 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes slideFromLeft {
+    from { opacity: 0; transform: translateX(-40px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Tags — entran desde derecha */
+.slideFromRight {
+    animation: slideFromRight 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes slideFromRight {
+    from { opacity: 0; transform: translateX(40px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ── BOTTOM CARD ── */
+.bottomCard {
+    position: relative;
+    height: 320px;
+    border-radius: 20px;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease 0.4s, transform 0.7s ease 0.4s;
+}
+
+.bottomCardVisible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Capa 1 — imagen de fondo */
+.bottomBg {
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
+}
+
+/* Capa 2 — trabajador sube desde abajo */
+.staffWrap {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(100%);
+    width: 80%;
+    height: 150%;
+    z-index: 1;
+    transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1) 0.55s;
+}
+
+.staffVisible {
+    transform: translateX(-50%) translateY(0%);
+}
+
+.staffImg {
+    object-fit: contain;
+    object-position: bottom center;
+}
+
+/* Capa 3 — logo blur, fade in */
+.logoBlur {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.8s ease 1.1s;
+}
+
+.logoBlurVisible {
+    opacity: 1;
+}
+
+.logoInner {
+    position: relative;
+    width: 72px;
+    height: 72px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    overflow: hidden;
+    padding: 14px;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+    .title { font-size: 2.8rem; }
+}
+
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+        gap: 48px;
+    }
+
+    .title { font-size: 2.4rem; }
+
+    .topRow { grid-template-columns: 1fr 1fr; }
+
+    .bigStat { font-size: 3rem; }
+
+    .bottomCard { height: 260px; }
+
+    .staffWrap { width: 70%; }
+
+    .certsRow { gap: 14px; }
+}
+
+@media (max-width: 480px) {
+    .title { font-size: 2rem; }
+    .topRow { grid-template-columns: 1fr 1fr; }
+    .bigStat { font-size: 2.4rem; }
+}

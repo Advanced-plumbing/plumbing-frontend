@@ -62,6 +62,7 @@
     color: #666;
     font-size: 0.95rem;
     line-height: 1.6;
+    font-family: var(--font-montserrat), sans-serif;
 }
 
 /* --- RESPONSIVE --- */

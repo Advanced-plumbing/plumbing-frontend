@@ -42,6 +42,7 @@
     line-height: 1.6;
     font-size: 1.05rem;
     margin-bottom: 20px;
+    font-family: var(--font-montserrat), sans-serif;
 }
 
 .contactBtn {

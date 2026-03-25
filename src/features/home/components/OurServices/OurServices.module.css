@@ -182,7 +182,7 @@
 .titleBlue  { color: #3b9eff; }
 .serviceDesc {
     font-size: 0.95rem;
-    color: rgba(255, 255, 255, 0.82);
+    color: rgba(255, 255, 255, 1);
     line-height: 1.65;
     margin: 0;
     font-family: var(--font-montserrat), sans-serif;
@@ -205,6 +205,8 @@
     transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
     align-self: flex-end;
     margin-bottom: 0.2rem;
+    font-family: var(--font-montserrat), sans-serif;
+
 }
 .ctaButton:hover {
     background-color: #3b9eff;
