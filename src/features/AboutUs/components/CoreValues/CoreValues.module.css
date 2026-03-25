@@ -1,143 +1,288 @@
+/* ── SECTION ── */
 .section {
-    background-color: #266fdc; /* Azul corporativo según capturas */
-    color: #ffffff;
-    padding: 100px 20px 100px 20px;
+    position: relative;
+    background: #ffffff;
     overflow: hidden;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.grid {
+    height: 90vh;
     display: flex;
     align-items: center;
-    gap: 80px;
+    justify-content: center;
 }
 
-.textSide {
-    flex: 1.2;
+/* ── VECTOR BG ── */
+.vectorBg {
+    position: absolute;
+    left: -80px;
+    top: 55%;
+    transform: translateY(-50%);
+    width: 1000px;
+    height: 1000px;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.8;
+}
+
+.vectorImg {
+    object-fit: contain;
+    /* Forzamos que se pegue al borde izquierdo del contenedor */
+    object-position: left center;
+}
+/* ── CONTAINER ── */
+.container {
+    position: relative;
+    z-index: 1;
+    max-width: 1300px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+/* ── LEFT COLUMN ── */
+.leftCol {
+    opacity: 0;
+    transform: translateX(-28px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.leftVisible {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 .title {
-    font-size: clamp(2rem, 4vw, 3.2rem);
-    font-weight: 900;
+    font-size: 3.4rem;
+    font-weight: 700;
     line-height: 1.1;
-    margin-bottom: 30px;
-    text-transform: uppercase;
+    letter-spacing: -0.03em;
+    color: #0f1a2e;
+    margin-bottom: 24px;
 }
 
-.title span {
-    font-weight: 400; /* Balance visual en el título */
-    display: block;
-    margin-top: 10px;
+.titleAccent {
+    color: #2263c3;
 }
 
-.divider {
-    width: 70px;
-    height: 4px;
-    background-color: #ffffff;
-    margin-bottom: 35px;
-}
-
-.content p {
-    font-size: 1.15rem;
-    line-height: 1.8;
-    margin-bottom: 20px;
-    opacity: 0.95;
-
+.body {
+    font-size: 1.2rem;
+    line-height: 1.75;
+    color: #4a5568;
+    margin-bottom: 40px;
+    max-width: 500px;
     font-family: var(--font-montserrat), sans-serif;
 }
 
-/* --- Lado de Imagen --- */
-.imageSide {
+.cta {
+    display: inline-block;
+    background: #2263c3;
+    color: #ffffff;
+    padding: 13px 36px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.cta:hover {
+    background: #1a4fa0;
+    transform: translateY(-2px);
+}
+
+/* ── TIMELINE ── */
+.timeline {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ── STEP — siempre visible ── */
+.step {
+    display: flex;
+    gap: 20px;
+    cursor: pointer;
+}
+
+/* ── DOT + LINE ── */
+.dotCol {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+    padding-top: 4px;
+}
+
+.dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #cbd5e0;
+    flex-shrink: 0;
+    transition: background 0.4s ease, transform 0.4s ease;
+}
+
+.stepActive .dot {
+    background: #2263c3;
+    transform: scale(1.3);
+}
+
+.line {
+    width: 2px;
     flex: 1;
-    position: relative;
+    min-height: 80px;
+    background: #e2e8f0;
+    margin: 6px 0;
 }
 
-.mainImageWrapper {
-    position: relative;
-    width: 100%;
-    height: 550px;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 30px 30px 0px rgba(255, 255, 255, 0.1); /* Detalle visual */
+/* ── STEP CONTENT ── */
+.stepContent {
+    padding-bottom: 48px;
+    flex: 1;
 }
 
-.image {
-    object-fit: cover;
+.step:last-child .stepContent {
+    padding-bottom: 0;
 }
 
-.experienceBadge {
-    position: absolute;
-    bottom: 40px;
-    right: -20px;
-    background-color: #266fdc;
-    padding: 25px;
-    border-radius: 4px;
+.stepHeader {
     display: flex;
     align-items: center;
-    gap: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    gap: 10px;
+    margin-bottom: 10px;
 }
 
-.years {
-    font-size: 3rem;
-    font-weight: 900;
-    line-height: 1;
+.stepTitle {
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: #2263c3;
+    letter-spacing: -0.01em;
+    transition: color 0.4s ease;
 }
 
-.yearsText {
-    font-size: 0.9rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    line-height: 1.2;
+.stepActive .stepTitle {
+    color: #2263c3;
 }
 
-/* --- Responsive (Mobile optimizado) --- */
-@media (max-width: 992px) {
+.stepIcon {
+    color: #cbd5e0;
+    display: flex;
+    align-items: center;
+    transition: color 0.4s ease;
+}
+
+.stepActive .stepIcon {
+    color: #94a3b8;
+}
+
+.stepDesc {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #4a5568;
+    max-width: 420px;
+    transition: color 0.4s ease;
+    font-family: var(--font-montserrat), sans-serif;
+}
+
+.stepActive .stepDesc {
+    color: #4a5568;
+}
+
+/* ══════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════ */
+
+/* ── TABLET ── */
+@media (max-width: 1024px) {
     .section {
-        padding: 60px 20px; /* Reducimos padding superior en mobile */
+        height: auto;
+        padding: 80px 0;
     }
 
-    .grid {
-        flex-direction: column; /* Apila texto arriba e imagen abajo */
-        text-align: center;
-        gap: 40px;
+    .container {
+        gap: 50px;
+        padding: 0 32px;
     }
 
-    .textSide {
-        width: 100%;
+    .title { font-size: 2.8rem; }
+
+    .vectorBg {
+        width: 380px;
+        height: 380px;
+    }
+}
+
+/* ── TABLET PORTRAIT ── */
+@media (max-width: 768px) {
+    .leftCol {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .cta{
+        width: fit-content;
+        margin: auto;
+        margin-bottom: 16px;
+    }
+    .section {
+        height: auto;
+        padding: 72px 0;
     }
 
-    .divider {
-        margin: 0 auto 30px auto; /* Centra el divisor */
+    .container {
+        grid-template-columns: 1fr;
+        gap: 52px;
+        padding: 0 24px;
     }
 
-    .imageSide {
-        display: block; /* Forzamos visibilidad */
-        width: 100%;
-        flex: none;
+    .title { font-size: 2.4rem; }
+
+    .body { max-width: 100%; }
+
+    .vectorBg {
+        width: 280px;
+        height: 280px;
+        left: -40px;
+        opacity: 0.3;
     }
 
-    .mainImageWrapper {
-        height: 350px; /* Altura fija para mobile para que no sea gigante */
-        width: 100%;
-        box-shadow: 15px 15px 0px rgba(255, 255, 255, 0.1); /* Sombra más pequeña */
+    .stepDesc { max-width: 100%; }
+
+    .line { min-height: 60px; }
+
+    .stepContent { padding-bottom: 36px; }
+}
+
+/* ── MOBILE ── */
+@media (max-width: 460px) {
+
+    .section { padding: 56px 0; }
+
+    .container { padding: 0 16px; gap: 40px; }
+
+    .title { font-size: 2rem; text-align: center}
+
+    .body { font-size: 0.95rem;  text-align: center}
+
+    .stepTitle { font-size: 1.15rem; }
+
+    .stepDesc { font-size: 0.9rem; }
+
+    .vectorBg {
+        width: 220px;
+        height: 220px;
+        opacity: 0.2;
     }
 
-    .experienceBadge {
-        right: 10px;
-        bottom: 10px;
-        padding: 15px; /* Badge más compacto */
-    }
+    .line { min-height: 48px; }
 
-    .years {
-        font-size: 2rem;
-    }
+    .stepContent { padding-bottom: 28px; }
+}
 
-    .yearsText {
-        font-size: 0.7rem;
-    }
+/* ── MOBILE XS ── */
+@media (max-width: 360px) {
+    .title { font-size: 1.8rem; }
+    .stepTitle { font-size: 1rem; }
 }

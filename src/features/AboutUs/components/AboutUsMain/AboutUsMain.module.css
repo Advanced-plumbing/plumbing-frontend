@@ -12,12 +12,13 @@
 }
 
 .container {
-    max-width: 1700px;
+    max-width: 1400px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 60px;
+    gap: 30px;
     align-items: center;
+    width: 100%;
 }
 
 /* ── TEXT COLUMN ── */
@@ -34,10 +35,10 @@
 }
 
 .title {
-    font-size: 3.6rem;
+    font-size: 4rem;
     font-weight: 700;
     line-height: 1.1;
-    letter-spacing: -0.03em;
+    letter-spacing: 0.05em;
     margin-bottom: 24px;
     color: #ffffff;
 }
@@ -47,7 +48,7 @@
     line-height: 1.75;
     color: rgba(255, 255, 255, 1);
     margin-bottom: 36px;
-    max-width: 480px;
+    max-width: 580px;
     font-family: var(--font-montserrat), sans-serif;
 }
 
@@ -73,8 +74,6 @@
 }
 
 /* Certificates */
-.certs { }
-
 .certsLabel {
     display: block;
     font-size: 1rem;
@@ -142,12 +141,10 @@
     transition-delay: 0.25s;
 }
 
-/* Overflow container para las cifras que entran por arriba */
 .cardOverflow {
     overflow: hidden;
 }
 
-/* Big stat — entra desde arriba */
 .bigStat {
     font-size: 3.8rem;
     font-weight: 600;
@@ -186,7 +183,6 @@
     letter-spacing: 0.02em;
 }
 
-/* Tags row */
 .tagsRow {
     display: flex;
     flex-direction: column;
@@ -194,7 +190,7 @@
     gap: 8px;
 }
 
-.tagsRowWrapper{
+.tagsRowWrapper {
     display: flex;
     flex-direction: row;
     gap: 5px;
@@ -218,7 +214,6 @@
     color: #77AEFF;
 }
 
-/* Tags — entran desde izquierda */
 .slideFromLeft {
     animation: slideFromLeft 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
@@ -228,7 +223,6 @@
     to   { opacity: 1; transform: translateX(0); }
 }
 
-/* Tags — entran desde derecha */
 .slideFromRight {
     animation: slideFromRight 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
@@ -253,26 +247,21 @@
     transform: translateY(0);
 }
 
-/* Capa 1 — imagen de fondo */
 .bottomBg {
     object-fit: fill;
     object-position: center;
     z-index: 0;
 }
 
-/* Capa 2 — trabajador sube desde abajo con fade in */
 .staffWrap {
     position: absolute;
     bottom: 0;
     left: 50%;
-    /* Estado inicial: Abajo y transparente */
     transform: translateX(-50%) translateY(10%);
     opacity: 0;
-
     width: 85%;
     height: 155%;
     z-index: 1;
-    /* Transición combinada: transform y opacity */
     transition:
             transform 1s cubic-bezier(0.22, 1, 0.36, 1) 0.55s,
             opacity 0.8s ease 0.55s;
@@ -280,7 +269,6 @@
 }
 
 .staffVisible {
-    /* Estado final: En su sitio y totalmente visible */
     transform: translateX(-50%) translateY(0%);
     opacity: 1;
 }
@@ -290,7 +278,6 @@
     object-position: bottom center;
 }
 
-/* Capa 3 — logo blur, fade in */
 .logoBlur {
     position: absolute;
     bottom: 30px;
@@ -317,39 +304,71 @@
     padding: 20px;
 }
 
-.logoInner img{
+.logoInner img {
     width: 75% !important;
     height: 75% !important;
     margin: auto;
 }
 
-/* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
-    .title { font-size: 2.8rem; }
-}
-
-@media (max-width: 768px) {
+    .section {
+        height: auto;
+        padding: 60px 20px 80px;
+    }
     .container {
         grid-template-columns: 1fr;
         gap: 48px;
     }
-
     .title { font-size: 2.4rem; }
-
-    .topRow { grid-template-columns: 1fr 1fr; }
-
-    .bigStat { font-size: 3rem; }
-
-    .bottomCard { height: 260px; }
-
-    .staffWrap { width: 70%; }
-
+    .body { max-width: 100%; }
     .certsRow { gap: 14px; }
+    .bigStat { font-size: 2.8rem; }
+    .bottomCard { height: 260px; }
+    .staffWrap { width: 75%; }
+    .logoInner { width: 80px; height: 80px; padding: 16px; }
+    .logoBlur { bottom: 16px; right: 16px; }
 }
 
-@media (max-width: 480px) {
-    .title { font-size: 2rem; }
-    .topRow { grid-template-columns: 1fr 1fr; }
-    .bigStat { font-size: 2.4rem; }
+@media (max-width: 764px) {
+    .textCol {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .cta{
+        width: fit-content;
+        margin: auto;
+        margin-bottom: 40px;
+    }
+    .certs{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
+    .section { padding: 100px 16px 70px; }
+    .title { font-size: 2rem; text-align: center}
+    .body { font-size: 0.95rem; text-align: center}
+    .certsRow { margin: auto}
+    .topRow { gap: 10px; }
+    .card { padding: 18px 14px 16px; gap: 12px; }
+    .bigStat { font-size: 2.2rem; }
+    .star { font-size: 1.3rem; }
+    .tag { font-size: 0.68rem; padding: 4px 10px; }
+    .yearsLabel { font-size: 0.75rem; margin: -14px 0 0 8px; }
+    .bottomCard { height: 220px; border-radius: 20px; }
+    .staffWrap { width: 80%; height: 145%; }
+    .logoInner { width: 64px; height: 64px; padding: 12px; border-radius: 14px; }
+    .logoBlur { bottom: 12px; right: 12px; }
+    .certsRow { gap: 10px; }
+    .logoWrap { height: 40px; }
 }
 
+@media (max-width: 360px) {
+    .title { font-size: 1.75rem; }
+    .bigStat { font-size: 1.9rem; }
+    .topRow { gap: 8px; }
+    .card { padding: 14px 12px; }
+    .tag { font-size: 0.62rem; padding: 3px 8px; }
+    .bottomCard { height: 190px; }
+}

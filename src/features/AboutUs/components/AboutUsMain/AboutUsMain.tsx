@@ -74,43 +74,57 @@ export const AboutUsMain = () => {
                                 <div className={`${styles.bigStat} ${visible ? styles.slideDown : ""}`}>
                                     4.9<span className={styles.star}>★</span>
                                 </div>
-                                <br/>
+                                <br />
                             </div>
                             <div className={styles.tagsRow}>
-                                <div className={`${styles.tag} ${visible ? styles.slideFromLeft : ""}`}
-                                     style={{ animationDelay: "0.5s" }}>
+                                <div
+                                    className={`${styles.tag} ${visible ? styles.slideFromLeft : ""}`}
+                                    style={{ animationDelay: "0.5s" }}
+                                >
                                     Top Rated in Chicago
                                 </div>
-                                <div className={`${styles.tag} ${styles.tagOutline} ${visible ? styles.slideFromLeft : ""}`}
-                                     style={{ animationDelay: "0.7s" }}>
+                                <div
+                                    className={`${styles.tag} ${styles.tagOutline} ${visible ? styles.slideFromLeft : ""}`}
+                                    style={{ animationDelay: "0.7s" }}
+                                >
                                     Verified team
                                 </div>
                             </div>
                         </div>
 
                         {/* Card derecha — 15+ */}
-                        <div className={`${styles.card} ${styles.cardRight} ${visible ? styles.cardVisible : ""}`}
-                             style={{ animationDelay: "0.15s" }}>
+                        <div
+                            className={`${styles.card} ${styles.cardRight} ${visible ? styles.cardVisible : ""}`}
+                            style={{ animationDelay: "0.15s" }}
+                        >
                             <div className={styles.cardOverflow}>
-                                <div className={`${styles.bigStat} ${visible ? styles.slideDown : ""}`}
-                                     style={{ animationDelay: "0.2s" }}>
+                                <div
+                                    className={`${styles.bigStat} ${visible ? styles.slideDown : ""}`}
+                                    style={{ animationDelay: "0.2s" }}
+                                >
                                     15+
                                 </div>
                             </div>
                             <p className={styles.yearsLabel}>Years Experience</p>
                             <div className={styles.tagsRow}>
                                 <div className={styles.tagsRowWrapper}>
-                                    <div className={`${styles.tag} ${visible ? styles.slideFromRight : ""}`}
-                                         style={{ animationDelay: "0.6s" }}>
+                                    <div
+                                        className={`${styles.tag} ${visible ? styles.slideFromRight : ""}`}
+                                        style={{ animationDelay: "0.6s" }}
+                                    >
                                         Professional
                                     </div>
-                                    <div className={`${styles.tag} ${visible ? styles.slideFromRight : ""}`}
-                                         style={{ animationDelay: "0.75s" }}>
+                                    <div
+                                        className={`${styles.tag} ${visible ? styles.slideFromRight : ""}`}
+                                        style={{ animationDelay: "0.75s" }}
+                                    >
                                         Reliable
                                     </div>
                                 </div>
-                                <div className={`${styles.tag} ${styles.tagOutline} ${visible ? styles.slideFromRight : ""}`}
-                                     style={{ animationDelay: "0.9s" }}>
+                                <div
+                                    className={`${styles.tag} ${styles.tagOutline} ${visible ? styles.slideFromRight : ""}`}
+                                    style={{ animationDelay: "0.9s" }}
+                                >
                                     Efficient
                                 </div>
                             </div>

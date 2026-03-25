@@ -125,6 +125,22 @@ export const Header = ({ isHome = false }: { isHome?: boolean }) => {
                             <Image src="/logos/icon-logo.png" alt="Advanced Plumbing" fill priority className="object-contain" />
                         </div>
                     </Link>
+
+                    <nav className={styles.pillNav}>
+                        <Link
+                            href="/"
+                            className={`${styles.pillLink} ${pathname === "/" ? styles.pillLinkActive : ""}`}
+                        >
+                            Home
+                        </Link>
+                        <Link
+                            href="/about-us"
+                            className={`${styles.pillLink} ${pathname === "/about-us" ? styles.pillLinkActive : ""}`}
+                        >
+                            About
+                        </Link>
+                    </nav>
+
                     <button
                         className={styles.burgerBtn}
                         onClick={() => setIsMobileMenuOpen(true)}
