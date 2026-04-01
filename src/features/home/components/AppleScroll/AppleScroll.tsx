@@ -34,6 +34,7 @@ export const AppleScroll = () => {
         let currentIndex = 0;
         let targetFrame = stops[0];
         let currentFrame = stops[0];
+        let isAnimating = false;
 
         // 🎯 RENDER (ahora sí funciona)
         const render = () => {
@@ -73,12 +74,20 @@ export const AppleScroll = () => {
             render();
         };
 
+        const disableScroll = () => {
+            document.body.style.overflow = "hidden";
+        };
+
+        const enableScroll = () => {
+            document.body.style.overflow = "";
+        };
+
         window.addEventListener("resize", resizeCanvas);
         resizeCanvas();
 
         images[0].onload = render;
 
-// 🎯 detectar scroll
+        // 🎯 detectar scroll
         ScrollTrigger.create({
             trigger: wrapperRef.current,
             start: "top top",
@@ -93,12 +102,18 @@ export const AppleScroll = () => {
                 const progress = self.progress;
                 const section = Math.round(progress * (stops.length - 1));
 
-                if (section !== currentIndex) {
+                if (section !== currentIndex && !isAnimating) {
                     currentIndex = section;
 
                     gsap.to({}, {
                         duration: 2,
                         ease: "power4.out",
+
+                        onStart: () => {
+                            isAnimating = true;
+                            disableScroll(); // 🔒 bloquea scroll real
+                        },
+
                         onUpdate: function () {
                             targetFrame = gsap.utils.interpolate(
                                 currentFrame,
@@ -106,8 +121,11 @@ export const AppleScroll = () => {
                                 this.progress()
                             );
                         },
+
                         onComplete: () => {
                             currentFrame = stops[currentIndex];
+                            isAnimating = false;
+                            enableScroll(); // 🔓 libera scroll
                         }
                     });
                 }
