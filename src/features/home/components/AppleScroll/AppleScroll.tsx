@@ -27,11 +27,15 @@ export const AppleScroll = () => {
             images.push(img);
         }
 
-        // 🔥 VARIABLES CLAVE
-        let targetFrame = 0;   // lo que manda el scroll
-        let currentFrame = 0;  // lo que se renderiza (suavizado)
+        // 🔥 STOPS (tus escenas)
+        const stops = [0, 186, 325, 435, 533];
 
-        // 🎯 RENDER (cover perfecto)
+        // ✅ DEFINE PRIMERO
+        let currentIndex = 0;
+        let targetFrame = stops[0];
+        let currentFrame = stops[0];
+
+        // 🎯 RENDER (ahora sí funciona)
         const render = () => {
             const img = images[Math.floor(currentFrame)];
             if (!img) return;
@@ -74,21 +78,45 @@ export const AppleScroll = () => {
 
         images[0].onload = render;
 
-        // 🔥 GSAP → SOLO calcula el target
+// 🎯 detectar scroll
         ScrollTrigger.create({
             trigger: wrapperRef.current,
             start: "top top",
-            end: "+=500%",
+            end: "+=200%",
             pin: true,
-            scrub: true,
+            scrub: false,
+            snap: {
+                snapTo: 1 / (stops.length - 1),
+                duration: 0.3,
+            },
             onUpdate: (self) => {
-                targetFrame = self.progress * (frameCount - 1);
+                const progress = self.progress;
+                const section = Math.round(progress * (stops.length - 1));
+
+                if (section !== currentIndex) {
+                    currentIndex = section;
+
+                    gsap.to({}, {
+                        duration: 2,
+                        ease: "power4.out",
+                        onUpdate: function () {
+                            targetFrame = gsap.utils.interpolate(
+                                currentFrame,
+                                stops[currentIndex],
+                                this.progress()
+                            );
+                        },
+                        onComplete: () => {
+                            currentFrame = stops[currentIndex];
+                        }
+                    });
+                }
             }
         });
 
         // 🔥 LOOP DE INERCIA (LA MAGIA)
         const animate = () => {
-            currentFrame += (targetFrame - currentFrame) * 0.08; // 👈 easing
+            currentFrame += (targetFrame - currentFrame) * 0.08;
 
             render();
             requestAnimationFrame(animate);
