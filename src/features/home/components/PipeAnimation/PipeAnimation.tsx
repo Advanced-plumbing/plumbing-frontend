@@ -18,16 +18,13 @@ export const PipeAnimation = () => {
         if (!video || !wrapper || !sticky) return;
 
         const initScrollTrigger = () => {
-            const scrollLength = video.duration * 100; // ajusta este factor
-            wrapper.style.height = `${scrollLength}vh`;
-
             ScrollTrigger.create({
                 trigger: wrapper,
                 start: "top top",
-                end: "+=500%",
+                end: "bottom bottom",
                 pin: sticky,
                 pinSpacing: false,
-                scrub: 0.5,
+                scrub: 1, // suavidad
                 onUpdate: (self) => {
                     if (video.duration) {
                         video.currentTime = self.progress * video.duration;
@@ -35,7 +32,7 @@ export const PipeAnimation = () => {
                 },
             });
 
-            ScrollTrigger.refresh();
+            ScrollTrigger.refresh(); // asegura layout correcto
         };
 
         if (video.readyState >= 1) {
