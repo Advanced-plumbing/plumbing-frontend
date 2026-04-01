@@ -16,36 +16,36 @@ export const AppleScroll = () => {
 
         const frameCount = 534;
         const images: HTMLImageElement[] = [];
-        const imageSeq = { frame: 0 };
 
-        const currentFrame = (index: number) =>
+        const currentFramePath = (index: number) =>
             `/frames/frame_${String(index).padStart(4, "0")}.jpg`;
 
-        // 🔥 PRELOAD
+        // 🔥 preload
         for (let i = 0; i < frameCount; i++) {
             const img = new Image();
-            img.src = currentFrame(i + 1);
+            img.src = currentFramePath(i + 1);
             images.push(img);
         }
 
-        // ✅ DEFINE render ANTES
+        // 🔥 VARIABLES CLAVE
+        let targetFrame = 0;   // lo que manda el scroll
+        let currentFrame = 0;  // lo que se renderiza (suavizado)
+
+        // 🎯 RENDER (cover perfecto)
         const render = () => {
-            const img = images[Math.floor(imageSeq.frame)];
+            const img = images[Math.floor(currentFrame)];
             if (!img) return;
 
             const canvasWidth = canvas.width;
             const canvasHeight = canvas.height;
 
-            const imgWidth = img.width;
-            const imgHeight = img.height;
-
             const scale = Math.max(
-                canvasWidth / imgWidth,
-                canvasHeight / imgHeight
+                canvasWidth / img.width,
+                canvasHeight / img.height
             );
 
-            const drawWidth = imgWidth * scale;
-            const drawHeight = imgHeight * scale;
+            const drawWidth = img.width * scale;
+            const drawHeight = img.height * scale;
 
             const x = (canvasWidth - drawWidth) / 2;
             const y = (canvasHeight - drawHeight) / 2;
@@ -54,7 +54,7 @@ export const AppleScroll = () => {
             context.drawImage(img, x, y, drawWidth, drawHeight);
         };
 
-        // ✅ AHORA sí puedes usar render
+        // 📱 resize con DPR (pro)
         const resizeCanvas = () => {
             const dpr = window.devicePixelRatio || 1;
 
@@ -74,19 +74,27 @@ export const AppleScroll = () => {
 
         images[0].onload = render;
 
-        gsap.to(imageSeq, {
-            frame: frameCount - 1,
-            snap: "frame",
-            ease: "none",
-            scrollTrigger: {
-                trigger: wrapperRef.current,
-                start: "top top",
-                end: "+=500%",
-                scrub: 0.5,
-                pin: true,
-            },
-            onUpdate: render,
+        // 🔥 GSAP → SOLO calcula el target
+        ScrollTrigger.create({
+            trigger: wrapperRef.current,
+            start: "top top",
+            end: "+=500%",
+            pin: true,
+            scrub: true,
+            onUpdate: (self) => {
+                targetFrame = self.progress * (frameCount - 1);
+            }
         });
+
+        // 🔥 LOOP DE INERCIA (LA MAGIA)
+        const animate = () => {
+            currentFrame += (targetFrame - currentFrame) * 0.08; // 👈 easing
+
+            render();
+            requestAnimationFrame(animate);
+        };
+
+        animate();
 
         return () => {
             window.removeEventListener("resize", resizeCanvas);
