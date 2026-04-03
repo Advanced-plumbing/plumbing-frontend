@@ -99,6 +99,10 @@ export const AppleScroll = () => {
         let touchStartY = 0; // ← agrégalo aquí
 
         const onWheel = (e: WheelEvent) => {
+            // Liberar solo si estás en la última escena Y la animación ya terminó
+            if (currentIndex === stops.length - 1 && !isAnimating && e.deltaY > 0) return;
+            if (currentIndex === 0 && !isAnimating && e.deltaY < 0) return;
+
             e.preventDefault();
             e.stopPropagation();
 
@@ -122,6 +126,10 @@ export const AppleScroll = () => {
         const onTouchEnd = (e: TouchEvent) => {
             const delta = touchStartY - e.changedTouches[0].clientY;
             if (Math.abs(delta) < 30) return;
+
+            if (currentIndex === stops.length - 1 && !isAnimating && delta > 0) return;
+            if (currentIndex === 0 && !isAnimating && delta < 0) return;
+
             if (isAnimating) return;
             goToScene(currentIndex + (delta > 0 ? 1 : -1));
         };
