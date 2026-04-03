@@ -1,5 +1,28 @@
-html, body {
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
+/* PipeAnimation.module.css */
+.wrapper {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* ← solo 100vh, no más 500vh */
+}
+
+.canvas {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    display: block;
+}
+
+.wrapper {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden; /* ← importante */
+    cursor: default;  /* ← asegura que el mouse está sobre el elemento */
+}
+
+.canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
 }
