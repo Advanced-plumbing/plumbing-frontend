@@ -8,6 +8,24 @@ export const AppleScroll = () => {
     const wrapperRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
+        // ── Parallax con mouse ───────────────────────────────
+        let mouseX = 0;
+        let mouseY = 0;
+        let currentX = 0;
+        let currentY = 0;
+
+        const PARALLAX_STRENGTH = 25; // px máximo de desplazamiento
+        const LERP_SPEED = 0.05;       // suavidad (más bajo = más lento)
+
+        const onMouseMove = (e: MouseEvent) => {
+            // Normalizar de -1 a 1 según posición en pantalla
+            mouseX = (e.clientX / window.innerWidth - 0.5) * -2;  // invertido
+            mouseY = (e.clientY / window.innerHeight - 0.5) * -2; // invertido
+        };
+
+        window.addEventListener("mousemove", onMouseMove);
+
+
         const canvas = canvasRef.current!;
         const ctx = canvas.getContext("2d")!;
         const wrapper = wrapperRef.current!;
@@ -60,8 +78,20 @@ export const AppleScroll = () => {
 
         // ── Animación de inercia ─────────────────────────────
         const animate = () => {
+            // Lerp del frame (ya lo tenías)
             currentFrame += (targetFrame - currentFrame) * 0.08;
             render();
+
+            // Lerp del parallax
+            currentX += (mouseX * PARALLAX_STRENGTH - currentX) * LERP_SPEED;
+            currentY += (mouseY * PARALLAX_STRENGTH - currentY) * LERP_SPEED;
+
+            const time = Date.now() / 1000;
+            const floatY = Math.sin(time * 0.6) * 12;
+            const floatX = Math.sin(time * 0.4) * 6; // frecuencia diferente para que no sea lineal
+
+            canvas.style.transform = `scale(1.08) translate(${currentX + floatX}px, ${currentY + floatY}px)`;
+
             requestAnimationFrame(animate);
         };
         animate();
@@ -144,12 +174,13 @@ export const AppleScroll = () => {
             wrapper.removeEventListener("wheel", onWheel);
             wrapper.removeEventListener("touchstart", onTouchStart);
             wrapper.removeEventListener("touchend", onTouchEnd);
+            window.removeEventListener("mousemove", onMouseMove);
         };
     }, []);
 
     return (
         // height: 100vh — ya NO necesitas 500vh
-        <div ref={wrapperRef} className={styles.wrapper}>
+        <div ref={wrapperRef} className={styles.wrapper} data-header-theme="dark">
             <canvas ref={canvasRef} className={styles.canvas} />
         </div>
     );
