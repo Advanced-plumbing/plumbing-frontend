@@ -1,0 +1,138 @@
+.overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 20;
+    pointer-events: none;
+}
+
+.scene {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.contentContainer {
+    position: relative;
+    z-index: 20;
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    pointer-events: none;
+}
+
+.textWrapper {
+    max-width: 30%;
+    pointer-events: auto;
+}
+
+/* ── Estilos globales para el HTML inyectado ── */
+.textWrapper :global(.scene-title) {
+    font-size: clamp(2.2rem, 4vw, 4.2rem);
+    font-weight: 800;
+    color: #1a1a2e;
+    line-height: 1.1;
+    margin: 0 0 1.2rem 0;
+    letter-spacing: -0.04em;
+    display: flex;
+    flex-direction: column;
+}
+
+.textWrapper :global(.scene-accent) {
+    color: #1d6ff3;
+    display: block;
+}
+
+.textWrapper :global(.scene-desc) {
+    font-size: clamp(0.82rem, 1vw, 1rem);
+    width: 80%;
+    color: #444;
+    line-height: 1.6;
+    margin: 0 0 2rem 0;
+}
+
+.textWrapper :global(.scene-desc strong) {
+    font-weight: 700;
+    color: #1a1a2e;
+}
+
+.textWrapper :global(.scene-btn) {
+    display: inline-block;
+    background-color: #1d6ff3;
+    color: white;
+    padding: 0.9rem 2rem;
+    border-radius: 9999px;
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: background 0.25s ease;
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+.textWrapper :global(.scene-btn:hover) {
+    background: #1558c9;
+}
+
+/* ── Tags ── */
+.tag {
+    position: absolute;
+    pointer-events: none;
+    /* Centrado en el punto de anclaje */
+    transform: translate(-50%, -50%);
+}
+
+.tagLabel {
+    display: block;
+    font-size: clamp(0.7rem, 0.85vw, 0.82rem);
+    color: #1a1a2e;
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    padding: 0.28rem 0.8rem;
+    border-radius: 999px;
+    white-space: nowrap;
+    position: relative;
+    z-index: 1;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+    .textWrapper {
+        max-width: 55%;
+    }
+    .textWrapper :global(.scene-desc) {
+        width: 90%;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .textWrapper {
+        max-width: 100%;
+    }
+    .textWrapper :global(.scene-title) {
+        font-size: 2.4rem;
+    }
+    .textWrapper :global(.scene-desc) {
+        font-size: 0.9rem;
+        width: 100%;
+    }
+    .textWrapper :global(.scene-btn) {
+        width: 100%;
+        text-align: center;
+    }
+    .tag {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .textWrapper :global(.scene-title) {
+        font-size: 2rem;
+    }
+}

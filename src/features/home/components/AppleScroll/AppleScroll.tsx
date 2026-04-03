@@ -1,9 +1,13 @@
 "use client";
+import { useState } from "react";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import styles from "./AppleScroll.module.css";
+import { SceneOverlay} from "@/features/home/components/AppleScroll/SceneOverlay/SceneOverlay";
+
 
 export const AppleScroll = () => {
+    const [currentScene, setCurrentScene] = useState(0);
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const wrapperRef = useRef<HTMLDivElement>(null);
 
@@ -104,6 +108,7 @@ export const AppleScroll = () => {
 
             isAnimating = true;
             currentIndex = index;
+            setCurrentScene(index);
 
             gsap.to({}, {
                 duration: 1.5,
@@ -182,6 +187,7 @@ export const AppleScroll = () => {
         // height: 100vh — ya NO necesitas 500vh
         <div ref={wrapperRef} className={styles.wrapper} data-header-theme="dark">
             <canvas ref={canvasRef} className={styles.canvas} />
+            <SceneOverlay currentScene={currentScene} /> {/* ← agregar */}
         </div>
     );
 };
