@@ -7,13 +7,13 @@ interface Tag {
     label: string;
     top: string;
     left: string;
-    // Punto de origen de la línea relativo al tag (hacia dónde apunta)
-    lineX: string; // px o % desde el tag hacia el target
-    lineY: string;
+    lineX: number; // ← número, no string
+    lineY: number;
 }
 
 interface Scene {
     id: number;
+    verticalAlign?: "top" | "center"; // ← nuevo
     content: string;   // HTML directo
     tags?: Tag[];
 }
@@ -21,6 +21,7 @@ interface Scene {
 const scenes: Scene[] = [
     {
         id: 0,
+        verticalAlign: "center",
         content: `
             <h2 class="scene-title">
                 Plumbing you can trust,
@@ -35,6 +36,7 @@ const scenes: Scene[] = [
     },
     {
         id: 1,
+        verticalAlign: "center",
         content: `
             <h2 class="scene-title">
                 Corrosion
@@ -47,13 +49,14 @@ const scenes: Scene[] = [
             </p>
         `,
         tags: [
-            { label: "Material decay",      top: "12%", left: "62%", lineX: "-40px", lineY: "60px"  },
-            { label: "Flow restriction",    top: "50%", left: "32%", lineX: "60px",  lineY: "-30px" },
-            { label: "Structural weakness", top: "68%", left: "55%", lineX: "-50px", lineY: "-40px" },
+            { label: "Material decay",      top: "12%", left: "62%", lineX: -40, lineY: 60  },
+            { label: "Flow restriction",    top: "50%", left: "32%", lineX: 60,  lineY: -30 },
+            { label: "Structural weakness", top: "68%", left: "55%", lineX: -50, lineY: -40 },
         ],
     },
     {
         id: 2,
+        verticalAlign: "center",
         content: `
             <h2 class="scene-title">
                 Leak
@@ -66,13 +69,14 @@ const scenes: Scene[] = [
             </p>
         `,
         tags: [
-            { label: "Pressure loss",  top: "52%", left: "8%",  lineX: "80px",  lineY: "-60px" },
-            { label: "Water waste",    top: "22%", left: "72%", lineX: "-60px", lineY: "80px"  },
-            { label: "Hidden damage",  top: "62%", left: "52%", lineX: "-40px", lineY: "-50px" },
+            { label: "Pressure loss",  top: "52%", left: "8%",  lineX: 80,  lineY: -60 },
+            { label: "Water waste",    top: "22%", left: "72%", lineX: -60, lineY: 80 },
+            { label: "Hidden damage",  top: "62%", left: "52%", lineX: -40, lineY: -50 },
         ],
     },
     {
         id: 3,
+        verticalAlign: "center",
         content: `
             <h2 class="scene-title">
                 Clog
@@ -85,13 +89,14 @@ const scenes: Scene[] = [
             </p>
         `,
         tags: [
-            { label: "Blocked flow",  top: "15%", left: "58%", lineX: "-40px", lineY: "70px"  },
-            { label: "Slow drainage", top: "55%", left: "18%", lineX: "60px",  lineY: "-35px" },
-            { label: "System backup", top: "70%", left: "56%", lineX: "-50px", lineY: "-45px" },
+            { label: "Blocked flow",  top: "15%", left: "58%", lineX: -40, lineY: 70 },
+            { label: "Slow drainage", top: "55%", left: "18%", lineX: 60,  lineY: -35 },
+            { label: "System backup", top: "70%", left: "56%", lineX: -50, lineY: -45 },
         ],
     },
     {
         id: 4,
+        verticalAlign: "top",
         content: `
             <h2 class="scene-title">
                 Optimize
@@ -104,9 +109,9 @@ const scenes: Scene[] = [
             </p>
         `,
         tags: [
-            { label: "Smooth flow",          top: "35%", left: "60%", lineX: "-50px", lineY: "40px"  },
-            { label: "Leak-free system",     top: "72%", left: "20%", lineX: "60px",  lineY: "-40px" },
-            { label: "Long-term durability", top: "72%", left: "54%", lineX: "-40px", lineY: "-40px" },
+            { label: "Smooth flow",          top: "35%", left: "60%", lineX: -50, lineY: 40 },
+            { label: "Leak-free system",     top: "72%", left: "20%", lineX: 60,  lineY: -40 },
+            { label: "Long-term durability", top: "72%", left: "54%", lineX: -40, lineY: -40 },
         ],
     },
 ];
@@ -165,7 +170,13 @@ export const SceneOverlay = ({ currentScene }: Props) => {
                     }}
                 >
                     {/* Contenido izquierda */}
-                    <div className={styles.contentContainer}>
+                    <div
+                        className={styles.contentContainer}
+                        style={{
+                            justifyContent: scene.verticalAlign === "top" ? "flex-start" : "center",
+                            paddingTop: scene.verticalAlign === "top" ? "5%" : "0",
+                        }}
+                    >
                         <div
                             className={styles.textWrapper}
                             dangerouslySetInnerHTML={{ __html: scene.content }}
@@ -179,32 +190,37 @@ export const SceneOverlay = ({ currentScene }: Props) => {
                             className={styles.tag}
                             style={{ top: tag.top, left: tag.left }}
                         >
-                            {/* SVG para la línea diagonal */}
+                            {/* SVG con dimensiones reales — no más width/height 0 */}
                             <svg
                                 className={styles.tagSvg}
+                                xmlns="http://www.w3.org/2000/svg"
                                 style={{
                                     position: "absolute",
-                                    overflow: "visible",
                                     top: "50%",
                                     left: "50%",
-                                    width: 0,
-                                    height: 0,
-                                    pointerEvents: "none",
+                                    overflow: "visible",
+                                    width: "1px",
+                                    height: "1px",
+                                    zIndex: 0,
                                 }}
                             >
                                 <line
-                                    x1="0" y1="0"
-                                    x2={tag.lineX} y2={tag.lineY}
-                                    stroke="rgba(26,26,46,0.4)"
-                                    strokeWidth="1"
+                                    x1="0"
+                                    y1="0"
+                                    x2={tag.lineX}
+                                    y2={tag.lineY}
+                                    stroke="rgba(26,26,46,0.5)"
+                                    strokeWidth="1.2"
                                 />
-                                {/* Dot en el extremo de la línea */}
                                 <circle
-                                    cx={tag.lineX} cy={tag.lineY}
-                                    r="3"
-                                    fill="rgba(26,26,46,0.4)"
+                                    cx={tag.lineX}
+                                    cy={tag.lineY}
+                                    r="2.5"
+                                    fill="#1a1a2e"
+                                    opacity="0.5"
                                 />
                             </svg>
+
                             <span className={styles.tagLabel}>{tag.label}</span>
                         </div>
                     ))}

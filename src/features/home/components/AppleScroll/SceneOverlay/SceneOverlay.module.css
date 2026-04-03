@@ -81,12 +81,18 @@
 .tag {
     position: absolute;
     pointer-events: none;
-    /* Centrado en el punto de anclaje */
     transform: translate(-50%, -50%);
+    /* NO uses z-index aquí, el stacking lo maneja el SVG con zIndex:0 */
+}
+
+.tagSvg {
+    pointer-events: none;
 }
 
 .tagLabel {
     display: block;
+    position: relative;
+    z-index: 2; /* label encima del SVG */
     font-size: clamp(0.7rem, 0.85vw, 0.82rem);
     color: #1a1a2e;
     background: rgba(255, 255, 255, 0.75);
@@ -96,8 +102,6 @@
     padding: 0.28rem 0.8rem;
     border-radius: 999px;
     white-space: nowrap;
-    position: relative;
-    z-index: 1;
 }
 
 /* ── Responsive ── */

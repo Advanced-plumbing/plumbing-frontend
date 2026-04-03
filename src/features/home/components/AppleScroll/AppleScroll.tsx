@@ -80,21 +80,23 @@ export const AppleScroll = () => {
         resizeCanvas();
         images[0].onload = render;
 
+        let canvasOffsetY = 0;
+
+
         // ── Animación de inercia ─────────────────────────────
         const animate = () => {
-            // Lerp del frame (ya lo tenías)
             currentFrame += (targetFrame - currentFrame) * 0.08;
             render();
 
-            // Lerp del parallax
             currentX += (mouseX * PARALLAX_STRENGTH - currentX) * LERP_SPEED;
             currentY += (mouseY * PARALLAX_STRENGTH - currentY) * LERP_SPEED;
 
             const time = Date.now() / 1000;
-            const floatY = Math.sin(time * 0.6) * 12;
-            const floatX = Math.sin(time * 0.4) * 6; // frecuencia diferente para que no sea lineal
+            const floatY = Math.sin(time * 0.6) * 8;
+            const floatX = Math.sin(time * 0.4) * 4;
 
-            canvas.style.transform = `scale(1.08) translate(${currentX + floatX}px, ${currentY + floatY}px)`;
+            // ← canvasOffsetY se suma aquí, nunca se sobreescribe
+            canvas.style.transform = `scale(1.08) translate(${currentX + floatX}px, ${currentY + floatY + canvasOffsetY}px)`;
 
             requestAnimationFrame(animate);
         };
@@ -109,6 +111,29 @@ export const AppleScroll = () => {
             isAnimating = true;
             currentIndex = index;
             setCurrentScene(index);
+
+            // ← Mover canvas hacia abajo en última escena
+            if (index === stops.length - 1) {
+                gsap.to({ val: canvasOffsetY }, {
+                    val: 80,
+                    duration: 1.5,
+                    delay: 0.8,
+                    ease: "power3.out",
+                    onUpdate: function() {
+                        canvasOffsetY = this.targets()[0].val;
+                    },
+                });
+            } else {
+                gsap.to({ val: canvasOffsetY }, {
+                    val: 0,
+                    duration: 1.5,
+                    delay: 0,
+                    ease: "power3.out",
+                    onUpdate: function() {
+                        canvasOffsetY = this.targets()[0].val;
+                    },
+                });
+            }
 
             gsap.to({}, {
                 duration: 1.5,
