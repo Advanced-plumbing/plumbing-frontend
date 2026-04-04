@@ -5,13 +5,13 @@ import styles from "./SceneOverlay.module.css";
 
 interface Tag {
     label: string;
-    top: string;
-    left: string;
-    midX: number;  // horizontal desde el label
-    midY: number;  // vertical desde el label
-    endX: number;  // diagonal final X
-    endY: number;  // diagonal final Y
+    top: string;   // % del viewport — donde está el LABEL
+    left: string;  // % del viewport — donde está el LABEL
+    // El punto TARGET en % del viewport (donde apunta la línea)
+    targetTop: string;
+    targetLeft: string;
 }
+
 interface Scene {
     id: number;
     verticalAlign?: "top" | "center"; // ← nuevo
@@ -50,21 +50,17 @@ const scenes: Scene[] = [
             </p>
         `,
         tags: [
-            // Línea va horizontal a la derecha, luego diagonal arriba hacia la tubería
             { label: "Material decay",
-                top: "12%", left: "82%",
-                midX: -80, midY: 0,      // horizontal hacia la izquierda
-                endX: -200, endY: 80,    // diagonal hacia el punto de la tubería
+                top: "12%",  left: "79%",
+                targetTop: "8%",  targetLeft: "62%",   // apunta al top de la tubería oxidada
             },
             { label: "Flow restriction",
-                top: "60%", left: "18%",
-                midX: 80, midY: 0,       // horizontal hacia la derecha
-                endX: 220, endY: -80,    // diagonal hacia arriba
+                top: "55%",  left: "18%",
+                targetTop: "45%", targetLeft: "48%",   // apunta al centro de la tubería
             },
             { label: "Structural weakness",
-                top: "75%", left: "72%",
-                midX: -80, midY: 0,      // horizontal hacia la izquierda
-                endX: -180, endY: -60,   // diagonal hacia arriba
+                top: "72%",  left: "72%",
+                targetTop: "78%", targetLeft: "50%",   // apunta al bottom de la tubería
             },
         ],
     },
@@ -84,19 +80,16 @@ const scenes: Scene[] = [
         `,
         tags: [
             { label: "Pressure loss",
-                top: "52%", left: "8%",
-                midX: 80,  midY: 0,
-                endX: 180, endY: -60,
+                top: "52%",  left: "8%",
+                targetTop: "42%", targetLeft: "32%",
             },
             { label: "Water waste",
-                top: "22%", left: "72%",
-                midX: -80, midY: 0,
-                endX: -160, endY: 80,
+                top: "22%",  left: "72%",
+                targetTop: "30%", targetLeft: "78%",
             },
             { label: "Hidden damage",
-                top: "62%", left: "52%",
-                midX: -60, midY: 0,
-                endX: -120, endY: -50,
+                top: "62%",  left: "52%",
+                targetTop: "68%", targetLeft: "40%",
             },
         ],
     },
@@ -115,20 +108,17 @@ const scenes: Scene[] = [
             </p>
         `,
         tags: [
-            { label: "Smooth flow",
-                top: "35%", left: "60%",
-                midX: -70, midY: 0,
-                endX: -150, endY: 40,
+            { label: "Blocked flow",
+                top: "15%",  left: "58%",
+                targetTop: "22%", targetLeft: "48%",
             },
-            { label: "Leak-free system",
-                top: "72%", left: "20%",
-                midX: 80,  midY: 0,
-                endX: 160, endY: -40,
+            { label: "Slow drainage",
+                top: "55%",  left: "18%",
+                targetTop: "48%", targetLeft: "42%",
             },
-            { label: "Long-term durability",
-                top: "72%", left: "54%",
-                midX: -80, midY: 0,
-                endX: -160, endY: -40,
+            { label: "System backup",
+                top: "70%",  left: "56%",
+                targetTop: "65%", targetLeft: "45%",
             },
         ],
     },
@@ -148,23 +138,91 @@ const scenes: Scene[] = [
         `,
         tags: [
             { label: "Smooth flow",
-                top: "35%", left: "60%",
-                midX: -70, midY: 0,
-                endX: -150, endY: 40,
+                top: "35%",  left: "60%",
+                targetTop: "42%", targetLeft: "50%",
             },
             { label: "Leak-free system",
-                top: "72%", left: "20%",
-                midX: 80,  midY: 0,
-                endX: 160, endY: -40,
+                top: "72%",  left: "20%",
+                targetTop: "65%", targetLeft: "35%",
             },
             { label: "Long-term durability",
-                top: "72%", left: "54%",
-                midX: -80, midY: 0,
-                endX: -160, endY: -40,
+                top: "72%",  left: "54%",
+                targetTop: "65%", targetLeft: "62%",
             },
         ],
     },
 ];
+
+const TagLine = ({ tag }: { tag: Tag }) => {
+    const svgRef = useRef<SVGSVGElement>(null);
+
+    useEffect(() => {
+        const update = () => {
+            const svg = svgRef.current;
+            if (!svg) return;
+
+            const vw = window.innerWidth;
+            const vh = window.innerHeight;
+
+            const labelX = parseFloat(tag.left) / 100 * vw;
+            const labelY = parseFloat(tag.top) / 100 * vh;
+            const targetX = parseFloat(tag.targetLeft) / 100 * vw;
+            const targetY = parseFloat(tag.targetTop) / 100 * vh;
+
+            // Delta desde el centro del label hasta el target
+            const dx = targetX - labelX;
+            const dy = targetY - labelY;
+
+            // Codo en el punto medio del recorrido
+            const elbowX = dx / 2;
+            const elbowY = 0;
+
+            const line = svg.querySelector("polyline");
+            const dot = svg.querySelector("circle");
+
+            if (line) line.setAttribute("points", `0,0 ${elbowX},${elbowY} ${dx},${dy}`);
+            if (dot) {
+                dot.setAttribute("cx", String(dx));
+                dot.setAttribute("cy", String(dy));
+            }
+        };
+
+        update();
+        window.addEventListener("resize", update);
+        return () => window.removeEventListener("resize", update);
+    }, [tag]);
+
+    return (
+        <div
+            className={styles.tag}
+            style={{ top: tag.top, left: tag.left }}
+        >
+            <svg
+                ref={svgRef}
+                xmlns="http://www.w3.org/2000/svg"
+                style={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    overflow: "visible",
+                    width: "1px",
+                    height: "1px",
+                    zIndex: 0,
+                    pointerEvents: "none",
+                }}
+            >
+                <polyline
+                    points="0,0 0,0 0,0"
+                    fill="none"
+                    stroke="rgba(26,26,46,0.45)"
+                    strokeWidth="1.2"
+                />
+                <circle cx="0" cy="0" r="2.5" fill="#1a1a2e" opacity="0.45" />
+            </svg>
+            <span className={styles.tagLabel}>{tag.label}</span>
+        </div>
+    );
+};
 
 interface Props {
     currentScene: number;
@@ -172,6 +230,7 @@ interface Props {
 
 export const SceneOverlay = ({ currentScene }: Props) => {
     const sceneRefs = useRef<(HTMLDivElement | null)[]>([]);
+    const overlayRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         scenes.forEach((_, i) => {
@@ -231,47 +290,18 @@ export const SceneOverlay = ({ currentScene }: Props) => {
                             className={styles.textWrapper}
                             dangerouslySetInnerHTML={{ __html: scene.content }}
                         />
+                        {/* eslint-disable-next-line react/jsx-no-comment-textnodes */}
                     </div>
-
-                    {/* Tags con líneas diagonales SVG */}
-                    {scene.tags?.map((tag, j) => (
-                        <div
-                            key={j}
-                            className={styles.tag}
-                            style={{ top: tag.top, left: tag.left }}
-                        >
-                            {/* SVG con dimensiones reales — no más width/height 0 */}
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                style={{
-                                    position: "absolute",
-                                    top: "50%",
-                                    left: "50%",
-                                    overflow: "visible",
-                                    width: "1px",
-                                    height: "1px",
-                                    zIndex: 0,
-                                    pointerEvents: "none",
-                                }}
-                            >
-                                <polyline
-                                    points={`0,0 ${tag.midX},${tag.midY} ${tag.endX},${tag.endY}`}
-                                    fill="none"
-                                    stroke="rgba(26,26,46,0.45)"
-                                    strokeWidth="1.2"
-                                />
-                                <circle
-                                    cx={tag.endX}
-                                    cy={tag.endY}
-                                    r="2.5"
-                                    fill="#1a1a2e"
-                                    opacity="0.45"
-                                />
-                            </svg>
-
-                            <span className={styles.tagLabel}>{tag.label}</span>
-                        </div>
-                    ))}
+                    // En el JSX, reemplaza el bloque de tags:
+                    {scene.tags?.map((tag, j) => {
+                        // Calculamos en render — el SVG conecta label → target en %
+                        return (
+                            <TagLine
+                                key={j}
+                                tag={tag}
+                            />
+                        );
+                    })}
                 </div>
             ))}
         </div>
