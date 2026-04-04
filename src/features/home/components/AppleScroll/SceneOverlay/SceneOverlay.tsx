@@ -7,10 +7,11 @@ interface Tag {
     label: string;
     top: string;
     left: string;
-    lineX: number; // ← número, no string
-    lineY: number;
+    midX: number;  // horizontal desde el label
+    midY: number;  // vertical desde el label
+    endX: number;  // diagonal final X
+    endY: number;  // diagonal final Y
 }
-
 interface Scene {
     id: number;
     verticalAlign?: "top" | "center"; // ← nuevo
@@ -49,9 +50,22 @@ const scenes: Scene[] = [
             </p>
         `,
         tags: [
-            { label: "Material decay",      top: "12%", left: "62%", lineX: -40, lineY: 60  },
-            { label: "Flow restriction",    top: "50%", left: "32%", lineX: 60,  lineY: -30 },
-            { label: "Structural weakness", top: "68%", left: "55%", lineX: -50, lineY: -40 },
+            // Línea va horizontal a la derecha, luego diagonal arriba hacia la tubería
+            { label: "Material decay",
+                top: "12%", left: "82%",
+                midX: -80, midY: 0,      // horizontal hacia la izquierda
+                endX: -200, endY: 80,    // diagonal hacia el punto de la tubería
+            },
+            { label: "Flow restriction",
+                top: "60%", left: "18%",
+                midX: 80, midY: 0,       // horizontal hacia la derecha
+                endX: 220, endY: -80,    // diagonal hacia arriba
+            },
+            { label: "Structural weakness",
+                top: "75%", left: "72%",
+                midX: -80, midY: 0,      // horizontal hacia la izquierda
+                endX: -180, endY: -60,   // diagonal hacia arriba
+            },
         ],
     },
     {
@@ -69,9 +83,21 @@ const scenes: Scene[] = [
             </p>
         `,
         tags: [
-            { label: "Pressure loss",  top: "52%", left: "8%",  lineX: 80,  lineY: -60 },
-            { label: "Water waste",    top: "22%", left: "72%", lineX: -60, lineY: 80 },
-            { label: "Hidden damage",  top: "62%", left: "52%", lineX: -40, lineY: -50 },
+            { label: "Pressure loss",
+                top: "52%", left: "8%",
+                midX: 80,  midY: 0,
+                endX: 180, endY: -60,
+            },
+            { label: "Water waste",
+                top: "22%", left: "72%",
+                midX: -80, midY: 0,
+                endX: -160, endY: 80,
+            },
+            { label: "Hidden damage",
+                top: "62%", left: "52%",
+                midX: -60, midY: 0,
+                endX: -120, endY: -50,
+            },
         ],
     },
     {
@@ -89,9 +115,21 @@ const scenes: Scene[] = [
             </p>
         `,
         tags: [
-            { label: "Blocked flow",  top: "15%", left: "58%", lineX: -40, lineY: 70 },
-            { label: "Slow drainage", top: "55%", left: "18%", lineX: 60,  lineY: -35 },
-            { label: "System backup", top: "70%", left: "56%", lineX: -50, lineY: -45 },
+            { label: "Smooth flow",
+                top: "35%", left: "60%",
+                midX: -70, midY: 0,
+                endX: -150, endY: 40,
+            },
+            { label: "Leak-free system",
+                top: "72%", left: "20%",
+                midX: 80,  midY: 0,
+                endX: 160, endY: -40,
+            },
+            { label: "Long-term durability",
+                top: "72%", left: "54%",
+                midX: -80, midY: 0,
+                endX: -160, endY: -40,
+            },
         ],
     },
     {
@@ -109,9 +147,21 @@ const scenes: Scene[] = [
             </p>
         `,
         tags: [
-            { label: "Smooth flow",          top: "35%", left: "60%", lineX: -50, lineY: 40 },
-            { label: "Leak-free system",     top: "72%", left: "20%", lineX: 60,  lineY: -40 },
-            { label: "Long-term durability", top: "72%", left: "54%", lineX: -40, lineY: -40 },
+            { label: "Smooth flow",
+                top: "35%", left: "60%",
+                midX: -70, midY: 0,
+                endX: -150, endY: 40,
+            },
+            { label: "Leak-free system",
+                top: "72%", left: "20%",
+                midX: 80,  midY: 0,
+                endX: 160, endY: -40,
+            },
+            { label: "Long-term durability",
+                top: "72%", left: "54%",
+                midX: -80, midY: 0,
+                endX: -160, endY: -40,
+            },
         ],
     },
 ];
@@ -192,7 +242,6 @@ export const SceneOverlay = ({ currentScene }: Props) => {
                         >
                             {/* SVG con dimensiones reales — no más width/height 0 */}
                             <svg
-                                className={styles.tagSvg}
                                 xmlns="http://www.w3.org/2000/svg"
                                 style={{
                                     position: "absolute",
@@ -202,22 +251,21 @@ export const SceneOverlay = ({ currentScene }: Props) => {
                                     width: "1px",
                                     height: "1px",
                                     zIndex: 0,
+                                    pointerEvents: "none",
                                 }}
                             >
-                                <line
-                                    x1="0"
-                                    y1="0"
-                                    x2={tag.lineX}
-                                    y2={tag.lineY}
-                                    stroke="rgba(26,26,46,0.5)"
+                                <polyline
+                                    points={`0,0 ${tag.midX},${tag.midY} ${tag.endX},${tag.endY}`}
+                                    fill="none"
+                                    stroke="rgba(26,26,46,0.45)"
                                     strokeWidth="1.2"
                                 />
                                 <circle
-                                    cx={tag.lineX}
-                                    cy={tag.lineY}
+                                    cx={tag.endX}
+                                    cy={tag.endY}
                                     r="2.5"
                                     fill="#1a1a2e"
-                                    opacity="0.5"
+                                    opacity="0.45"
                                 />
                             </svg>
 

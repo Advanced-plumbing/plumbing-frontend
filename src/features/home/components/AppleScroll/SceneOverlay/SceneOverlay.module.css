@@ -93,12 +93,12 @@
     display: block;
     position: relative;
     z-index: 2; /* label encima del SVG */
-    font-size: clamp(0.7rem, 0.85vw, 0.82rem);
+    font-size: 1rem;
     color: #1a1a2e;
     background: rgba(255, 255, 255, 0.75);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     padding: 0.28rem 0.8rem;
     border-radius: 999px;
     white-space: nowrap;
