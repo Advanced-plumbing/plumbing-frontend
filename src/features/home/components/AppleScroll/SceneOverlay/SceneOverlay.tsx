@@ -80,7 +80,7 @@ const scenes: Scene[] = [
         `,
         tags: [
             { label: "Pressure loss",
-                top: "65%",  left: "18%",
+                top: "75%",  left: "18%",
                 targetTop: "85%", targetLeft: "37%",
             },
             { label: "Water waste",

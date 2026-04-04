@@ -115,7 +115,7 @@ export const AppleScroll = () => {
             // ← Mover canvas hacia abajo en última escena
             if (index === stops.length - 1) {
                 gsap.to({ val: canvasOffsetY }, {
-                    val: 80,
+                    val: 95,
                     duration: 1.5,
                     delay: 0.8,
                     ease: "power3.out",

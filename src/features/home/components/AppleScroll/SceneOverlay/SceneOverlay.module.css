@@ -25,18 +25,18 @@
 }
 
 .textWrapper {
-    max-width: 30%;
+    max-width: 40%;
     pointer-events: auto;
 }
 
 /* ── Estilos globales para el HTML inyectado ── */
 .textWrapper :global(.scene-title) {
-    font-size: clamp(2.2rem, 4vw, 4.2rem);
+    font-size: 5vw;
     font-weight: 800;
     color: #1a1a2e;
-    line-height: 1.1;
+    line-height: 1;
     margin: 0 0 1.2rem 0;
-    letter-spacing: -0.04em;
+    letter-spacing: 0.04em;
     display: flex;
     flex-direction: column;
 }
@@ -47,7 +47,7 @@
 }
 
 .textWrapper :global(.scene-desc) {
-    font-size: clamp(0.82rem, 1vw, 1rem);
+    font-size: clamp(1.1rem, 1vw, 1rem);
     width: 80%;
     color: #444;
     line-height: 1.6;
