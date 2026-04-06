@@ -11,7 +11,7 @@ import {ServicesHero} from "@/shared/components/ServicesHero/ServicesHero";
 export const HVACContainer = () => {
     const HVAC_DETAIL_CONTENT = {
         title: "HVAC Services for complete home comfort",
-        imgSrc: "/images/sections/hvac-detail.png",
+        imgSrc: "/images/ourServices/HVAC.webp",
         subtitle: "Expert HVAC Services to Keep Your Home Comfortable Year-Round",
         content: "At Advanced Plumbing & HVAC, we don’t just stop at plumbing – we’re also your trusted partner for reliable, energy-efficient HVAC services. Whether you need heating, ventilation, or air conditioning solutions, our experienced team is here to ensure your home or business stays comfortable no matter the season. From system installations to repairs and maintenance, we deliver quality service you can count on."
     };
@@ -37,7 +37,7 @@ export const HVACContainer = () => {
 
     return (
         <div >
-            <ServicesHero title={HVAC_DETAIL_CONTENT.title} content={HVAC_DETAIL_CONTENT.content}/>
+            <ServicesHero title={HVAC_DETAIL_CONTENT.title} content={HVAC_DETAIL_CONTENT.content} imgSrc={HVAC_DETAIL_CONTENT.imgSrc}/>
 
             {/* Sección Azul: Comprehensive HVAC Services */}
             <ComprehensiveServicesSection

@@ -11,7 +11,7 @@ import {ServicesHero} from "@/shared/components/ServicesHero/ServicesHero";
 export const FilterSystemContainer = () => {
     const FILTER_SYSTEM_CONTENT = {
         title: "FILTER system under sink installation Services",
-        imgSrc: "/images/about/sink-installation.jpeg",
+        imgSrc: "/images/ourServices/filter_system.webp",
         subtitle: "Enjoy Clean, Fresh Water Straight from the Tap",
         content: "Say goodbye to bottled water and hello to convenient, purified water in your home! Advanced Plumbing & HVAC specializes in under-sink water filter system installations that deliver crisp, clean water directly from your faucet. Whether you’re looking to improve the taste, remove harmful contaminants, or protect your family’s health, we’ve got you covered."
     };
@@ -42,7 +42,7 @@ export const FilterSystemContainer = () => {
     return (
         <div>
             {/* Hero */}
-            <ServicesHero title={FILTER_SYSTEM_CONTENT.title} content={FILTER_SYSTEM_CONTENT.content}/>
+            <ServicesHero title={FILTER_SYSTEM_CONTENT.title} content={FILTER_SYSTEM_CONTENT.content} imgSrc={FILTER_SYSTEM_CONTENT.imgSrc} />
 
             {/* Sección de Beneficios (Comprehensive) */}
             <ComprehensiveServicesSection

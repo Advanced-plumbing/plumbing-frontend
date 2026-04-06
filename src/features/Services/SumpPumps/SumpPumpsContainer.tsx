@@ -11,7 +11,7 @@ import {ServicesHero} from "@/shared/components/ServicesHero/ServicesHero";
 export const SumpPumpsContainer = () => {
     const SUMP_PUMP_DETAIL = {
         title: "EXPERT SUMP PUMP SERVICES",
-        imgSrc: "/images/sections/sump-pumps-detail.jpeg",
+        imgSrc: "/images/ourServices/sump_pumps.webp",
         subtitle: "Reliable Sump Pump Services to Keep Your Property Dry and Safe",
         content: "Safeguard your home or business from water damage and flooding with the professional sump pump services from Advanced Plumbing & HVAC. Sump pumps play a vital role in managing water levels around your foundation, helping to avoid expensive repairs related to flooding. Our skilled technicians offer a full range of sump pump services, including installation, maintenance, and repairs, to ensure that your property stays dry and protected."
     };
@@ -42,7 +42,7 @@ export const SumpPumpsContainer = () => {
     return (
         <div >
             {/* Hero enfocado en protección del hogar */}
-            <ServicesHero title={SUMP_PUMP_DETAIL.title} content={SUMP_PUMP_DETAIL.content}/>
+            <ServicesHero title={SUMP_PUMP_DETAIL.title} imgSrc={SUMP_PUMP_DETAIL.imgSrc} content={SUMP_PUMP_DETAIL.content}/>
 
             {/* Sección Azul: Catálogo de servicios de bombeo y respaldo */}
             <ComprehensiveServicesSection

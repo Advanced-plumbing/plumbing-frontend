@@ -114,10 +114,10 @@ export const AboutUs = () => {
                 {/* Images */}
                 <div className={styles.imageGrid}>
                     <div className={styles.mainImageWrapper}>
-                        <Image src="/images/about-us-1.png" alt="Advanced Plumbing technician" fill className={styles.image} />
+                        <Image src="/images/about-us-3.webp" alt="Advanced Plumbing technician" fill className={styles.image} />
                     </div>
                     <div className={styles.secondaryImageWrapper}>
-                        <Image src="/images/about-us-2.png" alt="Quality plumbing work" fill className={styles.image} />
+                        <Image src="/images/about-us-4.webp" alt="Quality plumbing work" fill className={styles.image} />
                     </div>
                 </div>
 

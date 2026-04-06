@@ -11,7 +11,7 @@ import {ServicesHero} from "@/shared/components/ServicesHero/ServicesHero";
 export const WaterHeaterReplacementContainer = () => {
     const REPLACEMENT_DETAIL_CONTENT = {
         title: "EXPERT WATER HEATER REPLACEMENT SERVICES",
-        imgSrc: "/images/sections/water-heater-replacement-detail.jpeg",
+        imgSrc: "/images/ourServices/water_heater.webp",
         subtitle: "Professional Water Heater Replacement Services for Reliable Hot Water",
         content: "When your water heater reaches the end of its lifespan, trust the experts at Advanced Plumbing & HVAC to provide a seamless replacement experience. We understand the importance of dependable hot water, and our experienced technicians are here to ensure you enjoy consistent, efficient heating for years to come. From selecting the right model to precise installation, we make the replacement process hassle-free."
     };
@@ -38,7 +38,7 @@ export const WaterHeaterReplacementContainer = () => {
     return (
         <div >
             {/* Hero enfocado en renovación de equipos */}
-            <ServicesHero title={REPLACEMENT_DETAIL_CONTENT.title} content={REPLACEMENT_DETAIL_CONTENT.content}/>
+            <ServicesHero title={REPLACEMENT_DETAIL_CONTENT.title} imgSrc={REPLACEMENT_DETAIL_CONTENT.imgSrc} content={REPLACEMENT_DETAIL_CONTENT.content}/>
 
             {/* Sección Azul: Los 4 pilares del servicio de reemplazo */}
             <ComprehensiveServicesSection

@@ -115,7 +115,7 @@
 .card {
     width: 100%;
     position: relative;
-    height: 480px;
+    height: 580px;
     border-radius: 2.5rem;
     overflow: hidden;
     display: flex;
@@ -144,8 +144,8 @@
     inset: 0;
     background: linear-gradient(
             to right,
-            rgba(5, 15, 35, 0.55) 0%,
-            rgba(5, 15, 35, 0.35) 45%,
+            rgba(5, 15, 35, 0.8) 10%,
+            rgba(5, 15, 35, 0.6) 45%,
             rgba(5, 15, 35, 0.05) 100%
     );
 }
@@ -160,7 +160,7 @@
     flex-direction: row;
     align-items: flex-end;
     justify-content: space-between;
-    padding: 2.5rem;
+    padding: 0.5rem 2.5rem 2.5rem 6rem;
     gap: 2rem;
 }
 .cardText {
@@ -172,10 +172,10 @@
     max-width: 420px;
 }
 .serviceTitle {
-    font-size: 2.8rem;
+    font-size: 3.8rem;
     font-weight: 800;
     line-height: 1.05;
-    letter-spacing: -0.03em;
+    letter-spacing: 0;
     margin: 0;
 }
 .titleWhite { color: #ffffff; }

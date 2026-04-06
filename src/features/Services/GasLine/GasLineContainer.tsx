@@ -11,7 +11,7 @@ import {ServicesHero} from "@/shared/components/ServicesHero/ServicesHero";
 export const GasLineContainer = () => {
     const GAS_LINE_CONTENT = {
         title: "Professional Gas LINE Services",
-        imgSrc: "/images/sections/gas-line-detail.jpeg",
+        imgSrc: "/images/ourServices/gas_line.webp",
         subtitle: "Safe and Reliable Gas Line Services",
         content: "Ensuring the proper installation and repair of gas lines is vital for the safety and efficiency of your residential or commercial property. At Advanced Plumbing & HVAC, we specialize in comprehensive gas line services, including installation, repairs, inspections, and maintenance, to guarantee your gas system functions safely and effectively. Our team of licensed professionals is committed to upholding rigorous safety standards, utilizing advanced tools and techniques to deliver reliable results."
     };
@@ -38,7 +38,7 @@ export const GasLineContainer = () => {
     return (
         <div >
             {/* Hero principal */}
-            <ServicesHero title={GAS_LINE_CONTENT.title} content={GAS_LINE_CONTENT.content}/>
+            <ServicesHero title={GAS_LINE_CONTENT.title} content={GAS_LINE_CONTENT.content} imgSrc={GAS_LINE_CONTENT.imgSrc}/>
 
             {/* Sección Azul (Lista de servicios específicos de Gas) */}
             <ComprehensiveServicesSection

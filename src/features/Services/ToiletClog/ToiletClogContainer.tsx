@@ -11,7 +11,7 @@ import {ServicesHero} from "@/shared/components/ServicesHero/ServicesHero";
 export const ToiletClogContainer = () => {
     const TOILET_CLOG_DETAIL = {
         title: "PROFESSIONAL TOILET CLOG REMOVAL",
-        imgSrc: "/images/sections/toilet-clog-detail.png",
+        imgSrc: "/images/ourServices/toilet_clog.webp",
         subtitle: "Fast and Reliable Toilet Clog Removal Services",
         content: "A clogged toilet can be a major disruption, but Advanced Plumbing & HVAC is here to restore your bathroom’s functionality quickly and effectively. Our experienced technicians handle all types of toilet clogs, from minor blockages to complex issues caused by buildup, foreign objects, or plumbing problems. With professional tools and a commitment to quality, we ensure long-lasting results that keep your plumbing running smoothly."
     };
@@ -38,7 +38,7 @@ export const ToiletClogContainer = () => {
     return (
         <div >
             {/* Hero enfocado en servicio rápido */}
-            <ServicesHero title={TOILET_CLOG_DETAIL.title} content={TOILET_CLOG_DETAIL.content}/>
+            <ServicesHero title={TOILET_CLOG_DETAIL.title} imgSrc={TOILET_CLOG_DETAIL.imgSrc} content={TOILET_CLOG_DETAIL.content}/>
 
             {/* Sección Azul: Detalle de servicios de limpieza y prevención */}
             <ComprehensiveServicesSection

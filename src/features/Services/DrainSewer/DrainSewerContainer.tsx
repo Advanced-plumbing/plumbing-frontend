@@ -38,14 +38,14 @@ export const DrainSewerContainer = () => {
 
     const DRAIN_SEWER_CONTENT = {
         title: "Professional Drain & Sewer Services",
-        imgSrc: "/images/sections/drain-sewer-cleaning-services.jpg",
+        imgSrc: "/images/ourServices/drain_cleaning.webp",
         subtitle: "Expert Drain and Sewer Cleaning for a Healthier Plumbing System",
         content: "Clogged drains and sewer lines can cause serious issues, ranging from slow drainage to significant backups. At Advanced Plumbing & HVAC, we specialize in providing professional drain and sewer cleaning services to maintain the efficiency of your plumbing system and to prevent disruptive clogs in your home or business."
     };
 
     return (
         <div >
-            <ServicesHero title={DRAIN_SEWER_CONTENT.title} content={DRAIN_SEWER_CONTENT.content}/>
+            <ServicesHero title={DRAIN_SEWER_CONTENT.title} content={DRAIN_SEWER_CONTENT.content} imgSrc={DRAIN_SEWER_CONTENT.imgSrc}/>
             <ComprehensiveServicesSection
                 title="OUR COMPREHENSIVE DRAIN & SEWER CLEANING SERVICES"
                 items={COMPREHENSIVE_ITEMS}

@@ -11,14 +11,14 @@ import {ServicesHero} from "@/shared/components/ServicesHero/ServicesHero";
 export const TanklessWaterHeaterContainer = () => {
     const TANKLESS_DETAIL_CONTENT = {
         title: "Tankless Water Heater Installation Services",
-        imgSrc: "/images/sections/tankless-water-heater-detail.jpeg",
+        imgSrc: "/images/ourServices/tankless_heater.webp",
         subtitle: "Upgrade to Endless Hot Water with Tankless Water Heater Installation",
         content: "Experience the ultimate in home comfort and efficiency with an on-demand water heating system. Advanced Plumbing & HVAC specializes in the professional installation of tankless water heaters, providing your household with a continuous supply of hot water while significantly reducing energy costs. Our expert technicians will help you transition from traditional bulky tanks to a modern, high-performance solution tailored to your hot water needs."
     };
 
     const TANKLESS_SERVICES_ITEMS = [
         {
-            subtitle: "uNLIMITED hOT WATER",
+            subtitle: "Unlimited Hot Wather",
             content: "With a tankless water heater, you’ll never have to worry about running out of hot water again. Enjoy a consistent supply for showers, laundry, and more—no matter the demand."
         },
         {
@@ -38,7 +38,7 @@ export const TanklessWaterHeaterContainer = () => {
     return (
         <div>
             {/* Hero enfocado en modernidad y eficiencia */}
-            <ServicesHero title={TANKLESS_DETAIL_CONTENT.title} content={TANKLESS_DETAIL_CONTENT.content}/>
+            <ServicesHero title={TANKLESS_DETAIL_CONTENT.title} imgSrc={TANKLESS_DETAIL_CONTENT.imgSrc} content={TANKLESS_DETAIL_CONTENT.content}/>
 
             {/* Sección Azul: Beneficios clave de la instalación sin tanque */}
             <ComprehensiveServicesSection

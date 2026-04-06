@@ -11,7 +11,7 @@ import {ServicesHero} from "@/shared/components/ServicesHero/ServicesHero";
 export const PlumbingInstallationContainer = () => {
     const INSTALLATION_DETAIL_CONTENT = {
         title: "Professional Plumbing Installation Services",
-        imgSrc: "/images/sections/plumbing-installation-detail.jpeg",
+        imgSrc: "/images/ourServices/plumbing_installation.webp",
         subtitle: "Expert Plumbing Installation Services for Dependable Performance",
         content: "At Advanced Plumbing & HVAC, we are committed to delivering exceptional plumbing installation services customized to fit the specific requirements of your residence or commercial property. Whether you are constructing a new space, renovating, or enhancing your existing plumbing system, our experienced technicians guarantee precise and careful installation. From water heaters to complete repiping, we ensure that your plumbing system operates efficiently and reliably for years to come."
     };
@@ -42,7 +42,7 @@ export const PlumbingInstallationContainer = () => {
     return (
         <div >
             {/* Hero Principal */}
-            <ServicesHero title={INSTALLATION_DETAIL_CONTENT.title} content={INSTALLATION_DETAIL_CONTENT.content}/>
+            <ServicesHero title={INSTALLATION_DETAIL_CONTENT.title} content={INSTALLATION_DETAIL_CONTENT.content} imgSrc={INSTALLATION_DETAIL_CONTENT.imgSrc}/>
 
             {/* Sección Azul: Lista de instalaciones específicas */}
             <ComprehensiveServicesSection

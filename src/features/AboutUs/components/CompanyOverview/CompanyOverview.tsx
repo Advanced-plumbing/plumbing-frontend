@@ -36,7 +36,7 @@ export const CompanyOverview = () => {
                         <div className={styles.mainImageWrapper}>
                             {/* Imagen principal: el fregadero con grifo negro */}
                             <Image
-                                src="/images/about/sink-installation.jpeg"
+                                src="/images/about-us-2.webp"
                                 alt="Professional plumbing installation"
                                 fill
                                 className={styles.image}

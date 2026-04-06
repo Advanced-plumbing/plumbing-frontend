@@ -11,7 +11,7 @@ import {ServicesHero} from "@/shared/components/ServicesHero/ServicesHero";
 export const InsuranceRepairContainer = () => {
     const INSURANCE_DETAIL_CONTENT = {
         title: "Expert Pipe burst repair Services",
-        imgSrc: "/images/sections/insurance-repair-detail.jpeg",
+        imgSrc: "/images/ourServices/pipe_burst_repair.webp",
         subtitle: "Reliable Insurance Pipe Burst Repair Services for a Swift Recovery",
         content: "When pipes burst unexpectedly, the damage can be overwhelming. Advanced Plumbing & HVAC specializes in rapid, professional repairs and works directly with insurance providers to make the process as stress-free as possible. With extensive experience in handling pipe bursts, we’re here to restore your home or business to its original condition while ensuring your claim is processed smoothly."
     };
@@ -42,7 +42,7 @@ export const InsuranceRepairContainer = () => {
     return (
         <div >
             {/* Hero principal */}
-            <ServicesHero title={INSURANCE_DETAIL_CONTENT.title} content={INSURANCE_DETAIL_CONTENT.content}/>
+            <ServicesHero title={INSURANCE_DETAIL_CONTENT.title} content={INSURANCE_DETAIL_CONTENT.content} imgSrc={INSURANCE_DETAIL_CONTENT.imgSrc}/>
 
             {/* Sección Azul: Detalle de servicios de seguros */}
             <ComprehensiveServicesSection

@@ -11,7 +11,7 @@ import {ServicesHero} from "@/shared/components/ServicesHero/ServicesHero";
 export const PlumbingRepairContainer = () => {
     const REPAIR_DETAIL_CONTENT = {
         title: "EXPERT PLUMBING REPAIR",
-        imgSrc: "/images/sections/plumbing-repair-detail.jpeg",
+        imgSrc: "/images/ourServices/plumbing_repair.webp",
         subtitle: "EXPERT PLUMBING REPAIR SERVICES YOU CAN TRUST",
         content: "When plumbing issues occur, Advanced Plumbing & HVAC is prepared to offer immediate and effective solutions tailored to your needs. Our technicians possess decades of combined experience and are trained to manage a broad array of plumbing repair tasks, ranging from common problems such as leaky faucets and clogged drains to more intricate pipe repairs and water line replacements. We strive to provide exceptional service, clear pricing, and enduring results."
     };
@@ -42,7 +42,7 @@ export const PlumbingRepairContainer = () => {
     return (
         <div>
             {/* Hero con imagen de acción/reparación */}
-            <ServicesHero title={REPAIR_DETAIL_CONTENT.title} content={REPAIR_DETAIL_CONTENT.content}/>
+            <ServicesHero title={REPAIR_DETAIL_CONTENT.title} imgSrc={REPAIR_DETAIL_CONTENT.imgSrc} content={REPAIR_DETAIL_CONTENT.content}/>
 
             {/* Sección Azul: Catálogo de reparaciones comunes */}
             <ComprehensiveServicesSection

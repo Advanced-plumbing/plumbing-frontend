@@ -6,6 +6,7 @@ import styles from './ServicesHero.module.css';
 interface ServicesHeroProps {
     title: string;
     content: string;
+    imgSrc?: string;
     boldContent?: string;
     extraContent?: string;
 }
@@ -19,7 +20,7 @@ const splitTitle = (title: string) => {
     return { white, blue };
 };
 
-export const ServicesHero = ({ title, content, boldContent, extraContent }: ServicesHeroProps) => {
+export const ServicesHero = ({ title, content, imgSrc, boldContent, extraContent }: ServicesHeroProps) => {
     const { white, blue } = splitTitle(title);
 
     return (
@@ -27,7 +28,7 @@ export const ServicesHero = ({ title, content, boldContent, extraContent }: Serv
 
             {/* Background image */}
             <Image
-                src="/images/ourServices/our_services_1.png"
+                src={imgSrc || "/images/ourServices/our_services_1.png"}
                 alt={title}
                 fill
                 priority

@@ -11,7 +11,7 @@ import {ServicesHero} from "@/shared/components/ServicesHero/ServicesHero";
 export const SewerInspectionContainer = () => {
     const SEWER_DETAIL_CONTENT = {
         title: "Sewer inspection w/ SeeSnake camera technology",
-        imgSrc: "/images/sections/sewer-inspection-detail.jpg",
+        imgSrc: "/images/ourServices/sewer_work.webp",
         subtitle: "Advanced Sewer Inspection with SeeSnake Camera Technology",
         content: "Discover hidden problems in your plumbing system with precision and clarity. Advanced Plumbing & HVAC offers professional sewer inspection services utilizing state-of-the-art SeeSnake camera technology. Our camera inspections enable us to diagnose and assess sewer and drain issues with exceptional accuracy, providing you with a clear understanding of your system’s condition and ensuring the appropriate solution for every problem."
     };
@@ -34,7 +34,7 @@ export const SewerInspectionContainer = () => {
     return (
         <div >
             {/* Hero con tecnología visual */}
-            <ServicesHero title={SEWER_DETAIL_CONTENT.title} content={SEWER_DETAIL_CONTENT.content}/>
+            <ServicesHero title={SEWER_DETAIL_CONTENT.title} imgSrc={SEWER_DETAIL_CONTENT.imgSrc} content={SEWER_DETAIL_CONTENT.content}/>
 
             {/* Sección Azul: Beneficios técnicos de la cámara */}
             <ComprehensiveServicesSection
