@@ -15,9 +15,20 @@ const montserrat = Montserrat({
     variable: '--font-montserrat',
 });
 
-// Definimos la fuente Eras Medium
+// Definimos la fuente Eras con sus variantes
 const erasFont = localFont({
-    src: './fonts/erasmd.ttf', // <--- Minúsculas
+    src: [
+        {
+            path: './fonts/erasmd.ttf',
+            weight: '500', // Medium
+            style: 'normal',
+        },
+        {
+            path: './fonts/eraslght.ttf',
+            weight: '300', // Light
+            style: 'normal',
+        },
+    ],
     variable: '--font-eras',
     display: 'swap',
 });

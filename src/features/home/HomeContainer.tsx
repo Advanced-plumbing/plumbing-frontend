@@ -4,13 +4,17 @@ import OurServices from "@/features/home/components/OurServices/OurServices";
 import BlogSection from "@/features/home/components/BlogsSection/BlogSection";
 import ContactBlue from "@/shared/components/ContactBlue/ContactBlue";
 import {MainHero} from "@/features/home/components/MainHero/mainHero";
-import {PipeAnimation} from "@/features/home/components/PipeAnimation/PipeAnimation";
 import {AppleScroll} from "@/features/home/components/AppleScroll/AppleScroll";
 
 export const HomeContainer = () => {
     return (
         <main style={{ margin: 0, padding: 0 }}>
             <AppleScroll />
+            <Accreditations/>
+            <AboutUs/>
+            <OurServices/>
+            <BlogSection />
+            <ContactBlue />
         </main>
     );
 };

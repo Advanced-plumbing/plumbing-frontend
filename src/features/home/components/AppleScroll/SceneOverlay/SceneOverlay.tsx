@@ -25,8 +25,7 @@ const scenes: Scene[] = [
         verticalAlign: "center",
         content: `
             <h2 class="scene-title">
-                Plumbing you can trust,
-                <span class="scene-accent">results that last.</span>
+                Plumbing you can trust, <span class="scene-accent">results that last.</span>
             </h2>
             <p class="scene-desc">
                 From fast repairs to full installations, we keep your home or business
