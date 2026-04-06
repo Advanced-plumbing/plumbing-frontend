@@ -31,7 +31,7 @@ const scenes: Scene[] = [
                 From fast repairs to full installations, we keep your home or business
                 running smoothly with trusted, <strong>long-lasting solutions.</strong>
             </p>
-            <a href="#contact" class="scene-btn">Get in touch</a>
+            <a href="/contact-us" class="scene-btn">Get in touch</a>
         `,
     },
     {

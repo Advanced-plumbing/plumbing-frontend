@@ -22,7 +22,7 @@ export const Footer = () => {
                     <h3 className={styles.contactTitle}>Get In Contact</h3>
                     <div className={styles.info}>
                         <p>(815) 666 2286</p>
-                        <p>975 Rand Rd, Des Plaines, IL 60016</p>
+                        <p>10 North Elmhurst Rd. Prospect Heights, IL 60016</p>
                         <p>advancedplumbingteam@gmail.com</p>
                     </div>
                     <a target="_blank" href="https://www.facebook.com/people/Advanced-Plumbing-Team/61570083030832/" className={styles.socialIcon}>
