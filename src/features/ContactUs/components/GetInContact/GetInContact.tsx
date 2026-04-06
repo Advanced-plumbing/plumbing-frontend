@@ -18,7 +18,7 @@ export const GetInContact = () => {
                             loading="lazy"
                             referrerPolicy="no-referrer-when-downgrade"
                         ></iframe>
-                        
+
                     </div>
 
                     {/* Lado de la Información */}
