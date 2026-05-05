@@ -244,6 +244,8 @@ export const SceneOverlay = ({ currentScene }: Props) => {
                 gsap.killTweensOf([el, ...Array.from(allChildren)]);
                 gsap.set(el, { opacity: 1, pointerEvents: "auto" });
 
+                const dynamicDelay = currentScene === 0 ? 0 : 2;
+
                 // Texto aparece primero
                 gsap.set(textEl, { opacity: 0, y: 24 });
                 gsap.to(textEl, {
@@ -251,8 +253,22 @@ export const SceneOverlay = ({ currentScene }: Props) => {
                     y: 0,
                     duration: 0.55,
                     ease: "power3.out",
-                    delay: 0.2,  // ← delay del texto
+                    delay: dynamicDelay,
                 });
+
+                if (tagEls.length > 0) {
+                    gsap.fromTo(tagEls,
+                        { opacity: 0, y: 24 },
+                        {
+                            opacity: 1,
+                            y: 0,
+                            duration: 0.55,
+                            ease: "power3.out",
+                            stagger: 0.15,
+                            delay: dynamicDelay + 0.2,
+                        }
+                    );
+                }
 
                 // Tags aparecen después
                 gsap.set(tagEls, { opacity: 0, y: 24 });
@@ -262,7 +278,7 @@ export const SceneOverlay = ({ currentScene }: Props) => {
                     duration: 0.55,
                     ease: "power3.out",
                     stagger: 0.15,
-                    delay: 1,  // ← delay de los tags (más tarde que el texto)
+                    delay: 2,  // ← delay de los tags (más tarde que el texto)
                 });
             } else {
                 gsap.killTweensOf(el);

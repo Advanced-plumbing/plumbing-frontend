@@ -18,41 +18,53 @@ export const AppleScroll = () => {
         let currentX = 0;
         let currentY = 0;
 
-        const PARALLAX_STRENGTH = 25; // px máximo de desplazamiento
-        const LERP_SPEED = 0.05;       // suavidad (más bajo = más lento)
+        const PARALLAX_STRENGTH = 25;
+        const LERP_SPEED = 0.05;
 
         const onMouseMove = (e: MouseEvent) => {
-            // Normalizar de -1 a 1 según posición en pantalla
-            mouseX = (e.clientX / window.innerWidth - 0.5) * -2;  // invertido
-            mouseY = (e.clientY / window.innerHeight - 0.5) * -2; // invertido
+            mouseX = (e.clientX / window.innerWidth - 0.5) * -2;
+            mouseY = (e.clientY / window.innerHeight - 0.5) * -2;
         };
 
         window.addEventListener("mousemove", onMouseMove);
-
 
         const canvas = canvasRef.current!;
         const ctx = canvas.getContext("2d")!;
         const wrapper = wrapperRef.current!;
 
-        const frameCount = 534;
+        const frameCount = 285;
         const images: HTMLImageElement[] = [];
-        const stops = [0, 186, 325, 435, 533]; // tus escenas
+        const stops = [0, 80, 141, 216, 280];
+
+        const burstImages: HTMLImageElement[] = [];
+        const burstFrameCount = 56; // De 145 a 200 son aprox 56 frames
+        let burstCurrentFrame = 0;
 
         // Preload imágenes
         for (let i = 0; i < frameCount; i++) {
             const img = new Image();
-            img.src = `/frames/frame_${String(i + 1).padStart(4, "0")}.jpg`;
+            img.src = `/plumbing-webp/plumbing_blur${String(i + 1).padStart(4, "0")}.webp`;
             images.push(img);
         }
 
+        for (let i = 145; i <= 200; i++) {
+            const img = new Image();
+            // Ajusta el padding según tus archivos (si es burst0145 usa padStart 4)
+            img.src = `/burst-webp/blur${String(i).padStart(4, "0")}.webp`;
+            burstImages.push(img);
+        }
+
         let currentIndex = 0;
-        let currentFrame = 0;
-        let targetFrame = 0;
+
+        // Objeto de control animable por GSAP para controlar el frame actual
+        const animationTarget = { frame: 0 };
         let isAnimating = false;
 
         // ── Render ──────────────────────────────────────────
         const render = () => {
-            const img = images[Math.round(currentFrame)];
+            // Redondeamos el valor flotante que nos da GSAP al entero más cercano
+            const frameIndex = Math.floor(animationTarget.frame);
+            const img = images[frameIndex];
             if (!img?.complete) return;
 
             const cw = canvas.width / (window.devicePixelRatio || 1);
@@ -63,6 +75,31 @@ export const AppleScroll = () => {
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.drawImage(img, (cw - dw) / 2, (ch - dh) / 2, dw, dh);
+        };
+
+        const renderBurst = () => {
+            // CAMBIO CLAVE: Solo renderizamos si NO estamos animando
+            // y si el índice actual es el de la escena del agua (2).
+            if (isAnimating || currentIndex !== 2 || burstImages.length === 0) {
+                // Opcional: Resetear el frame del loop para que siempre
+                // empiece de cero al detenerse la tubería.
+                burstCurrentFrame = 0;
+                return;
+            }
+
+            const img = burstImages[Math.floor(burstCurrentFrame)];
+            if (!img?.complete) return;
+
+            const cw = canvas.width / (window.devicePixelRatio || 1);
+            const ch = canvas.height / (window.devicePixelRatio || 1);
+            const scale = Math.max(cw / img.width, ch / img.height);
+            const dw = img.width * scale;
+            const dh = img.height * scale;
+
+            ctx.drawImage(img, (cw - dw) / 2, (ch - dh) / 2, dw, dh);
+
+            // Lógica de Loop
+            burstCurrentFrame = (burstCurrentFrame + 0.5) % burstImages.length;
         };
 
         // ── Resize ──────────────────────────────────────────
@@ -82,11 +119,11 @@ export const AppleScroll = () => {
 
         let canvasOffsetY = 0;
 
-
-        // ── Animación de inercia ─────────────────────────────
+        // ── Bucle de Animación (Solo encargado de Parallax y Redraw continuo) ──
+        let animationFrameId: number;
         const animate = () => {
-            currentFrame += (targetFrame - currentFrame) * 0.08;
-            render();
+            render(); // Dibuja el frame que GSAP está actualizando en tiempo real
+            renderBurst();
 
             currentX += (mouseX * PARALLAX_STRENGTH - currentX) * LERP_SPEED;
             currentY += (mouseY * PARALLAX_STRENGTH - currentY) * LERP_SPEED;
@@ -95,14 +132,13 @@ export const AppleScroll = () => {
             const floatY = Math.sin(time * 0.6) * 8;
             const floatX = Math.sin(time * 0.4) * 4;
 
-            // ← canvasOffsetY se suma aquí, nunca se sobreescribe
             canvas.style.transform = `scale(1.08) translate(${currentX + floatX}px, ${currentY + floatY + canvasOffsetY}px)`;
 
-            requestAnimationFrame(animate);
+            animationFrameId = requestAnimationFrame(animate);
         };
         animate();
 
-        // ── Ir a escena ──────────────────────────────────────
+        // ── Ir a escena (Manejo de curvas mediante GSAP de forma nativa) ──
         const goToScene = (index: number) => {
             if (isAnimating) return;
             if (index < 0 || index >= stops.length) return;
@@ -112,54 +148,37 @@ export const AppleScroll = () => {
             currentIndex = index;
             setCurrentScene(index);
 
-            // ← Mover canvas hacia abajo en última escena
-            if (index === stops.length - 1) {
-                gsap.to({ val: canvasOffsetY }, {
-                    val: 95,
-                    duration: 1.5,
-                    delay: 0.8,
-                    ease: "power3.out",
-                    onUpdate: function() {
-                        canvasOffsetY = this.targets()[0].val;
-                    },
-                });
-            } else {
-                gsap.to({ val: canvasOffsetY }, {
-                    val: 0,
-                    duration: 1.5,
-                    delay: 0,
-                    ease: "power3.out",
-                    onUpdate: function() {
-                        canvasOffsetY = this.targets()[0].val;
-                    },
-                });
-            }
+            if (index === 2) burstCurrentFrame = 0;
 
-            gsap.to({}, {
-                duration: 1.5,
-                ease: "power3.out",
-                onUpdate: function () {
-                    targetFrame = gsap.utils.interpolate(
-                        currentFrame,
-                        stops[currentIndex],
-                        this.progress()
-                    );
+            // Movimiento de compensación vertical del Canvas en la última escena
+            gsap.to({ val: canvasOffsetY }, {
+                val: index === stops.length - 1 ? 95 : 0,
+                duration: 1.4,
+                delay: index === stops.length - 1 ? 0.4 : 0,
+                ease: "none",
+                onUpdate: function() {
+                    canvasOffsetY = this.targets()[0].val;
                 },
+            });
+
+            // ANIMACIÓN CLAVE: GSAP cambia de forma fluida el número de frame
+            gsap.to(animationTarget, {
+                frame: stops[index],
+                duration: 2,          // Duración de la transición entre paradas
+                ease: "none",
+                onUpdate: render,       // Fuerza el renderizado por cada sutil cambio decimal
                 onComplete: () => {
-                    targetFrame = stops[currentIndex];
-                    currentFrame = stops[currentIndex];
                     isAnimating = false;
                 },
             });
         };
 
-        // ── Wheel handler — el corazón del fix ───────────────
+        // ── Wheel & Touch handlers ───────────────────────────
         let wheelAccum = 0;
         const WHEEL_THRESHOLD = 80;
-        let touchStartY = 0; // ← agrégalo aquí
+        let touchStartY = 0;
 
         const onWheel = (e: WheelEvent) => {
-            // Liberar solo si estás en la última escena Y la animación ya terminó
             if (currentIndex === stops.length - 1 && !isAnimating && e.deltaY > 0) return;
             if (currentIndex === 0 && !isAnimating && e.deltaY < 0) return;
 
@@ -194,7 +213,6 @@ export const AppleScroll = () => {
             goToScene(currentIndex + (delta > 0 ? 1 : -1));
         };
 
-        // 🔑 Escuchar en el WRAPPER, no en window
         wrapper.addEventListener("wheel", onWheel, { passive: false });
         wrapper.addEventListener("touchstart", onTouchStart, { passive: true });
         wrapper.addEventListener("touchend", onTouchEnd, { passive: true });
@@ -205,6 +223,7 @@ export const AppleScroll = () => {
             wrapper.removeEventListener("touchstart", onTouchStart);
             wrapper.removeEventListener("touchend", onTouchEnd);
             window.removeEventListener("mousemove", onMouseMove);
+            cancelAnimationFrame(animationFrameId);
         };
     }, []);
 
