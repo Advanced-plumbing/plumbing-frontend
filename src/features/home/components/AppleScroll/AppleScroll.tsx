@@ -1,18 +1,39 @@
 "use client";
-import { useState } from "react";
-import { useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 import styles from "./AppleScroll.module.css";
-import { SceneOverlay} from "@/features/home/components/AppleScroll/SceneOverlay/SceneOverlay";
+import { SceneOverlay } from "@/features/home/components/AppleScroll/SceneOverlay/SceneOverlay";
 
+const isMobile = () =>
+    typeof window !== "undefined" && window.innerWidth <= 768;
 
 export const AppleScroll = () => {
     const [currentScene, setCurrentScene] = useState(0);
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const wrapperRef = useRef<HTMLDivElement>(null);
+    const videoRef = useRef<HTMLVideoElement>(null);
+    const [mobile, setMobile] = useState(false);
 
+    // Detectar mobile en el cliente
     useEffect(() => {
-        // ── Parallax con mouse ───────────────────────────────
+        setMobile(isMobile());
+        const onResize = () => setMobile(isMobile());
+        window.addEventListener("resize", onResize);
+        return () => window.removeEventListener("resize", onResize);
+    }, []);
+
+    // ── MOBILE: video en loop ────────────────────────────────
+    useEffect(() => {
+        if (!mobile) return;
+        const video = videoRef.current;
+        if (!video) return;
+        video.play().catch(() => {});
+    }, [mobile]);
+
+    // ── DESKTOP: lógica original con canvas ─────────────────
+    useEffect(() => {
+        if (mobile) return;
+
         let mouseX = 0;
         let mouseY = 0;
         let currentX = 0;
@@ -37,10 +58,9 @@ export const AppleScroll = () => {
         const stops = [0, 80, 141, 216, 280];
 
         const burstImages: HTMLImageElement[] = [];
-        const burstFrameCount = 56; // De 145 a 200 son aprox 56 frames
+        const burstFrameCount = 56;
         let burstCurrentFrame = 0;
 
-        // Preload imágenes
         for (let i = 0; i < frameCount; i++) {
             const img = new Image();
             img.src = `/plumbing-webp/plumbing_blur${String(i + 1).padStart(4, "0")}.webp`;
@@ -49,20 +69,15 @@ export const AppleScroll = () => {
 
         for (let i = 145; i <= 200; i++) {
             const img = new Image();
-            // Ajusta el padding según tus archivos (si es burst0145 usa padStart 4)
             img.src = `/burst-webp/blur${String(i).padStart(4, "0")}.webp`;
             burstImages.push(img);
         }
 
         let currentIndex = 0;
-
-        // Objeto de control animable por GSAP para controlar el frame actual
         const animationTarget = { frame: 0 };
         let isAnimating = false;
 
-        // ── Render ──────────────────────────────────────────
         const render = () => {
-            // Redondeamos el valor flotante que nos da GSAP al entero más cercano
             const frameIndex = Math.floor(animationTarget.frame);
             const img = images[frameIndex];
             if (!img?.complete) return;
@@ -78,11 +93,7 @@ export const AppleScroll = () => {
         };
 
         const renderBurst = () => {
-            // CAMBIO CLAVE: Solo renderizamos si NO estamos animando
-            // y si el índice actual es el de la escena del agua (2).
             if (isAnimating || currentIndex !== 2 || burstImages.length === 0) {
-                // Opcional: Resetear el frame del loop para que siempre
-                // empiece de cero al detenerse la tubería.
                 burstCurrentFrame = 0;
                 return;
             }
@@ -97,12 +108,9 @@ export const AppleScroll = () => {
             const dh = img.height * scale;
 
             ctx.drawImage(img, (cw - dw) / 2, (ch - dh) / 2, dw, dh);
-
-            // Lógica de Loop
             burstCurrentFrame = (burstCurrentFrame + 0.5) % burstImages.length;
         };
 
-        // ── Resize ──────────────────────────────────────────
         const resizeCanvas = () => {
             const dpr = window.devicePixelRatio || 1;
             canvas.width = window.innerWidth * dpr;
@@ -118,11 +126,10 @@ export const AppleScroll = () => {
         images[0].onload = render;
 
         let canvasOffsetY = 0;
-
-        // ── Bucle de Animación (Solo encargado de Parallax y Redraw continuo) ──
         let animationFrameId: number;
+
         const animate = () => {
-            render(); // Dibuja el frame que GSAP está actualizando en tiempo real
+            render();
             renderBurst();
 
             currentX += (mouseX * PARALLAX_STRENGTH - currentX) * LERP_SPEED;
@@ -138,7 +145,6 @@ export const AppleScroll = () => {
         };
         animate();
 
-        // ── Ir a escena (Manejo de curvas mediante GSAP de forma nativa) ──
         const goToScene = (index: number) => {
             if (isAnimating) return;
             if (index < 0 || index >= stops.length) return;
@@ -150,30 +156,27 @@ export const AppleScroll = () => {
 
             if (index === 2) burstCurrentFrame = 0;
 
-            // Movimiento de compensación vertical del Canvas en la última escena
             gsap.to({ val: canvasOffsetY }, {
                 val: index === stops.length - 1 ? 95 : 0,
                 duration: 1.4,
                 delay: index === stops.length - 1 ? 0.4 : 0,
                 ease: "none",
-                onUpdate: function() {
+                onUpdate: function () {
                     canvasOffsetY = this.targets()[0].val;
                 },
             });
 
-            // ANIMACIÓN CLAVE: GSAP cambia de forma fluida el número de frame
             gsap.to(animationTarget, {
                 frame: stops[index],
-                duration: 2,          // Duración de la transición entre paradas
+                duration: 2,
                 ease: "none",
-                onUpdate: render,       // Fuerza el renderizado por cada sutil cambio decimal
+                onUpdate: render,
                 onComplete: () => {
                     isAnimating = false;
                 },
             });
         };
 
-        // ── Wheel & Touch handlers ───────────────────────────
         let wheelAccum = 0;
         const WHEEL_THRESHOLD = 80;
         let touchStartY = 0;
@@ -219,19 +222,39 @@ export const AppleScroll = () => {
 
         return () => {
             window.removeEventListener("resize", resizeCanvas);
+            window.removeEventListener("mousemove", onMouseMove);
             wrapper.removeEventListener("wheel", onWheel);
             wrapper.removeEventListener("touchstart", onTouchStart);
             wrapper.removeEventListener("touchend", onTouchEnd);
-            window.removeEventListener("mousemove", onMouseMove);
             cancelAnimationFrame(animationFrameId);
         };
-    }, []);
+    }, [mobile]);
 
+    // ── MOBILE: render video ─────────────────────────────────
+    if (mobile) {
+        return (
+            <div className={styles.wrapper} data-header-theme="dark">
+                <video
+                    ref={videoRef}
+                    className={styles.mobileVideo}
+                    src="/animation/animation.mp4"
+                    muted
+                    autoPlay
+                    loop
+                    playsInline
+                    disablePictureInPicture
+                    preload="auto"
+                />
+                <SceneOverlay currentScene={0} />
+            </div>
+        );
+    }
+
+    // ── DESKTOP: render canvas ───────────────────────────────
     return (
-        // height: 100vh — ya NO necesitas 500vh
         <div ref={wrapperRef} className={styles.wrapper} data-header-theme="dark">
             <canvas ref={canvasRef} className={styles.canvas} />
-            <SceneOverlay currentScene={currentScene} /> {/* ← agregar */}
+            <SceneOverlay currentScene={currentScene} />
         </div>
     );
 };
