@@ -238,6 +238,10 @@
 
 /* ─── TABLET (max 1024px) ─── */
 @media (max-width: 1024px) {
+    .section {
+        margin: 1rem 100px;
+    }
+
     .container {
         grid-template-columns: 1fr;
         gap: 2.5rem;
@@ -299,6 +303,7 @@
 @media (max-width: 768px) {
     .section {
         padding: 4rem 0 0;
+        margin: 1rem 30px;
     }
 
     .container {

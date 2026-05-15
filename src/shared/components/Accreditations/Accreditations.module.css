@@ -72,12 +72,18 @@
         grid-template-columns: repeat(2, 1fr); /* 2x2 en Tablets */
         gap: 1.5rem;
     }
+    .container {
+        margin: 0 100px;
+    }
     .title {
         font-size: 2rem;
     }
 }
 
 @media (max-width: 640px) {
+    .container {
+        margin: 0 20px;
+    }
     .logoGrid {
         grid-template-columns: 1fr; /* 1 columna en móvil */
     }

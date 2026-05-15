@@ -45,7 +45,7 @@ export const CompanyOverview = () => {
                         <div className={styles.bottomImages}>
                             <div className={styles.subImage}>
                                 <Image
-                                    src="/images/about/sink-detail.jpeg"
+                                    src="/images/about/sink-detail.webp"
                                     alt="Sink detail"
                                     fill
                                     className={styles.image}
@@ -53,7 +53,7 @@ export const CompanyOverview = () => {
                             </div>
                             <div className={styles.subImage}>
                                 <Image
-                                    src="/images/about/piping-detail.jpeg"
+                                    src="/images/about/piping-detail.webp"
                                     alt="Piping work"
                                     fill
                                     className={styles.image}

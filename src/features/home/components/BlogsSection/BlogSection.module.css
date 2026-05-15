@@ -194,6 +194,8 @@
 
 /* ─── TABLET ─── */
 @media (max-width: 1024px) {
+    .section { padding: 4rem 0 3.5rem;  }
+    .container{margin: 1rem 50px 1rem;}
     .sectionTitle { font-size: 2.4rem; }
     .grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
     .card:nth-child(3) { display: none; }
@@ -202,7 +204,7 @@
 /* ─── MOBILE ─── */
 @media (max-width: 768px) {
     .section { padding: 4rem 0 3.5rem; }
-    .container { padding: 0 1.25rem; gap: 2rem; }
+    .container { padding: 0; gap: 1rem; }
     .sectionTitle { font-size: 2rem; }
     .grid { grid-template-columns: 1fr; gap: 1.25rem; }
     .card:nth-child(3) { display: flex; }

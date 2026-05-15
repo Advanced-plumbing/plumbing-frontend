@@ -5,22 +5,22 @@ import styles from './WhyChooseUs.module.css';
 const WHY_DATA = [
     {
         title: "Rapid Emergency Services",
-        image: "/images/services/emergency.png",
+        image: "/images/services/emergency.webp",
         description: "Plumbing problems don't wait, and neither do we. With our emergency repair services, you'll have a team you can count on."
     },
     {
         title: "Upfront, Transparent Pricing",
-        image: "/images/services/pricing.png",
+        image: "/images/services/pricing.webp",
         description: "No surprises, just honest pricing. We offer clear, upfront quotes so you always know what to expect."
     },
     {
         title: "Quality Workmanship With Warranties",
-        image: "/images/services/quality.png",
+        image: "/images/services/quality.webp",
         description: "We stand by the quality of our work. All repairs come with a satisfaction guarantee and warranties for peace of mind."
     },
     {
         title: "Eco-Friendly Solutions",
-        image: "/images/services/eco.png",
+        image: "/images/services/eco.webp",
         description: "We are committed to providing green plumbing solutions whenever possible to reduce environmental impact."
     }
 ];

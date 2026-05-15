@@ -2,10 +2,10 @@ import Image from "next/image";
 import styles from "./Accreditations.module.css";
 
 const partnerLogos = [
-    { src: "/logos/bbb-logo.png", alt: "BBB Accredited Business", width: 180 },
-    { src: "/logos/birdeye-logo.png", alt: "Birdeye Reviews", width: 160 },
-    { src: "/logos/google-reviews-logo.png", alt: "Google Reviews 5 Stars", width: 180 },
-    { src: "/logos/yelp-logo.png", alt: "Yelp Reviews 5 Stars", width: 140 },
+    { src: "/logos/bbb-logo.webp", alt: "BBB Accredited Business", width: 180 },
+    { src: "/logos/birdeye-logo.webp", alt: "Birdeye Reviews", width: 160 },
+    { src: "/logos/google-reviews-logo.webp", alt: "Google Reviews 5 Stars", width: 180 },
+    { src: "/logos/yelp-logo.webp", alt: "Yelp Reviews 5 Stars", width: 140 },
 ];
 
 export const Accreditations = () => {

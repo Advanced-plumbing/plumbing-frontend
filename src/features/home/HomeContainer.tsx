@@ -3,7 +3,6 @@ import {AboutUs} from "@/features/home/components/AboutUs/AboutUs";
 import OurServices from "@/features/home/components/OurServices/OurServices";
 import BlogSection from "@/features/home/components/BlogsSection/BlogSection";
 import ContactBlue from "@/shared/components/ContactBlue/ContactBlue";
-import {MainHero} from "@/features/home/components/MainHero/mainHero";
 import {AppleScroll} from "@/features/home/components/AppleScroll/AppleScroll";
 
 export const HomeContainer = () => {

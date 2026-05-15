@@ -5,10 +5,10 @@ import Link from "next/link";
 import styles from "./AboutUsMain.module.css";
 
 const partnerLogos = [
-    { src: "/logos/bbb-logo-white.png", alt: "BBB Accredited Business", width: 180 },
-    { src: "/logos/birdeye-logo-white.png", alt: "Birdeye Reviews", width: 160 },
-    { src: "/logos/google-reviews-logo-white.png", alt: "Google Reviews 5 Stars", width: 180 },
-    { src: "/logos/yelp-logo-white.png", alt: "Yelp Reviews 5 Stars", width: 140 },
+    { src: "/logos/bbb-logo-white.webp", alt: "BBB Accredited Business", width: 180 },
+    { src: "/logos/birdeye-logo-white.webp", alt: "Birdeye Reviews", width: 160 },
+    { src: "/logos/google-reviews-logo-white.webp", alt: "Google Reviews 5 Stars", width: 180 },
+    { src: "/logos/yelp-logo-white.webp", alt: "Yelp Reviews 5 Stars", width: 140 },
 ];
 
 export const AboutUsMain = () => {
@@ -40,7 +40,7 @@ export const AboutUsMain = () => {
                 {/* ── LEFT: texto ── */}
                 <div className={`${styles.textCol} ${visible ? styles.textVisible : ""}`}>
                     <h1 className={styles.title}>
-                        Reliable Plumbing<br />You Can Trust
+                        Reliable Plumbing<br className="hidden md:inline" />You Can Trust
                     </h1>
                     <p className={styles.body}>
                         We're more than a plumbing company—we're your trusted partner in
@@ -135,7 +135,7 @@ export const AboutUsMain = () => {
                     <div className={`${styles.bottomCard} ${visible ? styles.bottomCardVisible : ""}`}>
                         {/* Capa 1: imagen de fondo */}
                         <Image
-                            src="/images/bottom-card.png"
+                            src="/images/bottom-card.webp"
                             alt="Plumbing background"
                             fill
                             className={styles.bottomBg}
@@ -144,7 +144,7 @@ export const AboutUsMain = () => {
                         {/* Capa 2: trabajador — sube desde abajo */}
                         <div className={`${styles.staffWrap} ${visible ? styles.staffVisible : ""}`}>
                             <Image
-                                src="/images/main-staff.png"
+                                src="/images/main-staff.webp"
                                 alt="Advanced Plumbing staff"
                                 fill
                                 className={styles.staffImg}

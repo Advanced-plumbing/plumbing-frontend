@@ -17,7 +17,7 @@ export const BLOGS: Blog[] = [
         date: "December 3, 2024",
         slug: "reasons-install-sump-pump",
         preview: "Your basement might be out of sight, but it should never be out of mind—especially when it comes to protecting it from water damage. A sump pump is your first line of defense.",
-        image: "/images/blog/reasons-install-sump-pump.jpg",
+        image: "/images/blog/reasons-install-sump-pump.webp",
         content: `
         <p>Basements are naturally prone to water accumulation, especially during heavy Midwest rainfalls or snowmelt. A sump pump is your first line of defense against water damage, keeping your space dry and your belongings safe.</p>
         
@@ -50,7 +50,7 @@ export const BLOGS: Blog[] = [
         date: "December 3, 2024",
         slug: "prevent-frozen-pipes-winter",
         preview: "Winter is here, and while the season brings snow and cozy nights, it can also bring a hidden danger to your home: frozen pipes. When water freezes, it expands with enough force to burst pipes...",
-        image: "/images/blog/prevent-frozen-pipes-winter.jpg",
+        image: "/images/blog/prevent-frozen-pipes-winter.webp",
         content: `
         <p>Winter is here, and while the season brings snow and cozy nights, it can also bring a hidden danger to your home: frozen pipes. When water freezes in your pipes, it expands with enough force to burst even the strongest metal. Prevention is much cheaper and easier than dealing with a burst pipe disaster.</p>
         
@@ -89,7 +89,7 @@ export const BLOGS: Blog[] = [
         date: "December 3, 2024",
         slug: "sewer-camera-inspection-guide",
         preview: "If you’re dealing with recurring clogs, slow drains, or mysterious plumbing issues, a sewer camera inspection could be the key to uncovering the problem. No more guesswork—just high-definition results.",
-        image: "/images/blog/sewer-camera-inspection-guide.jpg",
+        image: "/images/blog/sewer-camera-inspection-guide.webp",
         content: `
         <p>Traditional plumbing diagnosis often involved guesswork and invasive digging. With a sewer camera inspection, we take the mystery out of the equation using high-definition fiber optic cameras to see exactly what's happening underground.</p>
         
@@ -129,7 +129,7 @@ export const BLOGS: Blog[] = [
         date: "February 7, 2025",
         slug: "winterizing-your-plumbing-midwest",
         preview: "Winters in the Midwest are no joke. Between freezing temperatures and unexpected weather swings, your plumbing can take a serious hit if not properly prepared. Frozen pipes, burst lines, and water damage are just a few of the challenges homeowners face during the colder months.",
-        image: "/images/blog/winterizing-your-plumbing-midwest.png",
+        image: "/images/blog/winterizing-your-plumbing-midwest.webp",
         content: `
         <p>Winters in the Midwest are no joke. Between freezing temperatures and unexpected weather swings, your plumbing can take a serious hit if not properly prepared. Frozen pipes, burst lines, and water damage are just a few of the challenges homeowners face during the colder months. The good news? With the right steps, you can protect your home and avoid costly repairs. At <strong>Advanced Plumbing & HVAC</strong>, we’re dedicated to helping Midwest homeowners stay warm, safe, and worry-free. Below, we’ve gathered essential tips to winterize your plumbing this season.</p>
         
@@ -196,7 +196,7 @@ export const BLOGS: Blog[] = [
         date: "February 5, 2025",
         slug: "choosing-right-hvac-system-midwest",
         preview: "Choosing the best HVAC system for your Midwest home requires thoughtful consideration of several factors. From energy efficiency to heating capacity, here is what you need to know.",
-        image: "/images/blog/choosing-right-hvac-system-midwest.png",
+        image: "/images/blog/choosing-right-hvac-system-midwest.webp",
         content: `
         <p>Your HVAC (Heating, Ventilation, and Air Conditioning) system is more than just a way to control indoor temperature. It shapes your home’s comfort, energy efficiency, and monthly utility costs while also impacting the overall air quality in your living space. A modern, well-chosen HVAC system keeps you comfortable year-round and saves you money in the long run by operating efficiently.</p>
         

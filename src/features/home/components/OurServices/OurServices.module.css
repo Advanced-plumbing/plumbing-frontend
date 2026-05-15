@@ -2,7 +2,7 @@
 .section {
     position: relative;
     background-color: #f4f4f4;
-    padding: 10rem 0 15rem 0;
+    padding: 5rem 0 10rem 0;
     border-top-left-radius: 40px;
     border-top-right-radius: 40px;
 }
@@ -23,6 +23,7 @@
     object-fit: contain;
     object-position: left top;
     opacity: 0.5;
+    margin-left: -20px !important;
 }
 
 /* ─── Container — title, cardWrapper, tabs all same width ─── */
@@ -280,6 +281,14 @@
 
 /* ─── TABLET ─── */
 @media (max-width: 1024px) {
+    .section {
+        padding: 7rem 100px 7rem;
+    }
+    .vectorImg {
+        width: 420px !important;
+        margin-top: 0;
+        margin-left: -20px !important;
+    }
     .sectionTitle { font-size: 2.4rem; }
     .card { height: 420px; }
     .cardContent {

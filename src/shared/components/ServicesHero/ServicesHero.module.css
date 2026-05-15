@@ -117,7 +117,7 @@
 
 /* ── TABLET ── */
 @media (max-width: 1024px) {
-    .container { padding: 0 32px; }
+    .container { padding: 90px 100px 50px; }
 
     .textWrapper { max-width: 420px; }
 
@@ -128,7 +128,7 @@
 @media (max-width: 768px) {
     .section { height: 100svh; }
 
-    .container { padding: 0 24px; }
+    .container { padding: 90px 30px 30px !important; }
 
     .textWrapper { max-width: 100%; }
 
@@ -149,7 +149,6 @@
 
 /* ── MOBILE ── */
 @media (max-width: 480px) {
-    .container { padding: 0 20px; }
 
     .title { font-size: 2.1rem; }
 
