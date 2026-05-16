@@ -1,9 +1,6 @@
 "use client";
 import React from 'react';
-import { ContactUsToday } from "@/shared/components/ContactUsToday/ContactUsToday";
 import ContactBlue from "@/shared/components/ContactBlue/ContactBlue";
-import { Accreditations } from "@/shared/components/Accreditations/Accreditations";
-import { ServiceDetailSection } from "@/shared/components/ServiceDetailSection/ServiceDetailSection";
 import { ComprehensiveServicesSection } from "@/shared/components/ComprehensiveServicesSection/ComprehensiveServicesSection";
 import { WhyChooseUs } from "@/shared/components/WhyChooseUs/WhyChooseUs";
 import {ServicesHero} from "@/shared/components/ServicesHero/ServicesHero";
