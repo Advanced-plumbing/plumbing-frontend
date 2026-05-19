@@ -68,7 +68,7 @@ export const CoreValues = () => {
         <section ref={sectionRef} className={styles.section} data-header-theme="dark">
 
             <div className={styles.vectorBg}>
-                <Image src="/images/vector-alt.png" alt="" fill className={styles.vectorImg} />
+                <Image src="/images/vector-alt.webp" alt="" fill className={styles.vectorImg} />
             </div>
 
             <div className={styles.container}>

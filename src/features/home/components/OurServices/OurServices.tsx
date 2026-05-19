@@ -145,7 +145,7 @@ export default function OurServices() {
     return (
         <section className={styles.section} data-header-theme="dark">
             <div className={styles.vectorBg}>
-                <Image src="/images/vector.png" alt="" width={0} height={0} sizes="100vw" className={styles.vectorImg} aria-hidden />
+                <Image src="/images/vector.webp" alt="" width={0} height={0} sizes="100vw" className={styles.vectorImg} aria-hidden />
             </div>
 
             <div className={styles.container}>

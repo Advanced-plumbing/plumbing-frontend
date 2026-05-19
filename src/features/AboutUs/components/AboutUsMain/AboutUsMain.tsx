@@ -40,7 +40,8 @@ export const AboutUsMain = () => {
                 {/* ── LEFT: texto ── */}
                 <div className={`${styles.textCol} ${visible ? styles.textVisible : ""}`}>
                     <h1 className={styles.title}>
-                        Reliable Plumbing<br className="hidden md:inline" />You Can Trust
+                        <span className="block md:inline">Reliable Plumbing</span>
+                        <span className="block md:inline">You Can Trust</span>
                     </h1>
                     <p className={styles.body}>
                         We're more than a plumbing company—we're your trusted partner in

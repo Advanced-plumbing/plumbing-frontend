@@ -18,7 +18,7 @@ const BlogSection = () => {
         <section className={styles.section} data-header-theme="dark">
             {/* Decorative vector — right side */}
             <div className={styles.vectorRight} aria-hidden>
-                <Image src="/images/vector-right.png" alt="" width={0} height={0} sizes="100vw" className={styles.vectorImg} aria-hidden />
+                <Image src="/images/vector-right.webp" alt="" width={0} height={0} sizes="100vw" className={styles.vectorImg} aria-hidden />
             </div>
 
             <div className={styles.container}>
