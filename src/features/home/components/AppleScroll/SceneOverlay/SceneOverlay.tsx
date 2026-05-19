@@ -7,7 +7,6 @@ interface Tag {
     label: string;
     top: string;   // % del viewport — donde está el LABEL
     left: string;  // % del viewport — donde está el LABEL
-    // El punto TARGET en % del viewport (donde apunta la línea)
     targetTop: string;
     targetLeft: string;
 }
@@ -213,10 +212,10 @@ const TagLine = ({ tag }: { tag: Tag }) => {
                 <polyline
                     points="0,0 0,0 0,0"
                     fill="none"
-                    stroke="rgba(26,26,46,0.45)"
-                    strokeWidth="1.2"
+                    stroke="rgba(255,255,255,1)"
+                    strokeWidth="2"
                 />
-                <circle cx="0" cy="0" r="2.5" fill="#1a1a2e" opacity="0.45" />
+                <circle cx="0" cy="0" r="2.5" fill="#ffffff" opacity="1" />
             </svg>
             <span className={styles.tagLabel}>{tag.label}</span>
         </div>

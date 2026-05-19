@@ -98,13 +98,13 @@
     display: block;
     position: relative;
     z-index: 2; /* label encima del SVG */
-    font-size: 1rem;
-    color: #1a1a2e;
-    background: rgba(255, 255, 255, 0.75);
+    font-size: 1.1rem;
+    color: #000000;
+    background: #e3e2e2;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 0.28rem 0.8rem;
+    border: 2px solid rgba(255, 255, 255, 1);
+    padding: 0.4rem 2rem;
     border-radius: 999px;
     white-space: nowrap;
 }

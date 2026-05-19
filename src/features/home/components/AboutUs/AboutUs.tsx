@@ -117,7 +117,7 @@ export const AboutUs = () => {
                         <Image src="/images/about-us-3.webp" alt="Advanced Plumbing technician" fill className={styles.image} />
                     </div>
                     <div className={styles.secondaryImageWrapper}>
-                        <Image src="/images/about-us-4.webp" alt="Quality plumbing work" fill className={styles.image} />
+                        <Image src="/images/about-us-4.webp" alt="Quality plumbing work" fill className={styles.image} sizes="(max-width: 768px) 100vw, 450px" />
                     </div>
                 </div>
 
