@@ -30,7 +30,7 @@ export const AppleScroll = () => {
         video.play().catch(() => {});
     }, [mobile]);
 
-    // ── DESKTOP: lógica original con canvas ─────────────────
+    // ── DESKTOP: lógica optimizada con canvas ─────────────────
     useEffect(() => {
         if (mobile) return;
 
@@ -58,20 +58,31 @@ export const AppleScroll = () => {
         const stops = [0, 80, 141, 216, 280];
 
         const burstImages: HTMLImageElement[] = [];
-        const burstFrameCount = 56;
         let burstCurrentFrame = 0;
 
-        for (let i = 0; i < frameCount; i++) {
+        // 1. CARGA CRÍTICA INICIAL (Optimiza FCP / LCP cargando solo la primera escena inmediatamente)
+        for (let i = 0; i <= stops[1]; i++) {
             const img = new Image();
             img.src = `/plumbing-webp/plumbing_blur${String(i + 1).padStart(4, "0")}.webp`;
-            images.push(img);
+            images[i] = img;
         }
 
-        for (let i = 145; i <= 200; i++) {
-            const img = new Image();
-            img.src = `/burst-webp/blur${String(i).padStart(4, "0")}.webp`;
-            burstImages.push(img);
-        }
+        // 2. LAZY PRELOAD (Difiere el resto de imágenes 400ms para demoler el Total Blocking Time)
+        setTimeout(() => {
+            // Cargar el resto de la tubería
+            for (let i = stops[1] + 1; i < frameCount; i++) {
+                const img = new Image();
+                img.src = `/plumbing-webp/plumbing_blur${String(i + 1).padStart(4, "0")}.webp`;
+                images[i] = img;
+            }
+
+            // Cargar la secuencia del Burst (agua)
+            for (let i = 145; i <= 200; i++) {
+                const img = new Image();
+                img.src = `/burst-webp/blur${String(i).padStart(4, "0")}.webp`;
+                burstImages.push(img);
+            }
+        }, 400);
 
         let currentIndex = 0;
         const animationTarget = { frame: 0 };
@@ -129,11 +140,21 @@ export const AppleScroll = () => {
         let animationFrameId: number;
 
         const animate = () => {
-            render();
-            renderBurst();
+            // Calcular diferencias de movimiento del mouse (Parallax)
+            const deltaX = mouseX * PARALLAX_STRENGTH - currentX;
+            const deltaY = mouseY * PARALLAX_STRENGTH - currentY;
 
-            currentX += (mouseX * PARALLAX_STRENGTH - currentX) * LERP_SPEED;
-            currentY += (mouseY * PARALLAX_STRENGTH - currentY) * LERP_SPEED;
+            // RENDER CONDICIONAL INTELIGENTE:
+            // Solo ejecuta el pesado dibujo si la tubería se mueve, el mouse cambia de posición o el agua está activa.
+            const shouldRender = isAnimating || Math.abs(deltaX) > 0.1 || Math.abs(deltaY) > 0.1 || (currentIndex === 2);
+
+            if (shouldRender) {
+                render();
+                renderBurst();
+            }
+
+            currentX += deltaX * LERP_SPEED;
+            currentY += deltaY * LERP_SPEED;
 
             const time = Date.now() / 1000;
             const floatY = Math.sin(time * 0.6) * 8;
