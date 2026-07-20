@@ -50,7 +50,7 @@ export const HeroVideo = () => {
             <video
                 key={isMobile ? "mobile" : "desktop"} // Reconstruye el nodo para forzar el cambio de src sin bugs
                 ref={videoRef}
-                src={isMobile ? "/animation/hero_mobile.mp4" : "/animation/hero_desktop.mp4"}
+                src={isMobile ? "/animation/hero_mobile_optimized.mp4" : "/animation/hero_desktop_optimized.mp4"}
                 className={styles.videoBackground}
                 autoPlay
                 muted
