@@ -1,0 +1,98 @@
+.heroContainer {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #e0e0e0;
+}
+
+.videoBackground {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* ◄ CAMBIA ESTO. 'contain' muestra el video completo sin cortes, 'fill' lo estira al 100% exacto */
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+.overlayUI {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+
+/* El título inicia centrado en pantalla */
+.title {
+    position: absolute;
+    text-align: center;
+    font-weight: 700;
+    color: #1e70e9;
+    text-transform: uppercase;
+    line-height: 1.1;
+    font-family: Montserrat, sans-serif;
+    font-size: clamp(2rem, 5vw, 5rem); /* Adaptable para móvil/escritorio */
+    top: 40%;
+    transform: translateY(-50%) scale(1);
+    transition: all 2.7s cubic-bezier(0.25, 1, 0.5, 1);
+    user-select: none;
+}
+
+/* Cuando pasa el segundo 2.3, sube limpiamente */
+.titleMoved {
+    top: 13%;
+    transform: translateY(0) scale(0.99);
+}
+
+/* Botón Contact Us */
+.contactBtn {
+    position: absolute;
+    bottom: 50%; /* Lo posiciona abajo, cerca de la ventana del carro */
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background-color: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 8px 8px 8px 24px;
+    border-radius: 9999px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease-out;
+    cursor: pointer;
+}
+
+.btnVisible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.btnText {
+    color: white;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-family: sans-serif;
+}
+
+.btnIcon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #1e70e9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+}
