@@ -12,11 +12,12 @@
     left: 50%;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* ◄ CAMBIA ESTO. 'contain' muestra el video completo sin cortes, 'fill' lo estira al 100% exacto */
+    object-fit: cover;
     transform: translate(-50%, -50%);
     z-index: 1;
 }
 
+/* 1. Modificamos el overlay para que controle el flujo vertical en móvil */
 .overlayUI {
     position: absolute;
     inset: 0;
@@ -26,9 +27,10 @@
     align-items: center;
     justify-content: center;
     pointer-events: none;
+    box-sizing: border-box;
 }
 
-/* El título inicia centrado en pantalla */
+/* El título inicia centrado en pantalla (Escritorio) */
 .title {
     position: absolute;
     text-align: center;
@@ -37,23 +39,24 @@
     text-transform: uppercase;
     line-height: 1.1;
     font-family: Montserrat, sans-serif;
-    font-size: clamp(2rem, 5vw, 5rem); /* Adaptable para móvil/escritorio */
+    font-size: clamp(2rem, 6.5vw, 5rem);
     top: 40%;
     transform: translateY(-50%) scale(1);
-    transition: all 2.7s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: all 2.9s cubic-bezier(0.25, 1, 0.5, 1);
     user-select: none;
+    width: 90%;
 }
 
-/* Cuando pasa el segundo 2.3, sube limpiamente */
+/* Cuando pasa el segundo 2, sube limpiamente (Escritorio) */
 .titleMoved {
     top: 13%;
     transform: translateY(0) scale(0.99);
 }
 
-/* Botón Contact Us */
+/* Botón Contact Us (Escritorio: posición absoluta abajo) */
 .contactBtn {
     position: absolute;
-    bottom: 50%; /* Lo posiciona abajo, cerca de la ventana del carro */
+    bottom: 50%;
     pointer-events: auto;
     display: flex;
     align-items: center;
@@ -69,6 +72,8 @@
     transform: translateY(20px);
     transition: all 0.5s ease-out;
     cursor: pointer;
+    white-space: nowrap; /* ◄ CRÍTICO: Evita que el texto se rompa en dos filas */
+    width: max-content;  /* ◄ CRÍTICO: Fuerza al botón a medir lo que mide su contenido */
 }
 
 .btnVisible {
@@ -95,4 +100,40 @@
     justify-content: center;
     color: white;
     font-weight: bold;
+}
+
+/* ── REGLAS ESPECÍFICAS PARA MÓVIL ── */
+@media (max-width: 768px) {
+    /* Cambiamos el contenedor a un layout de columna arriba para posicionar en base a padding */
+    .overlayUI {
+        justify-content: flex-start;
+        padding-top: 15vh; /* Empuja el bloque de contenido al 15% superior de la pantalla móvil */
+    }
+
+    /* Reseteamos el comportamiento absoluto del título para que actúe en el flujo */
+    .title {
+        position: relative;
+        top: auto;
+        transform: none;
+        transition: opacity 1s ease, transform 1s ease;
+        margin-bottom: 34px; /* Separación exacta entre el título y el botón */
+    }
+
+    .titleMoved {
+        top: auto;
+        transform: scale(1);
+    }
+
+    /* Reseteamos el comportamiento absoluto del botón para que caiga abajo del título de forma nativa */
+    .contactBtn {
+        position: relative;
+        bottom: auto;
+        top: auto;
+        /* Mantiene la animación de Fade In de GSAP/Estado */
+        transform: translateY(10px);
+    }
+
+    .btnVisible {
+        transform: translateY(0);
+    }
 }
