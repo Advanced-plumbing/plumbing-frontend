@@ -17,10 +17,10 @@ export const MainHero = () => {
             <div className={styles.contentContainer}>
                 <div className={styles.textWrapper}>
                     <h1 className={styles.title}>
-                        Plumbing you can trust, <span>results that last.</span>
+                        Trusted plumbing, <span>proven results.</span>
                     </h1>
                     <p className={styles.description}>
-                        From fast repairs to full installations, we keep your home or business running smoothly with trusted, <strong>long-lasting solutions.</strong>
+                        From emergency fixes to complete plumbing systems, we provide reliable service and solutions designed for the , <strong>long term.</strong>
                     </p>
                     <Link href="/contact-us" className={styles.ctaButton}>
                         Get in touch

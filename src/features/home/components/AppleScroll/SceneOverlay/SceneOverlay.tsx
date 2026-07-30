@@ -24,11 +24,10 @@ const scenes: Scene[] = [
         verticalAlign: "center",
         content: `
             <h2 class="scene-title">
-                Plumbing you can trust, <span class="scene-accent">results that last.</span>
+                Trusted plumbing, <span class="scene-accent">proven results.</span>
             </h2>
             <p class="scene-desc">
-                From fast repairs to full installations, we keep your home or business
-                running smoothly with trusted, <strong>long-lasting solutions.</strong>
+                From emergency fixes to complete plumbing systems, <strong>we provide reliable service and solutions designed for the ,long term.</strong>
             </p>
             <a href="/contact-us" class="scene-btn">Get in touch</a>
         `,
